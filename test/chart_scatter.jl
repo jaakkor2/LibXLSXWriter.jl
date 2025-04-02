@@ -13,9 +13,9 @@ function write_worksheet_data(worksheet::Ptr{lxw_worksheet}, bold::Ptr{lxw_forma
         7 50 30
     ]
 
-    worksheet_write_string(worksheet, CELL("A1")..., "Number",  bold)
-    worksheet_write_string(worksheet, CELL("B1")..., "Batch 1", bold)
-    worksheet_write_string(worksheet, CELL("C1")..., "Batch 2", bold)
+    worksheet_write_string(worksheet, CELL("A1"), "Number",  bold)
+    worksheet_write_string(worksheet, CELL("B1"), "Batch 1", bold)
+    worksheet_write_string(worksheet, CELL("C1"), "Batch 2", bold)
 
     for row in 0:5, col in 0:2
         worksheet_write_number(worksheet, row + 1, col, data[row+1,col+1] , C_NULL)
@@ -60,7 +60,7 @@ chart_axis_set_name(chart_axis_get(chart, LXW_CHART_AXIS_TYPE_Y), "Sample length
 chart_set_style(chart, 11)
 
 # Insert the chart into the worksheet.
-worksheet_insert_chart(worksheet, CELL("E2")..., chart)
+worksheet_insert_chart(worksheet, CELL("E2"), chart)
 
 
 ### Chart 2. Create a scatter chart with straight lines and markers connecting the points.
@@ -88,7 +88,7 @@ chart_axis_set_name(chart_axis_get(chart, LXW_CHART_AXIS_TYPE_Y), "Sample length
 chart_set_style(chart, 12)
 
 # Insert the chart into the worksheet.
-worksheet_insert_chart(worksheet, CELL("E18")..., chart)
+worksheet_insert_chart(worksheet, CELL("E18"), chart)
 
 
 ### Chart 3. Create a scatter chart with straight lines connecting the points.
@@ -116,7 +116,7 @@ chart_axis_set_name(chart_axis_get(chart, LXW_CHART_AXIS_TYPE_Y), "Sample length
 chart_set_style(chart, 13)
 
 # Insert the chart into the worksheet.
-worksheet_insert_chart(worksheet, CELL("E34")..., chart)
+worksheet_insert_chart(worksheet, CELL("E34"), chart)
 
 
 ### Chart 4. Create a scatter chart with smooth lines and markers connecting the points.
@@ -144,7 +144,7 @@ chart_axis_set_name(chart_axis_get(chart, LXW_CHART_AXIS_TYPE_Y), "Sample length
 chart_set_style(chart, 14)
 
 # Insert the chart into the worksheet.
-worksheet_insert_chart(worksheet, CELL("E50")..., chart)
+worksheet_insert_chart(worksheet, CELL("E50"), chart)
 
 
 ### Chart 5. Create a scatter chart with smooth lines connecting the points.
@@ -172,6 +172,6 @@ chart_axis_set_name(chart_axis_get(chart, LXW_CHART_AXIS_TYPE_Y), "Sample length
 chart_set_style(chart, 15)
 
 # Insert the chart into the worksheet.
-worksheet_insert_chart(worksheet, CELL("E66")..., chart)
+worksheet_insert_chart(worksheet, CELL("E66"), chart)
 
 workbook_close(workbook)

@@ -23,7 +23,7 @@ worksheet_write_number(worksheet, 6, 2, 10000, C_NULL)
 worksheet_write_array_formula(worksheet, 0, 0, 0, 0, "{=SUM(B1:C1*B2:C2)}", C_NULL)
 
 # Similar to above but using the RANGE macro.
-worksheet_write_array_formula(worksheet, RANGE("A2:A2")..., "{=SUM(B1:C1*B2:C2)}", C_NULL)
+worksheet_write_array_formula(worksheet, RANGE("A2:A2"), "{=SUM(B1:C1*B2:C2)}", C_NULL)
 
 # Write an array formula that returns a range of values.
 worksheet_write_array_formula(worksheet, 4, 0, 6, 0, "{=TREND(C5:C7,B5:B7)}", C_NULL)

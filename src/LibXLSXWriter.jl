@@ -16,6 +16,13 @@ CELL(cell) = lxw_name_to_row(cell), lxw_name_to_col(cell)
 COLS(cols) = lxw_name_to_col(cols), lxw_name_to_col_2(cols)
 RANGE(range) = lxw_name_to_row(range), lxw_name_to_col(range), lxw_name_to_row_2(range), lxw_name_to_col_2(range)
 
+# helpers for CELL
+worksheet_write_string(worksheet, cell::Tuple{UInt32, UInt16}, string, format) = worksheet_write_string(worksheet, cell..., string, format)
+worksheet_write_number(worksheet, cell::Tuple{UInt32, UInt16}, number, format) = worksheet_write_number(worksheet, cell..., number, format)
+worksheet_insert_chart(worksheet, cell::Tuple{UInt32, UInt16}, chart) = worksheet_insert_chart(worksheet, cell..., chart)
+# helper for RANGE
+worksheet_write_array_formula(worksheet, range::Tuple{UInt32, UInt16, UInt32, UInt16}, formula, format) = worksheet_write_array_formula(worksheet, range..., formula, format)
+
 # for n in names(@__MODULE__; all=true)
 #     if Base.isidentifier(n) && n ∉ (Symbol(@__MODULE__), :eval, :include)
 #         @eval export $n

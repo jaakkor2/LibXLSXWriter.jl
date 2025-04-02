@@ -6,10 +6,10 @@ workbook = workbook_new("chart_pie_colors.xlsx")
 worksheet = workbook_add_worksheet(workbook, C_NULL)
 
 # Write some data for the chart.
-worksheet_write_string(worksheet, CELL("A1")..., "Pass", C_NULL)
-worksheet_write_string(worksheet, CELL("A2")..., "Fail", C_NULL)
-worksheet_write_number(worksheet, CELL("B1")..., 90, C_NULL)
-worksheet_write_number(worksheet, CELL("B2")..., 10, C_NULL)
+worksheet_write_string(worksheet, CELL("A1"), "Pass", C_NULL)
+worksheet_write_string(worksheet, CELL("A2"), "Fail", C_NULL)
+worksheet_write_number(worksheet, CELL("B1"), 90, C_NULL)
+worksheet_write_number(worksheet, CELL("B2"), 10, C_NULL)
 
 # Create a pie chart.
 chart = workbook_add_chart(workbook, LXW_CHART_PIE)
@@ -32,6 +32,6 @@ points = [Ptr{green_point}(), Ptr{red_point}()]
 chart_series_set_points(series, points)
 
 # Insert the chart into the worksheet.
-worksheet_insert_chart(worksheet, CELL("D2")..., chart)
+worksheet_insert_chart(worksheet, CELL("D2"), chart)
 
 workbook_close(workbook)
