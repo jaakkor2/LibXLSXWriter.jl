@@ -13,3 +13,6 @@ end
 @testset "panes" begin
     include("panes.jl")
 end
+@testset "chart_scatter" begin
+    include("chart_scatter.jl")
+end
