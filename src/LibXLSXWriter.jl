@@ -11,6 +11,10 @@ lxw_chart_line(; color=0x0, none=0x0, width=0.0, dash_type=0x0, transparency=0x0
 lxw_chart_pattern(; fg_color=0x0, bg_color=0x0, type=0x0) = lxw_chart_pattern(fg_color, bg_color, type)
 lxw_chart_point(; line=lxw_chart_line(), fill=lxw_chart_fill(), pattern=lxw_chart_pattern()) = lxw_chart_point(Ptr{line}(), Ptr{fill}(), Ptr{pattern}())
 
+Cs(mystring) = Base.unsafe_convert(Cstring, mystring)
+lxw_doc_properties(; title="", subject="", author="", manager="", company="", category="", keywords="", comments="", status="", hyperlink_base="", created=0) =
+   Ref(lxw_doc_properties(Cs(title), Cs(subject), Cs(author), Cs(manager), Cs(company), Cs(category), Cs(keywords), Cs(comments), Cs(status), Cs(hyperlink_base), created))
+
 # utility.h
 CELL(cell) = lxw_name_to_row(cell), lxw_name_to_col(cell)
 COLS(cols) = lxw_name_to_col(cols), lxw_name_to_col_2(cols)
