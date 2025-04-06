@@ -16,6 +16,9 @@ end
 @testset "demo" begin
     include("demo.jl")
 end
+@testset "doc_properties" begin
+    include("doc_properties.jl")
+end
 @testset "format_num_format" begin
     include("format_num_format.jl")
 end
