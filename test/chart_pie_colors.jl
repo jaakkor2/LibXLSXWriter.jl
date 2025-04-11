@@ -26,7 +26,7 @@ red_point = lxw_chart_point(fill=red_fill)
 green_point = lxw_chart_point(fill=green_fill)
 
 # Create an array of pointer to chart points. Note, the array should be NULL terminated.
-points = [Ptr{green_point}(), Ptr{red_point}()]
+points = [green_point, red_point]
 
 # Add the points to the series.
 chart_series_set_points(series, points)
