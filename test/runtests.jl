@@ -4,6 +4,12 @@ using Test
 @testset "array_formula" begin
     include("array_formula.jl")
 end
+@testset "autofilter" begin
+    include("autofilter.jl")
+end
+@testset "chart_data_tools" begin
+    include("chart_data_tools.jl")
+end
 @testset "chart_pie_colors" begin
     include("chart_pie_colors.jl")
 end
