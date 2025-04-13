@@ -6021,10 +6021,6 @@ const LXW_MAX_ATTRIBUTE_LENGTH = 2080
 
 const LXW_ATTR_32 = 32
 
-##
-function strcasecmp(a::S,b::S) where {S<:AbstractString}
-    lowercase(a) == lowercase(b)
-end
 const lxw_strcasecmp = strcasecmp
 
 const LXW_ROW_MAX = 1048576
