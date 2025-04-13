@@ -3,7 +3,7 @@
 using LibXLSXWriter: worksheet_write_string, CELL, worksheet_write_number, workbook_new, workbook_add_worksheet, workbook_add_format, format_set_bold, workbook_add_chart, LXW_CHART_SCATTER, chart_add_series, chart_series_set_name, chart_series_set_categories, chart_series_set_values, chart_series_set_name_range, chart_title_set_name, chart_axis_set_name, chart_set_style, worksheet_insert_chart, lxw_worksheet, lxw_format, chart_axis_get, LXW_CHART_AXIS_TYPE_X, LXW_CHART_AXIS_TYPE_Y, LXW_CHART_SCATTER_STRAIGHT_WITH_MARKERS, LXW_CHART_SCATTER_STRAIGHT, LXW_CHART_SCATTER_SMOOTH_WITH_MARKERS, LXW_CHART_SCATTER_SMOOTH, workbook_close
 
 # Write some data to the worksheet.
-function write_worksheet_data(worksheet::Ptr{lxw_worksheet}, bold::Ptr{lxw_format})
+function write_worksheet_data(worksheet, bold)
     data = [
         2 10 30
         3 40 60

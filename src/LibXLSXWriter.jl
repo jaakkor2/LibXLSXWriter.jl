@@ -4,11 +4,19 @@ using libxlsxwriter_jll
 using CEnum
 using Printf
 
+# function definitions for the generated libxlsxwriter_api.jl
+function strcasecmp(a::S,b::S) where {S<:AbstractString}
+   lowercase(a) == lowercase(b)
+end
+string_copy_free = Base.unsafe_string
 include("generated/libxlsxwriter_api.jl")
 
 lxw_chart_fill(; color=0x0, none=0x0, transparency=0x0) = Ref(lxw_chart_fill(color, none, transparency))
 lxw_chart_line(; color=0x0, none=0x0, width=0.0, dash_type=0x0, transparency=0x0) = Ref(lxw_chart_line(color, none, width, dash_type, transparency))
 lxw_chart_pattern(; fg_color=0x0, bg_color=0x0, type=LXW_PATTERN_NONE) = Ref(lxw_chart_pattern(fg_color, bg_color, type))
+
+lxw_chart_font(; name="Arial", size=11.0, bold=0x0, italic=0x0, underline=0x0, rotation=Int32(0), color=LXW_COLOR_BLACK, pitch_family=0x0, charset=0x0, baseline=Int8(0)) =
+   Ref(lxw_chart_font(Cs(name), size, bold, italic, underline, rotation, color, pitch_family, charset, baseline))
 
 function lxw_chart_point(; line=C_NULL, fill=C_NULL, pattern=C_NULL)
    Ref(lxw_chart_point(
@@ -18,12 +26,15 @@ function lxw_chart_point(; line=C_NULL, fill=C_NULL, pattern=C_NULL)
    ))
 end
 
-Cs(mystring) = Base.unsafe_convert(Cstring, mystring)
+Cs(mystring) = isempty(mystring) ? C_NULL : Base.unsafe_convert(Cstring, mystring)
 lxw_doc_properties(; title="", subject="", author="", manager="", company="", category="", keywords="", comments="", status="", hyperlink_base="", created=0) =
    Ref(lxw_doc_properties(Cs(title), Cs(subject), Cs(author), Cs(manager), Cs(company), Cs(category), Cs(keywords), Cs(comments), Cs(status), Cs(hyperlink_base), created))
 
 lxw_row_col_options(; hidden=0x0, level=0x0, collapsed=0x0) = Ref(lxw_row_col_options(hidden, level, collapsed))
 lxw_filter_rule(; criteria=0x0, value_string="", value=0.0) = Ref(lxw_filter_rule(criteria, Cs(value_string), value))
+
+lxw_header_footer_options(; margin=0.0, image_left="", image_center="", image_right="") =
+   Ref(lxw_header_footer_options(margin, Cs(image_left), Cs(image_center), Cs(image_right)))
 
 # utility.h
 CELL(cell) = lxw_name_to_row(cell), lxw_name_to_col(cell)

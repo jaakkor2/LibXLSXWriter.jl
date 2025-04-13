@@ -13,7 +13,7 @@ https://github.com/jmcnamara/libxlsxwriter/blob/main/examples/chart_data_tools.c
 using LibXLSXWriter: lxw_worksheet, lxw_format, worksheet_write_string, CELL, worksheet_write_number, workbook_new, workbook_add_worksheet, workbook_add_format, format_set_bold, workbook_add_chart, LXW_CHART_LINE, chart_title_set_name, chart_add_series, chart_set_high_low_lines, worksheet_insert_chart, chart_set_drop_lines, chart_set_up_down_bars, lxw_chart_line, lxw_chart_fill, LXW_COLOR_BLACK, LXW_COLOR_RED, chart_set_up_down_bars_format, chart_series_set_marker_type, LXW_CHART_MARKER_CIRCLE, chart_series_set_labels, chart_series_set_error_bars, chart_series_get_error_bars, LXW_CHART_ERROR_BAR_AXIS_Y, LXW_CHART_ERROR_BAR_TYPE_STD_ERROR, LXW_COLOR_GRAY, LXW_CHART_LINE_DASH_LONG_DASH, chart_series_set_trendline, LXW_CHART_TRENDLINE_TYPE_POLY, chart_series_set_trendline_line, workbook_close
 
 # Write some data to the worksheet.
-function write_worksheet_data2(worksheet::Ptr{lxw_worksheet}, bold::Ptr{lxw_format})
+function write_worksheet_data(worksheet, bold)
 
     data = [
         # Three columns of data.
@@ -44,7 +44,7 @@ bold = workbook_add_format(workbook)
 format_set_bold(bold)
 
 # Write some data for the chart.
-write_worksheet_data2(worksheet, bold)
+write_worksheet_data(worksheet, bold)
 
 
 ## Chart 1. Example with High Low Lines.
