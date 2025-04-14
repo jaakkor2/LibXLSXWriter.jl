@@ -16,6 +16,9 @@ end
 @testset "chart" begin
         include("chart.jl")
 end
+@testset "chart_data_labels" begin
+    include("chart_data_labels.jl")
+end
 @testset "chart_data_tools" begin
         include("chart_data_tools.jl")
 end
@@ -28,6 +31,9 @@ end
 @testset "comments1" begin
     include("comments1.jl")
 end
+@testset "comments2" begin
+    include("comments1.jl")
+end
 @testset "demo" begin
     include("demo.jl")
 end
@@ -36,6 +42,9 @@ end
 end
 @testset "format_num_format" begin
     include("format_num_format.jl")
+end
+@testset "macro" begin
+    include("macro.jl")
 end
 @testset "panes" begin
     include("panes.jl")
