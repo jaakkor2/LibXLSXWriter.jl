@@ -34,6 +34,9 @@ end
 @testset "comments2" begin
     include("comments1.jl")
 end
+@testset "data_validate" begin
+    include("data_validate.jl")
+end
 @testset "demo" begin
     include("demo.jl")
 end
@@ -43,11 +46,17 @@ end
 @testset "format_num_format" begin
     include("format_num_format.jl")
 end
+@testset "image_buffer" begin
+    include("image_buffer.jl")
+end
 @testset "macro" begin
     include("macro.jl")
 end
 @testset "panes" begin
     include("panes.jl")
+end
+@testset "rich_strings" begin
+    include("rich_strings.jl")
 end
 @testset "watermark" begin
     include("watermark.jl")

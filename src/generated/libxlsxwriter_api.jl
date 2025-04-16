@@ -3448,7 +3448,7 @@ function Base.setproperty!(x::Ptr{lxw_selection}, f::Symbol, v)
     unsafe_store!(getproperty(x, f), v)
 end
 
-struct lxw_data_validation
+mutable struct lxw_data_validation
     validate::UInt8
     criteria::UInt8
     ignore_blank::UInt8
