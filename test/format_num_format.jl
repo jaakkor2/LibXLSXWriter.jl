@@ -1,4 +1,14 @@
-# https://github.com/jmcnamara/libxlsxwriter/blob/main/examples/format_num_format.c
+#=
+https://github.com/jmcnamara/libxlsxwriter/blob/main/examples/format_num_format.c
+/*
+ * Example of writing some data with numeric formatting to a simple Excel file
+ * using libxlsxwriter.
+ *
+ * Copyright 2014-2025, John McNamara, jmcnamara@cpan.org
+ *
+ */
+=#
+
 
 using LibXLSXWriter:
     workbook_new,

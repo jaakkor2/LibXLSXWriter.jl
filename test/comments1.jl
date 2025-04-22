@@ -1,4 +1,12 @@
-# https://github.com/jmcnamara/libxlsxwriter/blob/main/examples/comments1.c
+#=
+https://github.com/jmcnamara/libxlsxwriter/blob/main/examples/comments1.c
+/*
+ * An example of writing cell comments to a worksheet using libxlsxwriter.
+ *
+ * Copyright 2014-2025, John McNamara, jmcnamara@cpan.org
+ *
+ */
+ =#
 
 using LibXLSXWriter:
     workbook_new,

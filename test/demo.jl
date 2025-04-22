@@ -1,4 +1,12 @@
-# https://github.com/jmcnamara/libxlsxwriter/blob/main/examples/demo.c
+#=
+https://github.com/jmcnamara/libxlsxwriter/blob/main/examples/demo.c
+/*
+ * A simple example of some of the features of the libxlsxwriter library.
+ *
+ * Copyright 2014-2025, John McNamara, jmcnamara@cpan.org
+ *
+ */
+=#
 
 using LibXLSXWriter:
     workbook_new,
