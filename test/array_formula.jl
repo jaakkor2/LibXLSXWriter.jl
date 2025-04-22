@@ -9,7 +9,13 @@ https://github.com/jmcnamara/libxlsxwriter/blob/main/examples/array_formula.c
  */
 =#
 
-using LibXLSXWriter: workbook_new, workbook_add_worksheet, worksheet_write_number, worksheet_write_array_formula, RANGE, workbook_close
+using LibXLSXWriter:
+    workbook_new,
+    workbook_add_worksheet,
+    worksheet_write_number,
+    worksheet_write_array_formula,
+    RANGE,
+    workbook_close
 
 # Create a new workbook and add a worksheet.
 workbook = workbook_new("array_formula.xlsx")

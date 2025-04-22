@@ -11,7 +11,20 @@ https://github.com/jmcnamara/libxlsxwriter/blob/main/examples/conditional_format
  */
 =#
 
-using LibXLSXWriter: workbook_new, workbook_add_worksheet, worksheet_write_number, CELL, workbook_add_format, format_set_font_color, LXW_COLOR_RED, lxw_conditional_format, LXW_CONDITIONAL_TYPE_CELL, LXW_CONDITIONAL_CRITERIA_LESS_THAN, worksheet_conditional_format_range, RANGE, workbook_close
+using LibXLSXWriter:
+    workbook_new,
+    workbook_add_worksheet,
+    worksheet_write_number,
+    CELL,
+    workbook_add_format,
+    format_set_font_color,
+    LXW_COLOR_RED,
+    lxw_conditional_format,
+    LXW_CONDITIONAL_TYPE_CELL,
+    LXW_CONDITIONAL_CRITERIA_LESS_THAN,
+    worksheet_conditional_format_range,
+    RANGE,
+    workbook_close
 
 workbook = workbook_new("conditional_format_simple.xlsx")
 worksheet = workbook_add_worksheet(workbook, C_NULL)
@@ -35,16 +48,16 @@ format_set_font_color(custom_format, LXW_COLOR_RED)
 conditional_format = lxw_conditional_format()
 
 # Set the format type: a cell conditional: */
-conditional_format[].type     = LXW_CONDITIONAL_TYPE_CELL
+conditional_format[].type = LXW_CONDITIONAL_TYPE_CELL
 
 # Set the criteria to use:
 conditional_format[].criteria = LXW_CONDITIONAL_CRITERIA_LESS_THAN
 
 # Set the value to which the criteria will be applied:
-conditional_format[].value    = 33
+conditional_format[].value = 33
 
 # Set the format to use if the criteria/value applies:
-conditional_format[].format   = custom_format
+conditional_format[].format = custom_format
 
 # Now apply the format to data range.
 worksheet_conditional_format_range(worksheet, RANGE("B1:B9"), conditional_format)

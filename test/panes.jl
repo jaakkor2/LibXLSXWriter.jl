@@ -1,6 +1,24 @@
 # https://github.com/jmcnamara/libxlsxwriter/blob/main/examples/panes.c
 
-using LibXLSXWriter: workbook_new, workbook_add_worksheet, workbook_add_format, format_set_align, LXW_ALIGN_CENTER, LXW_ALIGN_VERTICAL_CENTER, format_set_fg_color, format_set_bold, format_set_border, LXW_BORDER_THIN, worksheet_freeze_panes, worksheet_set_column, worksheet_set_row, worksheet_set_selection, worksheet_write_string, worksheet_split_panes, worksheet_write_number, workbook_close
+using LibXLSXWriter:
+    workbook_new,
+    workbook_add_worksheet,
+    workbook_add_format,
+    format_set_align,
+    LXW_ALIGN_CENTER,
+    LXW_ALIGN_VERTICAL_CENTER,
+    format_set_fg_color,
+    format_set_bold,
+    format_set_border,
+    LXW_BORDER_THIN,
+    worksheet_freeze_panes,
+    worksheet_set_column,
+    worksheet_set_row,
+    worksheet_set_selection,
+    worksheet_write_string,
+    worksheet_split_panes,
+    worksheet_write_number,
+    workbook_close
 
 # Create a new workbook and add some worksheets.
 workbook = workbook_new("panes.xlsx")
@@ -33,11 +51,11 @@ worksheet_set_row(worksheet1, 0, 20, C_NULL)
 worksheet_set_selection(worksheet1, 4, 3, 4, 3)
 
 # Some worksheet text to demonstrate scrolling.
-for col in 0:8
+for col = 0:8
     worksheet_write_string(worksheet1, 0, col, "Scroll down", header)
 end
 
-for row in 1:99, col in 0:8
+for row = 1:99, col = 0:8
     worksheet_write_number(worksheet1, row, col, row + 1, center)
 end
 
@@ -50,9 +68,9 @@ worksheet_set_column(worksheet2, 0, 0, 16, C_NULL)
 worksheet_set_selection(worksheet2, 4, 3, 4, 3)
 
 # Some worksheet text to demonstrate scrolling.
-for row in 0:49
+for row = 0:49
     worksheet_write_string(worksheet2, row, 0, "Scroll right", header)
-    for col in 1:25
+    for col = 1:25
         worksheet_write_number(worksheet2, row, col, col, center)
     end
 end
@@ -70,13 +88,13 @@ worksheet_set_selection(worksheet3, 4, 3, 4, 3)
 
 
 # Some worksheet text to demonstrate scrolling.
-for col in 1:25
+for col = 1:25
     worksheet_write_string(worksheet3, 0, col, "Scroll down", header)
 end
 
-for row in 1:49
+for row = 1:49
     worksheet_write_string(worksheet3, row, 0, "Scroll right", header)
-    for col in 1:25
+    for col = 1:25
         worksheet_write_number(worksheet3, row, col, col, center)
     end
 end
@@ -90,13 +108,13 @@ worksheet_split_panes(worksheet4, 15, 8.43)
 
 # Some sheet formatting.
 # Some worksheet text to demonstrate scrolling.
-for col in 1:25
+for col = 1:25
     worksheet_write_string(worksheet4, 0, col, "Scroll", center)
 end
 
-for row in 1:49
+for row = 1:49
     worksheet_write_string(worksheet4, row, 0, "Scroll", center)
-    for col in 1:25
+    for col = 1:25
         worksheet_write_number(worksheet4, row, col, col, center)
     end
 end

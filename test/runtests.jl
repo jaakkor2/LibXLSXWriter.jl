@@ -14,19 +14,19 @@ end
     include("background.jl")
 end
 @testset "chart" begin
-        include("chart.jl")
+    include("chart.jl")
 end
 @testset "chart_data_labels" begin
     include("chart_data_labels.jl")
 end
 @testset "chart_data_tools" begin
-        include("chart_data_tools.jl")
+    include("chart_data_tools.jl")
 end
 @testset "chart_pie_colors" begin
     include("chart_pie_colors.jl")
 end
 @testset "chart_scatter" begin
-        include("chart_scatter.jl")
+    include("chart_scatter.jl")
 end
 @testset "chartsheet" begin
     include("chartsheet.jl")

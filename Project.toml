@@ -1,7 +1,7 @@
 name = "LibXLSXWriter"
 uuid = "d9c5391f-cdb8-42e0-9032-91a2542ec5a4"
 authors = ["Jaakko Ruohio jaakkor2@gmail.com"]
-version = "0.1.4-DEV"
+version = "0.1.4"
 
 [deps]
 CEnum = "fa961155-64e5-5f13-b03f-caf6b980ea82"
@@ -11,7 +11,7 @@ libxlsxwriter_jll = "90251a59-ee77-57fd-870b-ce07edc5a5b6"
 [compat]
 CEnum = "0.5"
 julia = "1.10"
-libxlsxwriter_jll = "1.1.9"
+libxlsxwriter_jll = "1.2.2"
 
 [extras]
 Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"

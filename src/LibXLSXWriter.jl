@@ -5,8 +5,8 @@ using CEnum
 using Printf
 
 # function definitions for the generated libxlsxwriter_api.jl
-function strcasecmp(a::S,b::S) where {S<:AbstractString}
-   lowercase(a) == lowercase(b)
+function strcasecmp(a::S, b::S) where {S<:AbstractString}
+    lowercase(a) == lowercase(b)
 end
 
 string_copy_free = Base.unsafe_string

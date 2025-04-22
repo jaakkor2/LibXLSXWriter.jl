@@ -8,27 +8,42 @@ https://github.com/jmcnamara/libxlsxwriter/blob/main/examples/chart.c
  */
 =#
 
-using LibXLSXWriter: lxw_worksheet, worksheet_write_number, workbook_new, workbook_add_worksheet, workbook_add_chart, LXW_CHART_COLUMN, chart_add_series, lxw_chart_font, LXW_EXPLICIT_FALSE, LXW_COLOR_BLUE, chart_title_set_name, chart_title_set_name_font, worksheet_insert_chart, CELL, workbook_close
+using LibXLSXWriter:
+    lxw_worksheet,
+    worksheet_write_number,
+    workbook_new,
+    workbook_add_worksheet,
+    workbook_add_chart,
+    LXW_CHART_COLUMN,
+    chart_add_series,
+    lxw_chart_font,
+    LXW_EXPLICIT_FALSE,
+    LXW_COLOR_BLUE,
+    chart_title_set_name,
+    chart_title_set_name_font,
+    worksheet_insert_chart,
+    CELL,
+    workbook_close
 
 # Write some data to the worksheet.
 function write_worksheet_data(worksheet)
 
     data = [
         # Three columns of data.
-        [1,   2,   3],
-        [2,   4,   6],
-        [3,   6,   9],
-        [4,   8,  12],
-        [5,  10,  15]
+        [1, 2, 3],
+        [2, 4, 6],
+        [3, 6, 9],
+        [4, 8, 12],
+        [5, 10, 15],
     ]
 
-    for row in 1:5, col in 1:3
+    for row = 1:5, col = 1:3
         worksheet_write_number(worksheet, row - 1, col - 1, data[row][col], C_NULL)
     end
 end
 
 # Create a worksheet with a chart.
-workbook  = workbook_new("chart.xlsx")
+workbook = workbook_new("chart.xlsx")
 worksheet = workbook_add_worksheet(workbook, C_NULL)
 
 # Write some data for the chart.
