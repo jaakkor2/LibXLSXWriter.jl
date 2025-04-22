@@ -34,6 +34,7 @@ worksheet_write_url(worksheet, cell::Tuple{UInt32, UInt16}, url, format) = works
 # helper for RANGE
 worksheet_add_table(worksheet, range::Tuple{UInt32, UInt16, UInt32, UInt16}, options) = worksheet_add_table(worksheet, range..., options)
 worksheet_write_array_formula(worksheet, range::Tuple{UInt32, UInt16, UInt32, UInt16}, formula, format) = worksheet_write_array_formula(worksheet, range..., formula, format)
+worksheet_conditional_format_range(worksheet, range::Tuple{UInt32, UInt16, UInt32, UInt16}, conditional_format) = worksheet_conditional_format_range(worksheet, range..., conditional_format)
 
 # helper for COLS
 worksheet_set_column(worksheet, column::Tuple{UInt16, UInt16}, width, format) = worksheet_set_column(worksheet, column..., width, format)

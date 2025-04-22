@@ -33,13 +33,88 @@ lxw_chart_point(; line=C_NULL, fill=C_NULL, pattern=C_NULL) =
 lxw_comment_options(; visible=0x0, author=C_NULL, width=0, height=0, x_scale=1.0, y_scale=1.0, color=LXW_COLOR_UNSET, font_name=C_NULL, font_size=8, font_family=0x2, start_row=0x0, start_col=0x0, x_offset=15, y_offset=10) =
    Ref(lxw_comment_options(visible, Cs(author), width, height, x_scale, y_scale, color, Cs(font_name), font_size, font_family, start_row, start_col, x_offset, y_offset))
 
+lxw_conditional_format(;
+   type=LXW_CONDITIONAL_TYPE_CELL,
+   criteria=LXW_CONDITIONAL_CRITERIA_GREATER_THAN,
+   value=0.0,
+   value_string=C_NULL,
+   format=C_NULL,
+   min_value=0.0,
+   min_value_string=C_NULL,
+   min_rule_type=0x0,
+   min_color=LXW_COLOR_BLACK,
+   mid_value=0.0,
+   mid_value_string=C_NULL,
+   mid_rule_type=0x0,
+   mid_color=LXW_COLOR_BLACK,
+   max_value=0.0,
+   max_value_string=C_NULL,
+   max_rule_type=0x0,
+   max_color=LXW_COLOR_BLACK,
+   bar_color=LXW_COLOR_BLACK,
+   bar_only=0x0,
+   data_bar_2010=0x0,
+   bar_solid=0x0,
+   bar_negative_color=LXW_COLOR_BLACK,
+   bar_border_color=LXW_COLOR_BLACK,
+   bar_negative_border_color=LXW_COLOR_BLACK,
+   bar_negative_color_same=0x0,
+   bar_negative_border_color_same=0x0,
+   bar_no_border=0x0,
+   bar_direction=0x0,
+   bar_axis_position=0x0,
+   bar_axis_color=LXW_COLOR_BLACK,
+   icon_style=0x0,
+   reverse_icons=0x0,
+   icons_only=0x0,
+   multi_range=C_NULL,
+   stop_if_true=0x0,
+) =
+   Ref(lxw_conditional_format(
+      type,
+      criteria,
+      value,
+      value_string,
+      Base.unsafe_convert(Ptr{lxw_format}, format),
+      min_value,
+      min_value_string,
+      min_rule_type,
+      min_color,
+      mid_value,
+      mid_value_string,
+      mid_rule_type,
+      mid_color,
+      max_value,
+      max_value_string,
+      max_rule_type,
+      max_color,
+      bar_color,
+      bar_only,
+      data_bar_2010,
+      bar_solid,
+      bar_negative_color,
+      bar_border_color,
+      bar_negative_border_color,
+      bar_negative_color_same,
+      bar_negative_border_color_same,
+      bar_no_border,
+      bar_direction,
+      bar_axis_position,
+      bar_axis_color,
+      icon_style,
+      reverse_icons,
+      icons_only,
+      multi_range,
+      stop_if_true,
+   ))
+
 lxw_data_validation(; validate=0x0, criteria=0x0, ignore_blank=0x0, show_input=0x0, show_error=0x0, error_type=0x0, dropdown=0x0, value_number=0.0, value_formula="",
    value_list=String[], value_datetime=lxw_datetime(), minimum_number=0.0, minimum_formula="", minimum_datetime=lxw_datetime(), maximum_number=0.0,
    maximum_formula="", maximum_datetime=lxw_datetime(), input_title="", input_message="", error_title="", error_message="") =
    Ref(lxw_data_validation(validate, criteria, ignore_blank, show_input, show_error, error_type, dropdown, value_number, Cs(value_formula),
-   Cs(value_list),
-   value_datetime.x, minimum_number, Cs(minimum_formula), minimum_datetime.x, maximum_number,
-   Cs(maximum_formula), maximum_datetime.x, Cs(input_title), Cs(input_message), Cs(error_title), Cs(error_message)))
+      Cs(value_list),
+      value_datetime.x, minimum_number, Cs(minimum_formula), minimum_datetime.x, maximum_number,
+      Cs(maximum_formula), maximum_datetime.x, Cs(input_title), Cs(input_message), Cs(error_title), Cs(error_message)))
 
 lxw_datetime(; year=0, month=0, day=0, hour=0, min=0, sec=0) = Ref(lxw_datetime(year, month, day, hour, min, sec))
 
@@ -53,7 +128,7 @@ lxw_header_footer_options(; margin=0.0, image_left=C_NULL, image_center=C_NULL, 
 
 lxw_image_options(; x_offset=0, y_offset=0, x_scale=1.0, y_scale=1.0, object_position=0x0, description="", decorative=0x0, url="", tip="", cell_format=C_NULL) =
    Ref(lxw_image_options(Int32(x_offset), Int32(y_offset), Float64(x_scale), Float64(y_scale), object_position, Cs(description), decorative, Cs(url), Cs(tip),
-   Base.unsafe_convert(Ptr{lxw_format}, cell_format)
+      Base.unsafe_convert(Ptr{lxw_format}, cell_format)
    ))
 
 lxw_rich_string_tuple(; format=C_NULL, string=C_NULL) =
@@ -75,7 +150,7 @@ lxw_table_column(; header=C_NULL, formula=C_NULL, total_string=C_NULL, total_fun
 
 lxw_table_options(; name=C_NULL, no_header_row=false, no_autofilter=false, no_banded_rows=false,
    banded_columns=false, first_column=false, last_column=false,
-   style_type=LXW_TABLE_STYLE_TYPE_MEDIUM, style_type_number=9, total_row=false, columns=C_NULL) = 
+   style_type=LXW_TABLE_STYLE_TYPE_MEDIUM, style_type_number=9, total_row=false, columns=C_NULL) =
    Ref(lxw_table_options(
       Cs(name),
       no_header_row,
