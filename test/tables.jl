@@ -11,47 +11,63 @@ https://github.com/jmcnamara/libxlsxwriter/blob/main/examples/tables.c
  */
 =#
 
-using LibXLSXWriter: worksheet_write_number, workbook_new, workbook_add_worksheet, workbook_add_format, format_set_num_format, worksheet_set_column, COLS, worksheet_write_string, CELL, worksheet_add_table, RANGE, lxw_table_options, lxw_table_column, LXW_TABLE_FUNCTION_SUM, LXW_TABLE_STYLE_TYPE_LIGHT, workbook_close
+using LibXLSXWriter:
+    worksheet_write_number,
+    workbook_new,
+    workbook_add_worksheet,
+    workbook_add_format,
+    format_set_num_format,
+    worksheet_set_column,
+    COLS,
+    worksheet_write_string,
+    CELL,
+    worksheet_add_table,
+    RANGE,
+    lxw_table_options,
+    lxw_table_column,
+    LXW_TABLE_FUNCTION_SUM,
+    LXW_TABLE_STYLE_TYPE_LIGHT,
+    workbook_close
 
 # Write some data to the worksheet.
 function write_worksheet_data(worksheet, format)
     worksheet_write_string(worksheet, CELL("B4"), "Apples", C_NULL)
-    worksheet_write_string(worksheet, CELL("B5"), "Pears",  C_NULL)
+    worksheet_write_string(worksheet, CELL("B5"), "Pears", C_NULL)
     worksheet_write_string(worksheet, CELL("B6"), "Bananas", C_NULL)
     worksheet_write_string(worksheet, CELL("B7"), "Oranges", C_NULL)
 
-    worksheet_write_number(worksheet, CELL("C4"), 10000,  format)
-    worksheet_write_number(worksheet, CELL("C5"),  2000,  format)
-    worksheet_write_number(worksheet, CELL("C6"),  6000,  format)
-    worksheet_write_number(worksheet, CELL("C7"),   500,  format)
+    worksheet_write_number(worksheet, CELL("C4"), 10000, format)
+    worksheet_write_number(worksheet, CELL("C5"), 2000, format)
+    worksheet_write_number(worksheet, CELL("C6"), 6000, format)
+    worksheet_write_number(worksheet, CELL("C7"), 500, format)
 
-    worksheet_write_number(worksheet, CELL("D4"),  5000,  format)
-    worksheet_write_number(worksheet, CELL("D5"),  3000,  format)
-    worksheet_write_number(worksheet, CELL("D6"),  6000,  format)
-    worksheet_write_number(worksheet, CELL("D7"),   300,  format)
+    worksheet_write_number(worksheet, CELL("D4"), 5000, format)
+    worksheet_write_number(worksheet, CELL("D5"), 3000, format)
+    worksheet_write_number(worksheet, CELL("D6"), 6000, format)
+    worksheet_write_number(worksheet, CELL("D7"), 300, format)
 
-    worksheet_write_number(worksheet, CELL("E4"),  8000,  format)
-    worksheet_write_number(worksheet, CELL("E5"),  4000,  format)
-    worksheet_write_number(worksheet, CELL("E6"),  6500,  format)
-    worksheet_write_number(worksheet, CELL("E7"),   200,  format)
+    worksheet_write_number(worksheet, CELL("E4"), 8000, format)
+    worksheet_write_number(worksheet, CELL("E5"), 4000, format)
+    worksheet_write_number(worksheet, CELL("E6"), 6500, format)
+    worksheet_write_number(worksheet, CELL("E7"), 200, format)
 
-    worksheet_write_number(worksheet, CELL("F4"),  6000,  format)
-    worksheet_write_number(worksheet, CELL("F5"),  5000,  format)
-    worksheet_write_number(worksheet, CELL("F6"),  6000,  format)
-    worksheet_write_number(worksheet, CELL("F7"),   700,  format)
+    worksheet_write_number(worksheet, CELL("F4"), 6000, format)
+    worksheet_write_number(worksheet, CELL("F5"), 5000, format)
+    worksheet_write_number(worksheet, CELL("F6"), 6000, format)
+    worksheet_write_number(worksheet, CELL("F7"), 700, format)
 end
 
 
-workbook    = workbook_new("tables.xlsx")
-worksheet1  = workbook_add_worksheet(workbook, C_NULL)
-worksheet2  = workbook_add_worksheet(workbook, C_NULL)
-worksheet3  = workbook_add_worksheet(workbook, C_NULL)
-worksheet4  = workbook_add_worksheet(workbook, C_NULL)
-worksheet5  = workbook_add_worksheet(workbook, C_NULL)
-worksheet6  = workbook_add_worksheet(workbook, C_NULL)
-worksheet7  = workbook_add_worksheet(workbook, C_NULL)
-worksheet8  = workbook_add_worksheet(workbook, C_NULL)
-worksheet9  = workbook_add_worksheet(workbook, C_NULL)
+workbook = workbook_new("tables.xlsx")
+worksheet1 = workbook_add_worksheet(workbook, C_NULL)
+worksheet2 = workbook_add_worksheet(workbook, C_NULL)
+worksheet3 = workbook_add_worksheet(workbook, C_NULL)
+worksheet4 = workbook_add_worksheet(workbook, C_NULL)
+worksheet5 = workbook_add_worksheet(workbook, C_NULL)
+worksheet6 = workbook_add_worksheet(workbook, C_NULL)
+worksheet7 = workbook_add_worksheet(workbook, C_NULL)
+worksheet8 = workbook_add_worksheet(workbook, C_NULL)
+worksheet9 = workbook_add_worksheet(workbook, C_NULL)
 worksheet10 = workbook_add_worksheet(workbook, C_NULL)
 worksheet11 = workbook_add_worksheet(workbook, C_NULL)
 worksheet12 = workbook_add_worksheet(workbook, C_NULL)
@@ -130,9 +146,12 @@ write_worksheet_data(worksheet4, C_NULL)
 worksheet_set_column(worksheet5, COLS("B:G"), 12, C_NULL)
 
 # Write the worksheet caption to explain the example.
-worksheet_write_string(worksheet5, CELL("B1"),
-                        "Default table with \"First Column\" and \"Last Column\" options.",
-                        C_NULL)
+worksheet_write_string(
+    worksheet5,
+    CELL("B1"),
+    "Default table with \"First Column\" and \"Last Column\" options.",
+    C_NULL,
+)
 
 # Set the table options.
 options5 = lxw_table_options(first_column = true, last_column = true)
@@ -150,9 +169,12 @@ write_worksheet_data(worksheet5, C_NULL)
 worksheet_set_column(worksheet6, COLS("B:G"), 12, C_NULL)
 
 # Write the worksheet caption to explain the example.
-worksheet_write_string(worksheet6, CELL("B1"),
-                        "Table with banded columns but without default banded rows.",
-                        C_NULL)
+worksheet_write_string(
+    worksheet6,
+    CELL("B1"),
+    "Table with banded columns but without default banded rows.",
+    C_NULL,
+)
 
 # Set the table options.
 options6 = lxw_table_options(no_banded_rows = true, banded_columns = true)
@@ -170,7 +192,12 @@ write_worksheet_data(worksheet6, C_NULL)
 worksheet_set_column(worksheet7, COLS("B:G"), 12, C_NULL)
 
 # Write the worksheet caption to explain the example.
-worksheet_write_string(worksheet7, CELL("B1"), "Table with user defined column headers.", C_NULL)
+worksheet_write_string(
+    worksheet7,
+    CELL("B1"),
+    "Table with user defined column headers.",
+    C_NULL,
+)
 
 
 # Set the table options.
@@ -197,7 +224,12 @@ write_worksheet_data(worksheet7, C_NULL)
 worksheet_set_column(worksheet8, COLS("B:G"), 12, C_NULL)
 
 # Write the worksheet caption to explain the example.
-worksheet_write_string(worksheet8, CELL("B1"), "Table with user defined column headers.", C_NULL)
+worksheet_write_string(
+    worksheet8,
+    CELL("B1"),
+    "Table with user defined column headers.",
+    C_NULL,
+)
 
 # Set the table options.
 col8_1 = lxw_table_column(header = "Product")
@@ -205,7 +237,8 @@ col8_2 = lxw_table_column(header = "Quarter 1")
 col8_3 = lxw_table_column(header = "Quarter 2")
 col8_4 = lxw_table_column(header = "Quarter 3")
 col8_5 = lxw_table_column(header = "Quarter 4")
-col8_6 = lxw_table_column(header = "Year", formula = "=SUM(Table8[@[Quarter 1]:[Quarter 4]])")
+col8_6 =
+    lxw_table_column(header = "Year", formula = "=SUM(Table8[@[Quarter 1]:[Quarter 4]])")
 
 columns8 = [col8_1, col8_2, col8_3, col8_4, col8_5, col8_6, C_NULL]
 
@@ -224,9 +257,12 @@ write_worksheet_data(worksheet8, C_NULL)
 worksheet_set_column(worksheet9, COLS("B:G"), 12, C_NULL)
 
 # Write the worksheet caption to explain the example.
-worksheet_write_string(worksheet9, CELL("B1"),
-                        "Table with totals row (but no caption or totals).",
-                        C_NULL)
+worksheet_write_string(
+    worksheet9,
+    CELL("B1"),
+    "Table with totals row (but no caption or totals).",
+    C_NULL,
+)
 
 
 # Set the table options.
@@ -235,7 +271,8 @@ col9_2 = lxw_table_column(header = "Quarter 1")
 col9_3 = lxw_table_column(header = "Quarter 2")
 col9_4 = lxw_table_column(header = "Quarter 3")
 col9_5 = lxw_table_column(header = "Quarter 4")
-col9_6 = lxw_table_column(header = "Year", formula = "=SUM(Table9[@[Quarter 1]:[Quarter 4]])")
+col9_6 =
+    lxw_table_column(header = "Year", formula = "=SUM(Table9[@[Quarter 1]:[Quarter 4]])")
 
 columns9 = [col9_1, col9_2, col9_3, col9_4, col9_5, col9_6, C_NULL]
 
@@ -254,29 +291,29 @@ write_worksheet_data(worksheet9, C_NULL)
 worksheet_set_column(worksheet10, COLS("B:G"), 12, C_NULL)
 
 # Write the worksheet caption to explain the example.
-worksheet_write_string(worksheet10, CELL("B1"),
-                        "Table with totals row with user captions and functions.",
-                        C_NULL)
+worksheet_write_string(
+    worksheet10,
+    CELL("B1"),
+    "Table with totals row with user captions and functions.",
+    C_NULL,
+)
 
 # Set the table options.
-col10_1 = lxw_table_column(header         = "Product",
-                                total_string   = "Totals")
+col10_1 = lxw_table_column(header = "Product", total_string = "Totals")
 
-col10_2 = lxw_table_column(header         = "Quarter 1",
-                                total_function = LXW_TABLE_FUNCTION_SUM)
+col10_2 = lxw_table_column(header = "Quarter 1", total_function = LXW_TABLE_FUNCTION_SUM)
 
-col10_3 = lxw_table_column(header         = "Quarter 2",
-                                total_function = LXW_TABLE_FUNCTION_SUM)
+col10_3 = lxw_table_column(header = "Quarter 2", total_function = LXW_TABLE_FUNCTION_SUM)
 
-col10_4 = lxw_table_column(header         = "Quarter 3",
-                                total_function = LXW_TABLE_FUNCTION_SUM)
+col10_4 = lxw_table_column(header = "Quarter 3", total_function = LXW_TABLE_FUNCTION_SUM)
 
-col10_5 = lxw_table_column(header         = "Quarter 4",
-                                total_function = LXW_TABLE_FUNCTION_SUM)
+col10_5 = lxw_table_column(header = "Quarter 4", total_function = LXW_TABLE_FUNCTION_SUM)
 
-col10_6 = lxw_table_column(header         = "Year",
-                                formula        = "=SUM(Table10[@[Quarter 1]:[Quarter 4]])",
-                                total_function = LXW_TABLE_FUNCTION_SUM)
+col10_6 = lxw_table_column(
+    header = "Year",
+    formula = "=SUM(Table10[@[Quarter 1]:[Quarter 4]])",
+    total_function = LXW_TABLE_FUNCTION_SUM,
+)
 
 columns10 = [col10_1, col10_2, col10_3, col10_4, col10_5, col10_6, C_NULL]
 
@@ -295,35 +332,37 @@ write_worksheet_data(worksheet10, C_NULL)
 worksheet_set_column(worksheet11, COLS("B:G"), 12, C_NULL)
 
 # Write the worksheet caption to explain the example.
-worksheet_write_string(worksheet11, CELL("B1"), "Table with alternative Excel style.", C_NULL)
+worksheet_write_string(
+    worksheet11,
+    CELL("B1"),
+    "Table with alternative Excel style.",
+    C_NULL,
+)
 
 # Set the table options.
-col11_1 = lxw_table_column(header         = "Product",
-                                total_string   = "Totals")
+col11_1 = lxw_table_column(header = "Product", total_string = "Totals")
 
-col11_2 = lxw_table_column(header         = "Quarter 1",
-                                total_function = LXW_TABLE_FUNCTION_SUM)
+col11_2 = lxw_table_column(header = "Quarter 1", total_function = LXW_TABLE_FUNCTION_SUM)
 
-col11_3 = lxw_table_column(header         = "Quarter 2",
-                                total_function = LXW_TABLE_FUNCTION_SUM)
+col11_3 = lxw_table_column(header = "Quarter 2", total_function = LXW_TABLE_FUNCTION_SUM)
 
-col11_4 = lxw_table_column(header         = "Quarter 3",
-                                total_function = LXW_TABLE_FUNCTION_SUM)
+col11_4 = lxw_table_column(header = "Quarter 3", total_function = LXW_TABLE_FUNCTION_SUM)
 
-col11_5 = lxw_table_column(header         = "Quarter 4",
-                                total_function = LXW_TABLE_FUNCTION_SUM)
+col11_5 = lxw_table_column(header = "Quarter 4", total_function = LXW_TABLE_FUNCTION_SUM)
 
-col11_6 = lxw_table_column(header         = "Year",
-                                formula        = "=SUM(Table11[@[Quarter 1]:[Quarter 4]])",
-                                total_function = LXW_TABLE_FUNCTION_SUM)
+col11_6 = lxw_table_column(
+    header = "Year",
+    formula = "=SUM(Table11[@[Quarter 1]:[Quarter 4]])",
+    total_function = LXW_TABLE_FUNCTION_SUM,
+)
 
 columns11 = [col11_1, col11_2, col11_3, col11_4, col11_5, col11_6, C_NULL]
 
 options11 = lxw_table_options(
-        style_type = LXW_TABLE_STYLE_TYPE_LIGHT,
-        style_type_number = 11,
-        total_row = true,
-        columns = columns11
+    style_type = LXW_TABLE_STYLE_TYPE_LIGHT,
+    style_type_number = 11,
+    total_row = true,
+    columns = columns11,
 )
 
 # Add a table to the worksheet.
@@ -342,32 +381,29 @@ worksheet_set_column(worksheet12, COLS("B:G"), 12, C_NULL)
 worksheet_write_string(worksheet12, CELL("B1"), "Table with Excel style removed.", C_NULL)
 
 # Set the table options.
-col12_1 = lxw_table_column(header         = "Product",
-                                total_string   = "Totals")
+col12_1 = lxw_table_column(header = "Product", total_string = "Totals")
 
-col12_2 = lxw_table_column(header         = "Quarter 1",
-                                total_function = LXW_TABLE_FUNCTION_SUM)
+col12_2 = lxw_table_column(header = "Quarter 1", total_function = LXW_TABLE_FUNCTION_SUM)
 
-col12_3 = lxw_table_column(header         = "Quarter 2",
-                                total_function = LXW_TABLE_FUNCTION_SUM)
+col12_3 = lxw_table_column(header = "Quarter 2", total_function = LXW_TABLE_FUNCTION_SUM)
 
-col12_4 = lxw_table_column(header         = "Quarter 3",
-                                total_function = LXW_TABLE_FUNCTION_SUM)
+col12_4 = lxw_table_column(header = "Quarter 3", total_function = LXW_TABLE_FUNCTION_SUM)
 
-col12_5 = lxw_table_column(header         = "Quarter 4",
-                                total_function = LXW_TABLE_FUNCTION_SUM)
+col12_5 = lxw_table_column(header = "Quarter 4", total_function = LXW_TABLE_FUNCTION_SUM)
 
-col12_6 = lxw_table_column(header         = "Year",
-                                formula        = "=SUM(Table12[@[Quarter 1]:[Quarter 4]])",
-                                total_function = LXW_TABLE_FUNCTION_SUM)
+col12_6 = lxw_table_column(
+    header = "Year",
+    formula = "=SUM(Table12[@[Quarter 1]:[Quarter 4]])",
+    total_function = LXW_TABLE_FUNCTION_SUM,
+)
 
 columns12 = [col12_1, col12_2, col12_3, col12_4, col12_5, col12_6, C_NULL]
 
 options12 = lxw_table_options(
-        style_type = LXW_TABLE_STYLE_TYPE_LIGHT,
-        style_type_number = 0,
-        total_row = true,
-        columns = columns12
+    style_type = LXW_TABLE_STYLE_TYPE_LIGHT,
+    style_type_number = 0,
+    total_row = true,
+    columns = columns12,
 )
 
 # Add a table to the worksheet.
@@ -386,29 +422,38 @@ worksheet_set_column(worksheet13, COLS("B:G"), 12, C_NULL)
 worksheet_write_string(worksheet13, CELL("B1"), "Table with column formats.", C_NULL)
 
 # Set the table options.
-col13_1 = lxw_table_column(header         = "Product",
-                                total_string   = "Totals")
+col13_1 = lxw_table_column(header = "Product", total_string = "Totals")
 
-col13_2 = lxw_table_column(header         = "Quarter 1",
-                                total_function = LXW_TABLE_FUNCTION_SUM,
-                                format         = currency_format)
+col13_2 = lxw_table_column(
+    header = "Quarter 1",
+    total_function = LXW_TABLE_FUNCTION_SUM,
+    format = currency_format,
+)
 
-col13_3 = lxw_table_column(header         = "Quarter 2",
-                                total_function = LXW_TABLE_FUNCTION_SUM,
-                                format         = currency_format)
+col13_3 = lxw_table_column(
+    header = "Quarter 2",
+    total_function = LXW_TABLE_FUNCTION_SUM,
+    format = currency_format,
+)
 
-col13_4 = lxw_table_column(header         = "Quarter 3",
-                                total_function = LXW_TABLE_FUNCTION_SUM,
-                                format         = currency_format)
+col13_4 = lxw_table_column(
+    header = "Quarter 3",
+    total_function = LXW_TABLE_FUNCTION_SUM,
+    format = currency_format,
+)
 
-col13_5 = lxw_table_column(header         = "Quarter 4",
-                                total_function = LXW_TABLE_FUNCTION_SUM,
-                                format         = currency_format)
+col13_5 = lxw_table_column(
+    header = "Quarter 4",
+    total_function = LXW_TABLE_FUNCTION_SUM,
+    format = currency_format,
+)
 
-col13_6 = lxw_table_column(header         = "Year",
-                                formula        = "=SUM(Table13[@[Quarter 1]:[Quarter 4]])",
-                                total_function = LXW_TABLE_FUNCTION_SUM,
-                                format         = currency_format)
+col13_6 = lxw_table_column(
+    header = "Year",
+    formula = "=SUM(Table13[@[Quarter 1]:[Quarter 4]])",
+    total_function = LXW_TABLE_FUNCTION_SUM,
+    format = currency_format,
+)
 
 columns13 = [col13_1, col13_2, col13_3, col13_4, col13_5, col13_6, C_NULL]
 

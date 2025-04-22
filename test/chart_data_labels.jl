@@ -9,7 +9,37 @@ https://github.com/jmcnamara/libxlsxwriter/blob/main/examples/chart_data_labels.
  */
 =#
 
-using LibXLSXWriter: workbook_new, workbook_add_worksheet, workbook_add_format, format_set_bold, lxw_chart_options, worksheet_write_string, worksheet_write_number, workbook_add_chart, LXW_CHART_COLUMN, chart_title_set_name, chart_add_series, chart_series_set_labels, chart_legend_set_position, LXW_CHART_LEGEND_NONE, worksheet_insert_chart_opt, CELL, chart_series_set_labels_options, lxw_chart_font, LXW_COLOR_RED, chart_series_set_labels_font, LXW_COLOR_YELLOW, lxw_chart_line, lxw_chart_fill, chart_series_set_labels_line, chart_series_set_labels_fill, lxw_chart_data_label, chart_series_set_labels_custom, LXW_COLOR_BLUE, LXW_COLOR_GREEN, workbook_close
+using LibXLSXWriter:
+    workbook_new,
+    workbook_add_worksheet,
+    workbook_add_format,
+    format_set_bold,
+    lxw_chart_options,
+    worksheet_write_string,
+    worksheet_write_number,
+    workbook_add_chart,
+    LXW_CHART_COLUMN,
+    chart_title_set_name,
+    chart_add_series,
+    chart_series_set_labels,
+    chart_legend_set_position,
+    LXW_CHART_LEGEND_NONE,
+    worksheet_insert_chart_opt,
+    CELL,
+    chart_series_set_labels_options,
+    lxw_chart_font,
+    LXW_COLOR_RED,
+    chart_series_set_labels_font,
+    LXW_COLOR_YELLOW,
+    lxw_chart_line,
+    lxw_chart_fill,
+    chart_series_set_labels_line,
+    chart_series_set_labels_fill,
+    lxw_chart_data_label,
+    chart_series_set_labels_custom,
+    LXW_COLOR_BLUE,
+    LXW_COLOR_GREEN,
+    workbook_close
 
 ## Create a worksheet with examples charts.
 
@@ -24,29 +54,29 @@ format_set_bold(bold)
 options = lxw_chart_options(x_offset = 25, y_offset = 10)
 
 # Write some data for the chart.
-worksheet_write_string(worksheet, 0, 0, "Number",  bold)
-worksheet_write_number(worksheet, 1, 0, 2,         C_NULL)
-worksheet_write_number(worksheet, 2, 0, 3,         C_NULL)
-worksheet_write_number(worksheet, 3, 0, 4,         C_NULL)
-worksheet_write_number(worksheet, 4, 0, 5,         C_NULL)
-worksheet_write_number(worksheet, 5, 0, 6,         C_NULL)
-worksheet_write_number(worksheet, 6, 0, 7,         C_NULL)
+worksheet_write_string(worksheet, 0, 0, "Number", bold)
+worksheet_write_number(worksheet, 1, 0, 2, C_NULL)
+worksheet_write_number(worksheet, 2, 0, 3, C_NULL)
+worksheet_write_number(worksheet, 3, 0, 4, C_NULL)
+worksheet_write_number(worksheet, 4, 0, 5, C_NULL)
+worksheet_write_number(worksheet, 5, 0, 6, C_NULL)
+worksheet_write_number(worksheet, 6, 0, 7, C_NULL)
 
-worksheet_write_string(worksheet, 0, 1, "Data",    bold)
-worksheet_write_number(worksheet, 1, 1, 20,        C_NULL)
-worksheet_write_number(worksheet, 2, 1, 10,        C_NULL)
-worksheet_write_number(worksheet, 3, 1, 20,        C_NULL)
-worksheet_write_number(worksheet, 4, 1, 30,        C_NULL)
-worksheet_write_number(worksheet, 5, 1, 40,        C_NULL)
-worksheet_write_number(worksheet, 6, 1, 30,        C_NULL)
+worksheet_write_string(worksheet, 0, 1, "Data", bold)
+worksheet_write_number(worksheet, 1, 1, 20, C_NULL)
+worksheet_write_number(worksheet, 2, 1, 10, C_NULL)
+worksheet_write_number(worksheet, 3, 1, 20, C_NULL)
+worksheet_write_number(worksheet, 4, 1, 30, C_NULL)
+worksheet_write_number(worksheet, 5, 1, 40, C_NULL)
+worksheet_write_number(worksheet, 6, 1, 30, C_NULL)
 
-worksheet_write_string(worksheet, 0, 2, "Text",    bold)
-worksheet_write_string(worksheet, 1, 2, "Jan",     C_NULL)
-worksheet_write_string(worksheet, 2, 2, "Feb",     C_NULL)
-worksheet_write_string(worksheet, 3, 2, "Mar",     C_NULL)
-worksheet_write_string(worksheet, 4, 2, "Apr",     C_NULL)
-worksheet_write_string(worksheet, 5, 2, "May",     C_NULL)
-worksheet_write_string(worksheet, 6, 2, "Jun",     C_NULL)
+worksheet_write_string(worksheet, 0, 2, "Text", bold)
+worksheet_write_string(worksheet, 1, 2, "Jan", C_NULL)
+worksheet_write_string(worksheet, 2, 2, "Feb", C_NULL)
+worksheet_write_string(worksheet, 3, 2, "Mar", C_NULL)
+worksheet_write_string(worksheet, 4, 2, "Apr", C_NULL)
+worksheet_write_string(worksheet, 5, 2, "May", C_NULL)
+worksheet_write_string(worksheet, 6, 2, "Jun", C_NULL)
 
 
 ## Chart 1. Example with standard data labels.
@@ -166,7 +196,7 @@ data_labels5 = [
     data_label5_3,
     data_label5_4,
     data_label5_5,
-    data_label5_6
+    data_label5_6,
 ]
 
 # Set the custom labels.
@@ -206,7 +236,7 @@ data_labels6 = [
     data_label6_3,
     data_label6_4,
     data_label6_5,
-    data_label6_6
+    data_label6_6,
 ]
 
 # Set the custom labels.
@@ -246,12 +276,7 @@ data_label7_3 = lxw_chart_data_label(value = raw"=Sheet1!$C$4", font = font2)
 data_label7_4 = lxw_chart_data_label(value = raw"=Sheet1!$C$5", font = font2)
 
 # Create an array of label pointers. C_NULL indicates the end of the array.
-data_labels7 = [
-    data_label7_1,
-    data_label7_2,
-    data_label7_3,
-    data_label7_4
-]
+data_labels7 = [data_label7_1, data_label7_2, data_label7_3, data_label7_4]
 
 # Set the custom labels.
 chart_series_set_labels_custom(series, data_labels7)
@@ -283,14 +308,7 @@ keep = lxw_chart_data_label(hide = false)
 # lxw_chart_data_label keep = {0}
 
 # Create an array of label pointers. C_NULL indicates the end of the array.
-data_labels8 = [
-    hide,
-    keep,
-    hide,
-    hide,
-    keep,
-    hide
-]
+data_labels8 = [hide, keep, hide, hide, keep, hide]
 
 # Set the custom labels.
 chart_series_set_labels_custom(series, data_labels8)
@@ -339,7 +357,7 @@ data_labels9 = [
     data_label9_3,
     data_label9_4,
     data_label9_5,
-    data_label9_6
+    data_label9_6,
 ]
 
 # Set the custom labels.

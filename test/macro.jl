@@ -16,10 +16,19 @@ https://github.com/jmcnamara/libxlsxwriter/blob/main/examples/macro.c
  */
 =#
 
-using LibXLSXWriter: workbook_new, workbook_add_worksheet, worksheet_set_column, COLS, workbook_add_vba_project, worksheet_write_string, lxw_button_options, worksheet_insert_button, workbook_close
+using LibXLSXWriter:
+    workbook_new,
+    workbook_add_worksheet,
+    worksheet_set_column,
+    COLS,
+    workbook_add_vba_project,
+    worksheet_write_string,
+    lxw_button_options,
+    worksheet_insert_button,
+    workbook_close
 
 # Note the xlsm extension of the filename
-workbook  = workbook_new("macro.xlsm")
+workbook = workbook_new("macro.xlsm")
 worksheet = workbook_add_worksheet(workbook, C_NULL)
 
 worksheet_set_column(worksheet, COLS("A:A"), 30, C_NULL)
@@ -29,7 +38,8 @@ workbook_add_vba_project(workbook, "vbaProject.bin")
 
 worksheet_write_string(worksheet, 2, 0, "Press the button to say hello.", C_NULL)
 
-options = lxw_button_options(caption = "Press Me", _macro = "say_hello", width = 80, height = 30)
+options =
+    lxw_button_options(caption = "Press Me", _macro = "say_hello", width = 80, height = 30)
 
 worksheet_insert_button(worksheet, 2, 1, options)
 

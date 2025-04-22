@@ -8,7 +8,22 @@ https://github.com/jmcnamara/libxlsxwriter/blob/main/examples/merge_range.c
  */
 =#
 
-using LibXLSXWriter: workbook_new, workbook_add_worksheet, workbook_add_format, format_set_align, LXW_ALIGN_CENTER, LXW_ALIGN_VERTICAL_CENTER, format_set_bold, format_set_bg_color, LXW_COLOR_YELLOW, format_set_border, LXW_BORDER_THIN, worksheet_set_column, worksheet_set_row, worksheet_merge_range, workbook_close
+using LibXLSXWriter:
+    workbook_new,
+    workbook_add_worksheet,
+    workbook_add_format,
+    format_set_align,
+    LXW_ALIGN_CENTER,
+    LXW_ALIGN_VERTICAL_CENTER,
+    format_set_bold,
+    format_set_bg_color,
+    LXW_COLOR_YELLOW,
+    format_set_border,
+    LXW_BORDER_THIN,
+    worksheet_set_column,
+    worksheet_set_row,
+    worksheet_merge_range,
+    workbook_close
 
 workbook = workbook_new("merge_range.xlsx")
 worksheet = workbook_add_worksheet(workbook, C_NULL)

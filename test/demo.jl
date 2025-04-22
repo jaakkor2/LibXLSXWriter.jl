@@ -1,9 +1,18 @@
 # https://github.com/jmcnamara/libxlsxwriter/blob/main/examples/demo.c
 
-using LibXLSXWriter: workbook_new, workbook_add_worksheet, workbook_add_format, format_set_bold, worksheet_set_column, worksheet_write_string, worksheet_write_number, worksheet_insert_image, workbook_close
+using LibXLSXWriter:
+    workbook_new,
+    workbook_add_worksheet,
+    workbook_add_format,
+    format_set_bold,
+    worksheet_set_column,
+    worksheet_write_string,
+    worksheet_write_number,
+    worksheet_insert_image,
+    workbook_close
 
 # Create a new workbook and add a worksheet.
-workbook  = workbook_new("demo.xlsx")
+workbook = workbook_new("demo.xlsx")
 worksheet = workbook_add_worksheet(workbook, C_NULL)
 
 # Add a format.
@@ -22,7 +31,7 @@ worksheet_write_string(worksheet, 0, 0, "Hello", C_NULL)
 worksheet_write_string(worksheet, 1, 0, "World", format)
 
 # Write some numbers.
-worksheet_write_number(worksheet, 2, 0, 123,     C_NULL)
+worksheet_write_number(worksheet, 2, 0, 123, C_NULL)
 worksheet_write_number(worksheet, 3, 0, 123.456, C_NULL)
 
 # Insert an image.

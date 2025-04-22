@@ -130,251 +130,6 @@ end
     LXW_CUSTOM_DATETIME = 5
 end
 
-struct lxw_formats
-    stqh_first::Ptr{Cvoid} # stqh_first::Ptr{lxw_format}
-    stqh_last::Ptr{Ptr{Cvoid}} # stqh_last::Ptr{Ptr{lxw_format}}
-end
-
-function Base.getproperty(x::lxw_formats, f::Symbol)
-    f === :stqh_first && return Ptr{lxw_format}(getfield(x, f))
-    f === :stqh_last && return Ptr{Ptr{lxw_format}}(getfield(x, f))
-    return getfield(x, f)
-end
-
-struct lxw_tuples
-    stqh_first::Ptr{Cvoid} # stqh_first::Ptr{lxw_tuple}
-    stqh_last::Ptr{Ptr{Cvoid}} # stqh_last::Ptr{Ptr{lxw_tuple}}
-end
-
-function Base.getproperty(x::lxw_tuples, f::Symbol)
-    f === :stqh_first && return Ptr{lxw_tuple}(getfield(x, f))
-    f === :stqh_last && return Ptr{Ptr{lxw_tuple}}(getfield(x, f))
-    return getfield(x, f)
-end
-
-struct lxw_custom_properties
-    stqh_first::Ptr{Cvoid} # stqh_first::Ptr{lxw_custom_property}
-    stqh_last::Ptr{Ptr{Cvoid}} # stqh_last::Ptr{Ptr{lxw_custom_property}}
-end
-
-function Base.getproperty(x::lxw_custom_properties, f::Symbol)
-    f === :stqh_first && return Ptr{lxw_custom_property}(getfield(x, f))
-    f === :stqh_last && return Ptr{Ptr{lxw_custom_property}}(getfield(x, f))
-    return getfield(x, f)
-end
-
-struct __JL_Ctag_12
-    stqe_next::Ptr{Cvoid} # stqe_next::Ptr{lxw_tuple}
-end
-
-function Base.getproperty(x::__JL_Ctag_12, f::Symbol)
-    f === :stqe_next && return Ptr{lxw_tuple}(getfield(x, f))
-    return getfield(x, f)
-end
-
-struct lxw_tuple
-    data::NTuple{24,UInt8}
-end
-
-function Base.getproperty(x::Ptr{lxw_tuple}, f::Symbol)
-    f === :key && return Ptr{Cstring}(x + 0)
-    f === :value && return Ptr{Cstring}(x + 8)
-    f === :list_pointers && return Ptr{Cvoid}(x + 16)
-    return getfield(x, f)
-end
-
-function Base.getproperty(x::lxw_tuple, f::Symbol)
-    r = Ref{lxw_tuple}(x)
-    ptr = Base.unsafe_convert(Ptr{lxw_tuple}, r)
-    fptr = getproperty(ptr, f)
-    GC.@preserve r unsafe_load(fptr)
-end
-
-function Base.setproperty!(x::Ptr{lxw_tuple}, f::Symbol, v)
-    unsafe_store!(getproperty(x, f), v)
-end
-
-struct __JL_Ctag_30
-    data::NTuple{32,UInt8}
-end
-
-function Base.getproperty(x::Ptr{__JL_Ctag_30}, f::Symbol)
-    f === :string && return Ptr{Cstring}(x + 0)
-    f === :number && return Ptr{Cdouble}(x + 0)
-    f === :integer && return Ptr{Int32}(x + 0)
-    f === :boolean && return Ptr{UInt8}(x + 0)
-    f === :datetime && return Ptr{lxw_datetime}(x + 0)
-    return getfield(x, f)
-end
-
-function Base.getproperty(x::__JL_Ctag_30, f::Symbol)
-    r = Ref{__JL_Ctag_30}(x)
-    ptr = Base.unsafe_convert(Ptr{__JL_Ctag_30}, r)
-    fptr = getproperty(ptr, f)
-    GC.@preserve r unsafe_load(fptr)
-end
-
-function Base.setproperty!(x::Ptr{__JL_Ctag_30}, f::Symbol, v)
-    unsafe_store!(getproperty(x, f), v)
-end
-
-struct __JL_Ctag_31
-    stqe_next::Ptr{Cvoid} # stqe_next::Ptr{lxw_custom_property}
-end
-
-function Base.getproperty(x::__JL_Ctag_31, f::Symbol)
-    f === :stqe_next && return Ptr{lxw_custom_property}(getfield(x, f))
-    return getfield(x, f)
-end
-
-struct lxw_custom_property
-    data::NTuple{56,UInt8}
-end
-
-function Base.getproperty(x::Ptr{lxw_custom_property}, f::Symbol)
-    f === :type && return Ptr{lxw_custom_property_types}(x + 0)
-    f === :name && return Ptr{Cstring}(x + 8)
-    f === :u && return Ptr{__JL_Ctag_30}(x + 16)
-    f === :list_pointers && return Ptr{Cvoid}(x + 48)
-    return getfield(x, f)
-end
-
-function Base.getproperty(x::lxw_custom_property, f::Symbol)
-    r = Ref{lxw_custom_property}(x)
-    ptr = Base.unsafe_convert(Ptr{lxw_custom_property}, r)
-    fptr = getproperty(ptr, f)
-    GC.@preserve r unsafe_load(fptr)
-end
-
-function Base.setproperty!(x::Ptr{lxw_custom_property}, f::Symbol, v)
-    unsafe_store!(getproperty(x, f), v)
-end
-
-struct sst_rb_tree
-    rbh_root::Ptr{Cvoid} # rbh_root::Ptr{sst_element}
-end
-
-function Base.getproperty(x::sst_rb_tree, f::Symbol)
-    f === :rbh_root && return Ptr{sst_element}(getfield(x, f))
-    return getfield(x, f)
-end
-
-struct sst_order_list
-    stqh_first::Ptr{Cvoid} # stqh_first::Ptr{sst_element}
-    stqh_last::Ptr{Ptr{Cvoid}} # stqh_last::Ptr{Ptr{sst_element}}
-end
-
-function Base.getproperty(x::sst_order_list, f::Symbol)
-    f === :stqh_first && return Ptr{sst_element}(getfield(x, f))
-    f === :stqh_last && return Ptr{Ptr{sst_element}}(getfield(x, f))
-    return getfield(x, f)
-end
-
-struct __JL_Ctag_18
-    stqe_next::Ptr{Cvoid} # stqe_next::Ptr{sst_element}
-end
-
-function Base.getproperty(x::__JL_Ctag_18, f::Symbol)
-    f === :stqe_next && return Ptr{sst_element}(getfield(x, f))
-    return getfield(x, f)
-end
-
-struct __JL_Ctag_19
-    rbe_left::Ptr{Cvoid} # rbe_left::Ptr{sst_element}
-    rbe_right::Ptr{Cvoid} # rbe_right::Ptr{sst_element}
-    rbe_parent::Ptr{Cvoid} # rbe_parent::Ptr{sst_element}
-    rbe_color::Cint
-end
-
-function Base.getproperty(x::__JL_Ctag_19, f::Symbol)
-    f === :rbe_left && return Ptr{sst_element}(getfield(x, f))
-    f === :rbe_right && return Ptr{sst_element}(getfield(x, f))
-    f === :rbe_parent && return Ptr{sst_element}(getfield(x, f))
-    return getfield(x, f)
-end
-
-struct sst_element
-    data::NTuple{64,UInt8}
-end
-
-function Base.getproperty(x::Ptr{sst_element}, f::Symbol)
-    f === :index && return Ptr{UInt32}(x + 0)
-    f === :string && return Ptr{Cstring}(x + 8)
-    f === :is_rich_string && return Ptr{UInt8}(x + 16)
-    f === :sst_order_pointers && return Ptr{Cvoid}(x + 24)
-    f === :sst_tree_pointers && return Ptr{Cvoid}(x + 32)
-    return getfield(x, f)
-end
-
-function Base.getproperty(x::sst_element, f::Symbol)
-    r = Ref{sst_element}(x)
-    ptr = Base.unsafe_convert(Ptr{sst_element}, r)
-    fptr = getproperty(ptr, f)
-    GC.@preserve r unsafe_load(fptr)
-end
-
-function Base.setproperty!(x::Ptr{sst_element}, f::Symbol, v)
-    unsafe_store!(getproperty(x, f), v)
-end
-
-struct lxw_sst
-    file::Ptr{Libc.FILE}
-    string_count::UInt32
-    unique_count::UInt32
-    order_list::Ptr{sst_order_list}
-    rb_tree::Ptr{sst_rb_tree}
-end
-
-function lxw_sst_new()
-    @ccall libxlsxwriter.lxw_sst_new()::Ptr{lxw_sst}
-end
-
-function lxw_sst_free(sst)
-    @ccall libxlsxwriter.lxw_sst_free(sst::Ptr{lxw_sst})::Cvoid
-end
-
-function lxw_get_sst_index(sst, string, is_rich_string)
-    @ccall libxlsxwriter.lxw_get_sst_index(
-        sst::Ptr{lxw_sst},
-        string::Cstring,
-        is_rich_string::UInt8,
-    )::Ptr{sst_element}
-end
-
-function lxw_sst_assemble_xml_file(self)
-    @ccall libxlsxwriter.lxw_sst_assemble_xml_file(self::Ptr{lxw_sst})::Cvoid
-end
-
-struct lxw_hash_order_list
-    stqh_first::Ptr{Cvoid} # stqh_first::Ptr{lxw_hash_element}
-    stqh_last::Ptr{Ptr{Cvoid}} # stqh_last::Ptr{Ptr{lxw_hash_element}}
-end
-
-function Base.getproperty(x::lxw_hash_order_list, f::Symbol)
-    f === :stqh_first && return Ptr{lxw_hash_element}(getfield(x, f))
-    f === :stqh_last && return Ptr{Ptr{lxw_hash_element}}(getfield(x, f))
-    return getfield(x, f)
-end
-
-struct lxw_hash_bucket_list
-    slh_first::Ptr{Cvoid} # slh_first::Ptr{lxw_hash_element}
-end
-
-function Base.getproperty(x::lxw_hash_bucket_list, f::Symbol)
-    f === :slh_first && return Ptr{lxw_hash_element}(getfield(x, f))
-    return getfield(x, f)
-end
-
-struct lxw_hash_table
-    num_buckets::UInt32
-    used_buckets::UInt32
-    unique_count::UInt32
-    free_key::UInt8
-    free_value::UInt8
-    order_list::Ptr{lxw_hash_order_list}
-    buckets::Ptr{Ptr{lxw_hash_bucket_list}}
-end
-
 struct __JL_Ctag_13
     stqe_next::Ptr{Cvoid} # stqe_next::Ptr{lxw_hash_element}
 end
@@ -416,129 +171,26 @@ function Base.setproperty!(x::Ptr{lxw_hash_element}, f::Symbol, v)
     unsafe_store!(getproperty(x, f), v)
 end
 
-function lxw_hash_key_exists(lxw_hash, key, key_len)
-    @ccall libxlsxwriter.lxw_hash_key_exists(
-        lxw_hash::Ptr{lxw_hash_table},
-        key::Ptr{Cvoid},
-        key_len::Csize_t,
-    )::Ptr{lxw_hash_element}
+struct lxw_hash_order_list
+    stqh_first::Ptr{lxw_hash_element}
+    stqh_last::Ptr{Ptr{lxw_hash_element}}
 end
 
-function lxw_insert_hash_element(lxw_hash, key, value, key_len)
-    @ccall libxlsxwriter.lxw_insert_hash_element(
-        lxw_hash::Ptr{lxw_hash_table},
-        key::Ptr{Cvoid},
-        value::Ptr{Cvoid},
-        key_len::Csize_t,
-    )::Ptr{lxw_hash_element}
+struct lxw_hash_bucket_list
+    slh_first::Ptr{lxw_hash_element}
 end
 
-function lxw_hash_new(num_buckets, free_key, free_value)
-    @ccall libxlsxwriter.lxw_hash_new(
-        num_buckets::UInt32,
-        free_key::UInt8,
-        free_value::UInt8,
-    )::Ptr{lxw_hash_table}
-end
-
-function lxw_hash_free(lxw_hash)
-    @ccall libxlsxwriter.lxw_hash_free(lxw_hash::Ptr{lxw_hash_table})::Cvoid
+struct lxw_hash_table
+    num_buckets::UInt32
+    used_buckets::UInt32
+    unique_count::UInt32
+    free_key::UInt8
+    free_value::UInt8
+    order_list::Ptr{lxw_hash_order_list}
+    buckets::Ptr{Ptr{lxw_hash_bucket_list}}
 end
 
 const lxw_color_t = UInt32
-
-@cenum lxw_format_underlines::UInt32 begin
-    LXW_UNDERLINE_NONE = 0
-    LXW_UNDERLINE_SINGLE = 1
-    LXW_UNDERLINE_DOUBLE = 2
-    LXW_UNDERLINE_SINGLE_ACCOUNTING = 3
-    LXW_UNDERLINE_DOUBLE_ACCOUNTING = 4
-end
-
-@cenum lxw_format_scripts::UInt32 begin
-    LXW_FONT_SUPERSCRIPT = 1
-    LXW_FONT_SUBSCRIPT = 2
-end
-
-@cenum lxw_format_alignments::UInt32 begin
-    LXW_ALIGN_NONE = 0
-    LXW_ALIGN_LEFT = 1
-    LXW_ALIGN_CENTER = 2
-    LXW_ALIGN_RIGHT = 3
-    LXW_ALIGN_FILL = 4
-    LXW_ALIGN_JUSTIFY = 5
-    LXW_ALIGN_CENTER_ACROSS = 6
-    LXW_ALIGN_DISTRIBUTED = 7
-    LXW_ALIGN_VERTICAL_TOP = 8
-    LXW_ALIGN_VERTICAL_BOTTOM = 9
-    LXW_ALIGN_VERTICAL_CENTER = 10
-    LXW_ALIGN_VERTICAL_JUSTIFY = 11
-    LXW_ALIGN_VERTICAL_DISTRIBUTED = 12
-end
-
-@cenum lxw_format_diagonal_types::UInt32 begin
-    LXW_DIAGONAL_BORDER_UP = 1
-    LXW_DIAGONAL_BORDER_DOWN = 2
-    LXW_DIAGONAL_BORDER_UP_DOWN = 3
-end
-
-@cenum lxw_defined_colors::UInt32 begin
-    LXW_COLOR_BLACK = 16777216
-    LXW_COLOR_BLUE = 255
-    LXW_COLOR_BROWN = 8388608
-    LXW_COLOR_CYAN = 65535
-    LXW_COLOR_GRAY = 8421504
-    LXW_COLOR_GREEN = 32768
-    LXW_COLOR_LIME = 65280
-    LXW_COLOR_MAGENTA = 16711935
-    LXW_COLOR_NAVY = 128
-    LXW_COLOR_ORANGE = 16737792
-    LXW_COLOR_PINK = 16711935
-    LXW_COLOR_PURPLE = 8388736
-    LXW_COLOR_RED = 16711680
-    LXW_COLOR_SILVER = 12632256
-    LXW_COLOR_WHITE = 16777215
-    LXW_COLOR_YELLOW = 16776960
-end
-
-@cenum lxw_format_patterns::UInt32 begin
-    LXW_PATTERN_NONE = 0
-    LXW_PATTERN_SOLID = 1
-    LXW_PATTERN_MEDIUM_GRAY = 2
-    LXW_PATTERN_DARK_GRAY = 3
-    LXW_PATTERN_LIGHT_GRAY = 4
-    LXW_PATTERN_DARK_HORIZONTAL = 5
-    LXW_PATTERN_DARK_VERTICAL = 6
-    LXW_PATTERN_DARK_DOWN = 7
-    LXW_PATTERN_DARK_UP = 8
-    LXW_PATTERN_DARK_GRID = 9
-    LXW_PATTERN_DARK_TRELLIS = 10
-    LXW_PATTERN_LIGHT_HORIZONTAL = 11
-    LXW_PATTERN_LIGHT_VERTICAL = 12
-    LXW_PATTERN_LIGHT_DOWN = 13
-    LXW_PATTERN_LIGHT_UP = 14
-    LXW_PATTERN_LIGHT_GRID = 15
-    LXW_PATTERN_LIGHT_TRELLIS = 16
-    LXW_PATTERN_GRAY_125 = 17
-    LXW_PATTERN_GRAY_0625 = 18
-end
-
-@cenum lxw_format_borders::UInt32 begin
-    LXW_BORDER_NONE = 0
-    LXW_BORDER_THIN = 1
-    LXW_BORDER_MEDIUM = 2
-    LXW_BORDER_DASHED = 3
-    LXW_BORDER_DOTTED = 4
-    LXW_BORDER_THICK = 5
-    LXW_BORDER_DOUBLE = 6
-    LXW_BORDER_HAIR = 7
-    LXW_BORDER_MEDIUM_DASHED = 8
-    LXW_BORDER_DASH_DOT = 9
-    LXW_BORDER_MEDIUM_DASH_DOT = 10
-    LXW_BORDER_DASH_DOT_DOT = 11
-    LXW_BORDER_MEDIUM_DASH_DOT_DOT = 12
-    LXW_BORDER_SLANT_DASH_DOT = 13
-end
 
 struct __JL_Ctag_23
     stqe_next::Ptr{Cvoid} # stqe_next::Ptr{lxw_format}
@@ -636,6 +288,314 @@ end
 
 function Base.setproperty!(x::Ptr{lxw_format}, f::Symbol, v)
     unsafe_store!(getproperty(x, f), v)
+end
+
+struct lxw_formats
+    stqh_first::Ptr{lxw_format}
+    stqh_last::Ptr{Ptr{lxw_format}}
+end
+
+struct __JL_Ctag_12
+    stqe_next::Ptr{Cvoid} # stqe_next::Ptr{lxw_tuple}
+end
+
+function Base.getproperty(x::__JL_Ctag_12, f::Symbol)
+    f === :stqe_next && return Ptr{lxw_tuple}(getfield(x, f))
+    return getfield(x, f)
+end
+
+struct lxw_tuple
+    data::NTuple{24,UInt8}
+end
+
+function Base.getproperty(x::Ptr{lxw_tuple}, f::Symbol)
+    f === :key && return Ptr{Cstring}(x + 0)
+    f === :value && return Ptr{Cstring}(x + 8)
+    f === :list_pointers && return Ptr{Cvoid}(x + 16)
+    return getfield(x, f)
+end
+
+function Base.getproperty(x::lxw_tuple, f::Symbol)
+    r = Ref{lxw_tuple}(x)
+    ptr = Base.unsafe_convert(Ptr{lxw_tuple}, r)
+    fptr = getproperty(ptr, f)
+    GC.@preserve r unsafe_load(fptr)
+end
+
+function Base.setproperty!(x::Ptr{lxw_tuple}, f::Symbol, v)
+    unsafe_store!(getproperty(x, f), v)
+end
+
+struct lxw_tuples
+    stqh_first::Ptr{lxw_tuple}
+    stqh_last::Ptr{Ptr{lxw_tuple}}
+end
+
+struct __JL_Ctag_30
+    data::NTuple{32,UInt8}
+end
+
+function Base.getproperty(x::Ptr{__JL_Ctag_30}, f::Symbol)
+    f === :string && return Ptr{Cstring}(x + 0)
+    f === :number && return Ptr{Cdouble}(x + 0)
+    f === :integer && return Ptr{Int32}(x + 0)
+    f === :boolean && return Ptr{UInt8}(x + 0)
+    f === :datetime && return Ptr{lxw_datetime}(x + 0)
+    return getfield(x, f)
+end
+
+function Base.getproperty(x::__JL_Ctag_30, f::Symbol)
+    r = Ref{__JL_Ctag_30}(x)
+    ptr = Base.unsafe_convert(Ptr{__JL_Ctag_30}, r)
+    fptr = getproperty(ptr, f)
+    GC.@preserve r unsafe_load(fptr)
+end
+
+function Base.setproperty!(x::Ptr{__JL_Ctag_30}, f::Symbol, v)
+    unsafe_store!(getproperty(x, f), v)
+end
+
+struct __JL_Ctag_31
+    stqe_next::Ptr{Cvoid} # stqe_next::Ptr{lxw_custom_property}
+end
+
+function Base.getproperty(x::__JL_Ctag_31, f::Symbol)
+    f === :stqe_next && return Ptr{lxw_custom_property}(getfield(x, f))
+    return getfield(x, f)
+end
+
+struct lxw_custom_property
+    data::NTuple{56,UInt8}
+end
+
+function Base.getproperty(x::Ptr{lxw_custom_property}, f::Symbol)
+    f === :type && return Ptr{lxw_custom_property_types}(x + 0)
+    f === :name && return Ptr{Cstring}(x + 8)
+    f === :u && return Ptr{__JL_Ctag_30}(x + 16)
+    f === :list_pointers && return Ptr{Cvoid}(x + 48)
+    return getfield(x, f)
+end
+
+function Base.getproperty(x::lxw_custom_property, f::Symbol)
+    r = Ref{lxw_custom_property}(x)
+    ptr = Base.unsafe_convert(Ptr{lxw_custom_property}, r)
+    fptr = getproperty(ptr, f)
+    GC.@preserve r unsafe_load(fptr)
+end
+
+function Base.setproperty!(x::Ptr{lxw_custom_property}, f::Symbol, v)
+    unsafe_store!(getproperty(x, f), v)
+end
+
+struct lxw_custom_properties
+    stqh_first::Ptr{lxw_custom_property}
+    stqh_last::Ptr{Ptr{lxw_custom_property}}
+end
+
+struct __JL_Ctag_18
+    stqe_next::Ptr{Cvoid} # stqe_next::Ptr{sst_element}
+end
+
+function Base.getproperty(x::__JL_Ctag_18, f::Symbol)
+    f === :stqe_next && return Ptr{sst_element}(getfield(x, f))
+    return getfield(x, f)
+end
+
+struct __JL_Ctag_19
+    rbe_left::Ptr{Cvoid} # rbe_left::Ptr{sst_element}
+    rbe_right::Ptr{Cvoid} # rbe_right::Ptr{sst_element}
+    rbe_parent::Ptr{Cvoid} # rbe_parent::Ptr{sst_element}
+    rbe_color::Cint
+end
+
+function Base.getproperty(x::__JL_Ctag_19, f::Symbol)
+    f === :rbe_left && return Ptr{sst_element}(getfield(x, f))
+    f === :rbe_right && return Ptr{sst_element}(getfield(x, f))
+    f === :rbe_parent && return Ptr{sst_element}(getfield(x, f))
+    return getfield(x, f)
+end
+
+struct sst_element
+    data::NTuple{64,UInt8}
+end
+
+function Base.getproperty(x::Ptr{sst_element}, f::Symbol)
+    f === :index && return Ptr{UInt32}(x + 0)
+    f === :string && return Ptr{Cstring}(x + 8)
+    f === :is_rich_string && return Ptr{UInt8}(x + 16)
+    f === :sst_order_pointers && return Ptr{Cvoid}(x + 24)
+    f === :sst_tree_pointers && return Ptr{Cvoid}(x + 32)
+    return getfield(x, f)
+end
+
+function Base.getproperty(x::sst_element, f::Symbol)
+    r = Ref{sst_element}(x)
+    ptr = Base.unsafe_convert(Ptr{sst_element}, r)
+    fptr = getproperty(ptr, f)
+    GC.@preserve r unsafe_load(fptr)
+end
+
+function Base.setproperty!(x::Ptr{sst_element}, f::Symbol, v)
+    unsafe_store!(getproperty(x, f), v)
+end
+
+struct sst_rb_tree
+    rbh_root::Ptr{sst_element}
+end
+
+struct sst_order_list
+    stqh_first::Ptr{sst_element}
+    stqh_last::Ptr{Ptr{sst_element}}
+end
+
+struct lxw_sst
+    file::Ptr{Libc.FILE}
+    string_count::UInt32
+    unique_count::UInt32
+    order_list::Ptr{sst_order_list}
+    rb_tree::Ptr{sst_rb_tree}
+end
+
+function lxw_sst_new()
+    @ccall libxlsxwriter.lxw_sst_new()::Ptr{lxw_sst}
+end
+
+function lxw_sst_free(sst)
+    @ccall libxlsxwriter.lxw_sst_free(sst::Ptr{lxw_sst})::Cvoid
+end
+
+function lxw_get_sst_index(sst, string, is_rich_string)
+    @ccall libxlsxwriter.lxw_get_sst_index(
+        sst::Ptr{lxw_sst},
+        string::Cstring,
+        is_rich_string::UInt8,
+    )::Ptr{sst_element}
+end
+
+function lxw_sst_assemble_xml_file(self)
+    @ccall libxlsxwriter.lxw_sst_assemble_xml_file(self::Ptr{lxw_sst})::Cvoid
+end
+
+function lxw_hash_key_exists(lxw_hash, key, key_len)
+    @ccall libxlsxwriter.lxw_hash_key_exists(
+        lxw_hash::Ptr{lxw_hash_table},
+        key::Ptr{Cvoid},
+        key_len::Csize_t,
+    )::Ptr{lxw_hash_element}
+end
+
+function lxw_insert_hash_element(lxw_hash, key, value, key_len)
+    @ccall libxlsxwriter.lxw_insert_hash_element(
+        lxw_hash::Ptr{lxw_hash_table},
+        key::Ptr{Cvoid},
+        value::Ptr{Cvoid},
+        key_len::Csize_t,
+    )::Ptr{lxw_hash_element}
+end
+
+function lxw_hash_new(num_buckets, free_key, free_value)
+    @ccall libxlsxwriter.lxw_hash_new(
+        num_buckets::UInt32,
+        free_key::UInt8,
+        free_value::UInt8,
+    )::Ptr{lxw_hash_table}
+end
+
+function lxw_hash_free(lxw_hash)
+    @ccall libxlsxwriter.lxw_hash_free(lxw_hash::Ptr{lxw_hash_table})::Cvoid
+end
+
+@cenum lxw_format_underlines::UInt32 begin
+    LXW_UNDERLINE_NONE = 0
+    LXW_UNDERLINE_SINGLE = 1
+    LXW_UNDERLINE_DOUBLE = 2
+    LXW_UNDERLINE_SINGLE_ACCOUNTING = 3
+    LXW_UNDERLINE_DOUBLE_ACCOUNTING = 4
+end
+
+@cenum lxw_format_scripts::UInt32 begin
+    LXW_FONT_SUPERSCRIPT = 1
+    LXW_FONT_SUBSCRIPT = 2
+end
+
+@cenum lxw_format_alignments::UInt32 begin
+    LXW_ALIGN_NONE = 0
+    LXW_ALIGN_LEFT = 1
+    LXW_ALIGN_CENTER = 2
+    LXW_ALIGN_RIGHT = 3
+    LXW_ALIGN_FILL = 4
+    LXW_ALIGN_JUSTIFY = 5
+    LXW_ALIGN_CENTER_ACROSS = 6
+    LXW_ALIGN_DISTRIBUTED = 7
+    LXW_ALIGN_VERTICAL_TOP = 8
+    LXW_ALIGN_VERTICAL_BOTTOM = 9
+    LXW_ALIGN_VERTICAL_CENTER = 10
+    LXW_ALIGN_VERTICAL_JUSTIFY = 11
+    LXW_ALIGN_VERTICAL_DISTRIBUTED = 12
+end
+
+@cenum lxw_format_diagonal_types::UInt32 begin
+    LXW_DIAGONAL_BORDER_UP = 1
+    LXW_DIAGONAL_BORDER_DOWN = 2
+    LXW_DIAGONAL_BORDER_UP_DOWN = 3
+end
+
+@cenum lxw_defined_colors::UInt32 begin
+    LXW_COLOR_BLACK = 16777216
+    LXW_COLOR_BLUE = 255
+    LXW_COLOR_BROWN = 8388608
+    LXW_COLOR_CYAN = 65535
+    LXW_COLOR_GRAY = 8421504
+    LXW_COLOR_GREEN = 32768
+    LXW_COLOR_LIME = 65280
+    LXW_COLOR_MAGENTA = 16711935
+    LXW_COLOR_NAVY = 128
+    LXW_COLOR_ORANGE = 16737792
+    LXW_COLOR_PINK = 16711935
+    LXW_COLOR_PURPLE = 8388736
+    LXW_COLOR_RED = 16711680
+    LXW_COLOR_SILVER = 12632256
+    LXW_COLOR_WHITE = 16777215
+    LXW_COLOR_YELLOW = 16776960
+end
+
+@cenum lxw_format_patterns::UInt32 begin
+    LXW_PATTERN_NONE = 0
+    LXW_PATTERN_SOLID = 1
+    LXW_PATTERN_MEDIUM_GRAY = 2
+    LXW_PATTERN_DARK_GRAY = 3
+    LXW_PATTERN_LIGHT_GRAY = 4
+    LXW_PATTERN_DARK_HORIZONTAL = 5
+    LXW_PATTERN_DARK_VERTICAL = 6
+    LXW_PATTERN_DARK_DOWN = 7
+    LXW_PATTERN_DARK_UP = 8
+    LXW_PATTERN_DARK_GRID = 9
+    LXW_PATTERN_DARK_TRELLIS = 10
+    LXW_PATTERN_LIGHT_HORIZONTAL = 11
+    LXW_PATTERN_LIGHT_VERTICAL = 12
+    LXW_PATTERN_LIGHT_DOWN = 13
+    LXW_PATTERN_LIGHT_UP = 14
+    LXW_PATTERN_LIGHT_GRID = 15
+    LXW_PATTERN_LIGHT_TRELLIS = 16
+    LXW_PATTERN_GRAY_125 = 17
+    LXW_PATTERN_GRAY_0625 = 18
+end
+
+@cenum lxw_format_borders::UInt32 begin
+    LXW_BORDER_NONE = 0
+    LXW_BORDER_THIN = 1
+    LXW_BORDER_MEDIUM = 2
+    LXW_BORDER_DASHED = 3
+    LXW_BORDER_DOTTED = 4
+    LXW_BORDER_THICK = 5
+    LXW_BORDER_DOUBLE = 6
+    LXW_BORDER_HAIR = 7
+    LXW_BORDER_MEDIUM_DASHED = 8
+    LXW_BORDER_DASH_DOT = 9
+    LXW_BORDER_MEDIUM_DASH_DOT = 10
+    LXW_BORDER_DASH_DOT_DOT = 11
+    LXW_BORDER_MEDIUM_DASH_DOT_DOT = 12
+    LXW_BORDER_SLANT_DASH_DOT = 13
 end
 
 struct lxw_font
@@ -742,6 +702,20 @@ function format_set_font_script(format, style)
     @ccall libxlsxwriter.format_set_font_script(
         format::Ptr{lxw_format},
         style::UInt8,
+    )::Cvoid
+end
+
+function format_set_font_family(format, value)
+    @ccall libxlsxwriter.format_set_font_family(
+        format::Ptr{lxw_format},
+        value::UInt8,
+    )::Cvoid
+end
+
+function format_set_font_charset(format, value)
+    @ccall libxlsxwriter.format_set_font_charset(
+        format::Ptr{lxw_format},
+        value::UInt8,
     )::Cvoid
 end
 
@@ -890,20 +864,6 @@ function format_set_font_shadow(format)
     @ccall libxlsxwriter.format_set_font_shadow(format::Ptr{lxw_format})::Cvoid
 end
 
-function format_set_font_family(format, value)
-    @ccall libxlsxwriter.format_set_font_family(
-        format::Ptr{lxw_format},
-        value::UInt8,
-    )::Cvoid
-end
-
-function format_set_font_charset(format, value)
-    @ccall libxlsxwriter.format_set_font_charset(
-        format::Ptr{lxw_format},
-        value::UInt8,
-    )::Cvoid
-end
-
 function format_set_font_scheme(format, font_scheme)
     @ccall libxlsxwriter.format_set_font_scheme(
         format::Ptr{lxw_format},
@@ -945,26 +905,256 @@ function format_set_font_only(format)
     @ccall libxlsxwriter.format_set_font_only(format::Ptr{lxw_format})::Cvoid
 end
 
-struct lxw_chart_series_list
-    stqh_first::Ptr{Cvoid} # stqh_first::Ptr{lxw_chart_series}
-    stqh_last::Ptr{Ptr{Cvoid}} # stqh_last::Ptr{Ptr{lxw_chart_series}}
+struct __JL_Ctag_22
+    stqe_next::Ptr{Cvoid} # stqe_next::Ptr{lxw_series_data_point}
 end
 
-function Base.getproperty(x::lxw_chart_series_list, f::Symbol)
-    f === :stqh_first && return Ptr{lxw_chart_series}(getfield(x, f))
-    f === :stqh_last && return Ptr{Ptr{lxw_chart_series}}(getfield(x, f))
+function Base.getproperty(x::__JL_Ctag_22, f::Symbol)
+    f === :stqe_next && return Ptr{lxw_series_data_point}(getfield(x, f))
     return getfield(x, f)
+end
+
+struct lxw_series_data_point
+    data::NTuple{40,UInt8}
+end
+
+function Base.getproperty(x::Ptr{lxw_series_data_point}, f::Symbol)
+    f === :is_string && return Ptr{UInt8}(x + 0)
+    f === :number && return Ptr{Cdouble}(x + 8)
+    f === :string && return Ptr{Cstring}(x + 16)
+    f === :no_data && return Ptr{UInt8}(x + 24)
+    f === :list_pointers && return Ptr{Cvoid}(x + 32)
+    return getfield(x, f)
+end
+
+function Base.getproperty(x::lxw_series_data_point, f::Symbol)
+    r = Ref{lxw_series_data_point}(x)
+    ptr = Base.unsafe_convert(Ptr{lxw_series_data_point}, r)
+    fptr = getproperty(ptr, f)
+    GC.@preserve r unsafe_load(fptr)
+end
+
+function Base.setproperty!(x::Ptr{lxw_series_data_point}, f::Symbol, v)
+    unsafe_store!(getproperty(x, f), v)
 end
 
 struct lxw_series_data_points
-    stqh_first::Ptr{Cvoid} # stqh_first::Ptr{lxw_series_data_point}
-    stqh_last::Ptr{Ptr{Cvoid}} # stqh_last::Ptr{Ptr{lxw_series_data_point}}
+    stqh_first::Ptr{lxw_series_data_point}
+    stqh_last::Ptr{Ptr{lxw_series_data_point}}
 end
 
-function Base.getproperty(x::lxw_series_data_points, f::Symbol)
-    f === :stqh_first && return Ptr{lxw_series_data_point}(getfield(x, f))
-    f === :stqh_last && return Ptr{Ptr{lxw_series_data_point}}(getfield(x, f))
+struct lxw_series_range
+    formula::Cstring
+    sheetname::Cstring
+    first_row::lxw_row_t
+    last_row::lxw_row_t
+    first_col::lxw_col_t
+    last_col::lxw_col_t
+    ignore_cache::UInt8
+    has_string_cache::UInt8
+    num_data_points::UInt16
+    data_cache::Ptr{lxw_series_data_points}
+end
+
+struct lxw_chart_font
+    name::Cstring
+    size::Cdouble
+    bold::UInt8
+    italic::UInt8
+    underline::UInt8
+    rotation::Int32
+    color::lxw_color_t
+    pitch_family::UInt8
+    charset::UInt8
+    baseline::Int8
+end
+
+struct lxw_chart_layout
+    x::Cdouble
+    y::Cdouble
+    width::Cdouble
+    height::Cdouble
+    has_inner::UInt8
+end
+
+struct lxw_chart_title
+    data::NTuple{88,UInt8}
+end
+
+function Base.getproperty(x::Ptr{lxw_chart_title}, f::Symbol)
+    f === :name && return Ptr{Cstring}(x + 0)
+    f === :row && return Ptr{lxw_row_t}(x + 8)
+    f === :col && return Ptr{lxw_col_t}(x + 12)
+    f === :font && return Ptr{Ptr{lxw_chart_font}}(x + 16)
+    f === :off && return Ptr{UInt8}(x + 24)
+    f === :is_horizontal && return Ptr{UInt8}(x + 25)
+    f === :ignore_cache && return Ptr{UInt8}(x + 26)
+    f === :has_overlay && return Ptr{UInt8}(x + 27)
+    f === :range && return Ptr{Ptr{lxw_series_range}}(x + 32)
+    f === :data_point && return Ptr{lxw_series_data_point}(x + 40)
+    f === :layout && return Ptr{Ptr{lxw_chart_layout}}(x + 80)
     return getfield(x, f)
+end
+
+function Base.getproperty(x::lxw_chart_title, f::Symbol)
+    r = Ref{lxw_chart_title}(x)
+    ptr = Base.unsafe_convert(Ptr{lxw_chart_title}, r)
+    fptr = getproperty(ptr, f)
+    GC.@preserve r unsafe_load(fptr)
+end
+
+function Base.setproperty!(x::Ptr{lxw_chart_title}, f::Symbol, v)
+    unsafe_store!(getproperty(x, f), v)
+end
+
+struct lxw_chart_line
+    color::lxw_color_t
+    none::UInt8
+    width::Cfloat
+    dash_type::UInt8
+    transparency::UInt8
+end
+
+struct lxw_chart_fill
+    color::lxw_color_t
+    none::UInt8
+    transparency::UInt8
+end
+
+struct lxw_chart_pattern
+    fg_color::lxw_color_t
+    bg_color::lxw_color_t
+    type::UInt8
+end
+
+struct lxw_chart_marker
+    type::UInt8
+    size::UInt8
+    line::Ptr{lxw_chart_line}
+    fill::Ptr{lxw_chart_fill}
+    pattern::Ptr{lxw_chart_pattern}
+end
+
+struct lxw_chart_point
+    line::Ptr{lxw_chart_line}
+    fill::Ptr{lxw_chart_fill}
+    pattern::Ptr{lxw_chart_pattern}
+end
+
+struct lxw_chart_custom_label
+    data::NTuple{96,UInt8}
+end
+
+function Base.getproperty(x::Ptr{lxw_chart_custom_label}, f::Symbol)
+    f === :value && return Ptr{Cstring}(x + 0)
+    f === :hide && return Ptr{UInt8}(x + 8)
+    f === :font && return Ptr{Ptr{lxw_chart_font}}(x + 16)
+    f === :line && return Ptr{Ptr{lxw_chart_line}}(x + 24)
+    f === :fill && return Ptr{Ptr{lxw_chart_fill}}(x + 32)
+    f === :pattern && return Ptr{Ptr{lxw_chart_pattern}}(x + 40)
+    f === :range && return Ptr{Ptr{lxw_series_range}}(x + 48)
+    f === :data_point && return Ptr{lxw_series_data_point}(x + 56)
+    return getfield(x, f)
+end
+
+function Base.getproperty(x::lxw_chart_custom_label, f::Symbol)
+    r = Ref{lxw_chart_custom_label}(x)
+    ptr = Base.unsafe_convert(Ptr{lxw_chart_custom_label}, r)
+    fptr = getproperty(ptr, f)
+    GC.@preserve r unsafe_load(fptr)
+end
+
+function Base.setproperty!(x::Ptr{lxw_chart_custom_label}, f::Symbol, v)
+    unsafe_store!(getproperty(x, f), v)
+end
+
+struct lxw_series_error_bars
+    type::UInt8
+    direction::UInt8
+    endcap::UInt8
+    has_value::UInt8
+    is_set::UInt8
+    is_x::UInt8
+    chart_group::UInt8
+    value::Cdouble
+    line::Ptr{lxw_chart_line}
+end
+
+struct __JL_Ctag_11
+    stqe_next::Ptr{Cvoid} # stqe_next::Ptr{lxw_chart_series}
+end
+
+function Base.getproperty(x::__JL_Ctag_11, f::Symbol)
+    f === :stqe_next && return Ptr{lxw_chart_series}(getfield(x, f))
+    return getfield(x, f)
+end
+
+struct lxw_chart_series
+    data::NTuple{288,UInt8}
+end
+
+function Base.getproperty(x::Ptr{lxw_chart_series}, f::Symbol)
+    f === :categories && return Ptr{Ptr{lxw_series_range}}(x + 0)
+    f === :values && return Ptr{Ptr{lxw_series_range}}(x + 8)
+    f === :title && return Ptr{lxw_chart_title}(x + 16)
+    f === :line && return Ptr{Ptr{lxw_chart_line}}(x + 104)
+    f === :fill && return Ptr{Ptr{lxw_chart_fill}}(x + 112)
+    f === :pattern && return Ptr{Ptr{lxw_chart_pattern}}(x + 120)
+    f === :marker && return Ptr{Ptr{lxw_chart_marker}}(x + 128)
+    f === :points && return Ptr{Ptr{lxw_chart_point}}(x + 136)
+    f === :data_labels && return Ptr{Ptr{lxw_chart_custom_label}}(x + 144)
+    f === :point_count && return Ptr{UInt16}(x + 152)
+    f === :data_label_count && return Ptr{UInt16}(x + 154)
+    f === :smooth && return Ptr{UInt8}(x + 156)
+    f === :invert_if_negative && return Ptr{UInt8}(x + 157)
+    f === :has_labels && return Ptr{UInt8}(x + 158)
+    f === :show_labels_value && return Ptr{UInt8}(x + 159)
+    f === :show_labels_category && return Ptr{UInt8}(x + 160)
+    f === :show_labels_name && return Ptr{UInt8}(x + 161)
+    f === :show_labels_leader && return Ptr{UInt8}(x + 162)
+    f === :show_labels_legend && return Ptr{UInt8}(x + 163)
+    f === :show_labels_percent && return Ptr{UInt8}(x + 164)
+    f === :label_position && return Ptr{UInt8}(x + 165)
+    f === :label_separator && return Ptr{UInt8}(x + 166)
+    f === :default_label_position && return Ptr{UInt8}(x + 167)
+    f === :label_num_format && return Ptr{Cstring}(x + 168)
+    f === :label_font && return Ptr{Ptr{lxw_chart_font}}(x + 176)
+    f === :label_line && return Ptr{Ptr{lxw_chart_line}}(x + 184)
+    f === :label_fill && return Ptr{Ptr{lxw_chart_fill}}(x + 192)
+    f === :label_pattern && return Ptr{Ptr{lxw_chart_pattern}}(x + 200)
+    f === :x_error_bars && return Ptr{Ptr{lxw_series_error_bars}}(x + 208)
+    f === :y_error_bars && return Ptr{Ptr{lxw_series_error_bars}}(x + 216)
+    f === :has_trendline && return Ptr{UInt8}(x + 224)
+    f === :has_trendline_forecast && return Ptr{UInt8}(x + 225)
+    f === :has_trendline_equation && return Ptr{UInt8}(x + 226)
+    f === :has_trendline_r_squared && return Ptr{UInt8}(x + 227)
+    f === :has_trendline_intercept && return Ptr{UInt8}(x + 228)
+    f === :trendline_type && return Ptr{UInt8}(x + 229)
+    f === :trendline_value && return Ptr{UInt8}(x + 230)
+    f === :trendline_forward && return Ptr{Cdouble}(x + 232)
+    f === :trendline_backward && return Ptr{Cdouble}(x + 240)
+    f === :trendline_value_type && return Ptr{UInt8}(x + 248)
+    f === :trendline_name && return Ptr{Cstring}(x + 256)
+    f === :trendline_line && return Ptr{Ptr{lxw_chart_line}}(x + 264)
+    f === :trendline_intercept && return Ptr{Cdouble}(x + 272)
+    f === :list_pointers && return Ptr{Cvoid}(x + 280)
+    return getfield(x, f)
+end
+
+function Base.getproperty(x::lxw_chart_series, f::Symbol)
+    r = Ref{lxw_chart_series}(x)
+    ptr = Base.unsafe_convert(Ptr{lxw_chart_series}, r)
+    fptr = getproperty(ptr, f)
+    GC.@preserve r unsafe_load(fptr)
+end
+
+function Base.setproperty!(x::Ptr{lxw_chart_series}, f::Symbol, v)
+    unsafe_store!(getproperty(x, f), v)
+end
+
+struct lxw_chart_series_list
+    stqh_first::Ptr{lxw_chart_series}
+    stqh_last::Ptr{Ptr{lxw_chart_series}}
 end
 
 @cenum lxw_chart_type::UInt32 begin
@@ -1166,130 +1356,10 @@ end
 
 const lxw_chart_tick_mark = lxw_chart_axis_tick_mark
 
-struct lxw_series_range
-    formula::Cstring
-    sheetname::Cstring
-    first_row::lxw_row_t
-    last_row::lxw_row_t
-    first_col::lxw_col_t
-    last_col::lxw_col_t
-    ignore_cache::UInt8
-    has_string_cache::UInt8
-    num_data_points::UInt16
-    data_cache::Ptr{lxw_series_data_points}
-end
-
-struct __JL_Ctag_22
-    stqe_next::Ptr{Cvoid} # stqe_next::Ptr{lxw_series_data_point}
-end
-
-function Base.getproperty(x::__JL_Ctag_22, f::Symbol)
-    f === :stqe_next && return Ptr{lxw_series_data_point}(getfield(x, f))
-    return getfield(x, f)
-end
-
-struct lxw_series_data_point
-    data::NTuple{40,UInt8}
-end
-
-function Base.getproperty(x::Ptr{lxw_series_data_point}, f::Symbol)
-    f === :is_string && return Ptr{UInt8}(x + 0)
-    f === :number && return Ptr{Cdouble}(x + 8)
-    f === :string && return Ptr{Cstring}(x + 16)
-    f === :no_data && return Ptr{UInt8}(x + 24)
-    f === :list_pointers && return Ptr{Cvoid}(x + 32)
-    return getfield(x, f)
-end
-
-function Base.getproperty(x::lxw_series_data_point, f::Symbol)
-    r = Ref{lxw_series_data_point}(x)
-    ptr = Base.unsafe_convert(Ptr{lxw_series_data_point}, r)
-    fptr = getproperty(ptr, f)
-    GC.@preserve r unsafe_load(fptr)
-end
-
-function Base.setproperty!(x::Ptr{lxw_series_data_point}, f::Symbol, v)
-    unsafe_store!(getproperty(x, f), v)
-end
-
-struct lxw_chart_line
-    color::lxw_color_t
-    none::UInt8
-    width::Cfloat
-    dash_type::UInt8
-    transparency::UInt8
-end
-
-struct lxw_chart_fill
-    color::lxw_color_t
-    none::UInt8
-    transparency::UInt8
-end
-
-struct lxw_chart_pattern
-    fg_color::lxw_color_t
-    bg_color::lxw_color_t
-    type::UInt8
-end
-
-struct lxw_chart_font
-    name::Cstring
-    size::Cdouble
-    bold::UInt8
-    italic::UInt8
-    underline::UInt8
-    rotation::Int32
-    color::lxw_color_t
-    pitch_family::UInt8
-    charset::UInt8
-    baseline::Int8
-end
-
-struct lxw_chart_marker
-    type::UInt8
-    size::UInt8
-    line::Ptr{lxw_chart_line}
-    fill::Ptr{lxw_chart_fill}
-    pattern::Ptr{lxw_chart_pattern}
-end
-
 struct lxw_chart_legend
     font::Ptr{lxw_chart_font}
     position::UInt8
-end
-
-struct lxw_chart_title
-    data::NTuple{80,UInt8}
-end
-
-function Base.getproperty(x::Ptr{lxw_chart_title}, f::Symbol)
-    f === :name && return Ptr{Cstring}(x + 0)
-    f === :row && return Ptr{lxw_row_t}(x + 8)
-    f === :col && return Ptr{lxw_col_t}(x + 12)
-    f === :font && return Ptr{Ptr{lxw_chart_font}}(x + 16)
-    f === :off && return Ptr{UInt8}(x + 24)
-    f === :is_horizontal && return Ptr{UInt8}(x + 25)
-    f === :ignore_cache && return Ptr{UInt8}(x + 26)
-    f === :range && return Ptr{Ptr{lxw_series_range}}(x + 32)
-    f === :data_point && return Ptr{lxw_series_data_point}(x + 40)
-    return getfield(x, f)
-end
-
-function Base.getproperty(x::lxw_chart_title, f::Symbol)
-    r = Ref{lxw_chart_title}(x)
-    ptr = Base.unsafe_convert(Ptr{lxw_chart_title}, r)
-    fptr = getproperty(ptr, f)
-    GC.@preserve r unsafe_load(fptr)
-end
-
-function Base.setproperty!(x::Ptr{lxw_chart_title}, f::Symbol, v)
-    unsafe_store!(getproperty(x, f), v)
-end
-
-struct lxw_chart_point
-    line::Ptr{lxw_chart_line}
-    fill::Ptr{lxw_chart_fill}
-    pattern::Ptr{lxw_chart_pattern}
+    layout::Ptr{lxw_chart_layout}
 end
 
 struct lxw_chart_data_label
@@ -1299,33 +1369,6 @@ struct lxw_chart_data_label
     line::Ptr{lxw_chart_line}
     fill::Ptr{lxw_chart_fill}
     pattern::Ptr{lxw_chart_pattern}
-end
-
-struct lxw_chart_custom_label
-    data::NTuple{96,UInt8}
-end
-
-function Base.getproperty(x::Ptr{lxw_chart_custom_label}, f::Symbol)
-    f === :value && return Ptr{Cstring}(x + 0)
-    f === :hide && return Ptr{UInt8}(x + 8)
-    f === :font && return Ptr{Ptr{lxw_chart_font}}(x + 16)
-    f === :line && return Ptr{Ptr{lxw_chart_line}}(x + 24)
-    f === :fill && return Ptr{Ptr{lxw_chart_fill}}(x + 32)
-    f === :pattern && return Ptr{Ptr{lxw_chart_pattern}}(x + 40)
-    f === :range && return Ptr{Ptr{lxw_series_range}}(x + 48)
-    f === :data_point && return Ptr{lxw_series_data_point}(x + 56)
-    return getfield(x, f)
-end
-
-function Base.getproperty(x::lxw_chart_custom_label, f::Symbol)
-    r = Ref{lxw_chart_custom_label}(x)
-    ptr = Base.unsafe_convert(Ptr{lxw_chart_custom_label}, r)
-    fptr = getproperty(ptr, f)
-    GC.@preserve r unsafe_load(fptr)
-end
-
-function Base.setproperty!(x::Ptr{lxw_chart_custom_label}, f::Symbol, v)
-    unsafe_store!(getproperty(x, f), v)
 end
 
 @cenum lxw_chart_blank::UInt32 begin
@@ -1339,6 +1382,13 @@ end
     LXW_CHART_AXIS_LEFT = 1
     LXW_CHART_AXIS_TOP = 2
     LXW_CHART_AXIS_BOTTOM = 3
+end
+
+@cenum lxw_chart_layout_type::UInt32 begin
+    LXW_CHART_LAYOUT_TITLE = 0
+    LXW_CHART_LAYOUT_LEGEND = 1
+    LXW_CHART_LAYOUT_PLOTAREA = 2
+    LXW_CHART_LAYOUT_AXIS_NAME = 3
 end
 
 @cenum lxw_chart_error_bar_type::UInt32 begin
@@ -1364,18 +1414,6 @@ end
     LXW_CHART_ERROR_BAR_NO_CAP = 1
 end
 
-struct lxw_series_error_bars
-    type::UInt8
-    direction::UInt8
-    endcap::UInt8
-    has_value::UInt8
-    is_set::UInt8
-    is_x::UInt8
-    chart_group::UInt8
-    value::Cdouble
-    line::Ptr{lxw_chart_line}
-end
-
 @cenum lxw_chart_trendline_type::UInt32 begin
     LXW_CHART_TRENDLINE_TYPE_LINEAR = 0
     LXW_CHART_TRENDLINE_TYPE_LOG = 1
@@ -1383,78 +1421,6 @@ end
     LXW_CHART_TRENDLINE_TYPE_POWER = 3
     LXW_CHART_TRENDLINE_TYPE_EXP = 4
     LXW_CHART_TRENDLINE_TYPE_AVERAGE = 5
-end
-
-struct __JL_Ctag_11
-    stqe_next::Ptr{Cvoid} # stqe_next::Ptr{lxw_chart_series}
-end
-
-function Base.getproperty(x::__JL_Ctag_11, f::Symbol)
-    f === :stqe_next && return Ptr{lxw_chart_series}(getfield(x, f))
-    return getfield(x, f)
-end
-
-struct lxw_chart_series
-    data::NTuple{280,UInt8}
-end
-
-function Base.getproperty(x::Ptr{lxw_chart_series}, f::Symbol)
-    f === :categories && return Ptr{Ptr{lxw_series_range}}(x + 0)
-    f === :values && return Ptr{Ptr{lxw_series_range}}(x + 8)
-    f === :title && return Ptr{lxw_chart_title}(x + 16)
-    f === :line && return Ptr{Ptr{lxw_chart_line}}(x + 96)
-    f === :fill && return Ptr{Ptr{lxw_chart_fill}}(x + 104)
-    f === :pattern && return Ptr{Ptr{lxw_chart_pattern}}(x + 112)
-    f === :marker && return Ptr{Ptr{lxw_chart_marker}}(x + 120)
-    f === :points && return Ptr{Ptr{lxw_chart_point}}(x + 128)
-    f === :data_labels && return Ptr{Ptr{lxw_chart_custom_label}}(x + 136)
-    f === :point_count && return Ptr{UInt16}(x + 144)
-    f === :data_label_count && return Ptr{UInt16}(x + 146)
-    f === :smooth && return Ptr{UInt8}(x + 148)
-    f === :invert_if_negative && return Ptr{UInt8}(x + 149)
-    f === :has_labels && return Ptr{UInt8}(x + 150)
-    f === :show_labels_value && return Ptr{UInt8}(x + 151)
-    f === :show_labels_category && return Ptr{UInt8}(x + 152)
-    f === :show_labels_name && return Ptr{UInt8}(x + 153)
-    f === :show_labels_leader && return Ptr{UInt8}(x + 154)
-    f === :show_labels_legend && return Ptr{UInt8}(x + 155)
-    f === :show_labels_percent && return Ptr{UInt8}(x + 156)
-    f === :label_position && return Ptr{UInt8}(x + 157)
-    f === :label_separator && return Ptr{UInt8}(x + 158)
-    f === :default_label_position && return Ptr{UInt8}(x + 159)
-    f === :label_num_format && return Ptr{Cstring}(x + 160)
-    f === :label_font && return Ptr{Ptr{lxw_chart_font}}(x + 168)
-    f === :label_line && return Ptr{Ptr{lxw_chart_line}}(x + 176)
-    f === :label_fill && return Ptr{Ptr{lxw_chart_fill}}(x + 184)
-    f === :label_pattern && return Ptr{Ptr{lxw_chart_pattern}}(x + 192)
-    f === :x_error_bars && return Ptr{Ptr{lxw_series_error_bars}}(x + 200)
-    f === :y_error_bars && return Ptr{Ptr{lxw_series_error_bars}}(x + 208)
-    f === :has_trendline && return Ptr{UInt8}(x + 216)
-    f === :has_trendline_forecast && return Ptr{UInt8}(x + 217)
-    f === :has_trendline_equation && return Ptr{UInt8}(x + 218)
-    f === :has_trendline_r_squared && return Ptr{UInt8}(x + 219)
-    f === :has_trendline_intercept && return Ptr{UInt8}(x + 220)
-    f === :trendline_type && return Ptr{UInt8}(x + 221)
-    f === :trendline_value && return Ptr{UInt8}(x + 222)
-    f === :trendline_forward && return Ptr{Cdouble}(x + 224)
-    f === :trendline_backward && return Ptr{Cdouble}(x + 232)
-    f === :trendline_value_type && return Ptr{UInt8}(x + 240)
-    f === :trendline_name && return Ptr{Cstring}(x + 248)
-    f === :trendline_line && return Ptr{Ptr{lxw_chart_line}}(x + 256)
-    f === :trendline_intercept && return Ptr{Cdouble}(x + 264)
-    f === :list_pointers && return Ptr{Cvoid}(x + 272)
-    return getfield(x, f)
-end
-
-function Base.getproperty(x::lxw_chart_series, f::Symbol)
-    r = Ref{lxw_chart_series}(x)
-    ptr = Base.unsafe_convert(Ptr{lxw_chart_series}, r)
-    fptr = getproperty(ptr, f)
-    GC.@preserve r unsafe_load(fptr)
-end
-
-function Base.setproperty!(x::Ptr{lxw_chart_series}, f::Symbol, v)
-    unsafe_store!(getproperty(x, f), v)
 end
 
 struct lxw_chart_gridline
@@ -1523,7 +1489,7 @@ function Base.getproperty(x::__JL_Ctag_26, f::Symbol)
 end
 
 struct lxw_chart
-    data::NTuple{384,UInt8}
+    data::NTuple{408,UInt8}
 end
 
 function Base.getproperty(x::Ptr{lxw_chart}, f::Symbol)
@@ -1536,60 +1502,61 @@ function Base.getproperty(x::Ptr{lxw_chart}, f::Symbol)
     f === :x_axis && return Ptr{Ptr{lxw_chart_axis}}(x + 32)
     f === :y_axis && return Ptr{Ptr{lxw_chart_axis}}(x + 40)
     f === :title && return Ptr{lxw_chart_title}(x + 48)
-    f === :id && return Ptr{UInt32}(x + 128)
-    f === :axis_id_1 && return Ptr{UInt32}(x + 132)
-    f === :axis_id_2 && return Ptr{UInt32}(x + 136)
-    f === :axis_id_3 && return Ptr{UInt32}(x + 140)
-    f === :axis_id_4 && return Ptr{UInt32}(x + 144)
-    f === :in_use && return Ptr{UInt8}(x + 148)
-    f === :chart_group && return Ptr{UInt8}(x + 149)
-    f === :cat_has_num_fmt && return Ptr{UInt8}(x + 150)
-    f === :is_chartsheet && return Ptr{UInt8}(x + 151)
-    f === :has_horiz_cat_axis && return Ptr{UInt8}(x + 152)
-    f === :has_horiz_val_axis && return Ptr{UInt8}(x + 153)
-    f === :style_id && return Ptr{UInt8}(x + 154)
-    f === :rotation && return Ptr{UInt16}(x + 156)
-    f === :hole_size && return Ptr{UInt16}(x + 158)
-    f === :no_title && return Ptr{UInt8}(x + 160)
-    f === :has_overlap && return Ptr{UInt8}(x + 161)
-    f === :overlap_y1 && return Ptr{Int8}(x + 162)
-    f === :overlap_y2 && return Ptr{Int8}(x + 163)
-    f === :gap_y1 && return Ptr{UInt16}(x + 164)
-    f === :gap_y2 && return Ptr{UInt16}(x + 166)
-    f === :grouping && return Ptr{UInt8}(x + 168)
-    f === :default_cross_between && return Ptr{UInt8}(x + 169)
-    f === :legend && return Ptr{lxw_chart_legend}(x + 176)
-    f === :delete_series && return Ptr{Ptr{Int16}}(x + 192)
-    f === :delete_series_count && return Ptr{UInt16}(x + 200)
-    f === :default_marker && return Ptr{Ptr{lxw_chart_marker}}(x + 208)
-    f === :chartarea_line && return Ptr{Ptr{lxw_chart_line}}(x + 216)
-    f === :chartarea_fill && return Ptr{Ptr{lxw_chart_fill}}(x + 224)
-    f === :chartarea_pattern && return Ptr{Ptr{lxw_chart_pattern}}(x + 232)
-    f === :plotarea_line && return Ptr{Ptr{lxw_chart_line}}(x + 240)
-    f === :plotarea_fill && return Ptr{Ptr{lxw_chart_fill}}(x + 248)
-    f === :plotarea_pattern && return Ptr{Ptr{lxw_chart_pattern}}(x + 256)
-    f === :has_drop_lines && return Ptr{UInt8}(x + 264)
-    f === :drop_lines_line && return Ptr{Ptr{lxw_chart_line}}(x + 272)
-    f === :has_high_low_lines && return Ptr{UInt8}(x + 280)
-    f === :high_low_lines_line && return Ptr{Ptr{lxw_chart_line}}(x + 288)
-    f === :series_list && return Ptr{Ptr{lxw_chart_series_list}}(x + 296)
-    f === :has_table && return Ptr{UInt8}(x + 304)
-    f === :has_table_vertical && return Ptr{UInt8}(x + 305)
-    f === :has_table_horizontal && return Ptr{UInt8}(x + 306)
-    f === :has_table_outline && return Ptr{UInt8}(x + 307)
-    f === :has_table_legend_keys && return Ptr{UInt8}(x + 308)
-    f === :table_font && return Ptr{Ptr{lxw_chart_font}}(x + 312)
-    f === :show_blanks_as && return Ptr{UInt8}(x + 320)
-    f === :show_hidden_data && return Ptr{UInt8}(x + 321)
-    f === :has_up_down_bars && return Ptr{UInt8}(x + 322)
-    f === :up_bar_line && return Ptr{Ptr{lxw_chart_line}}(x + 328)
-    f === :down_bar_line && return Ptr{Ptr{lxw_chart_line}}(x + 336)
-    f === :up_bar_fill && return Ptr{Ptr{lxw_chart_fill}}(x + 344)
-    f === :down_bar_fill && return Ptr{Ptr{lxw_chart_fill}}(x + 352)
-    f === :default_label_position && return Ptr{UInt8}(x + 360)
-    f === :is_protected && return Ptr{UInt8}(x + 361)
-    f === :ordered_list_pointers && return Ptr{Cvoid}(x + 368)
-    f === :list_pointers && return Ptr{Cvoid}(x + 376)
+    f === :id && return Ptr{UInt32}(x + 136)
+    f === :axis_id_1 && return Ptr{UInt32}(x + 140)
+    f === :axis_id_2 && return Ptr{UInt32}(x + 144)
+    f === :axis_id_3 && return Ptr{UInt32}(x + 148)
+    f === :axis_id_4 && return Ptr{UInt32}(x + 152)
+    f === :in_use && return Ptr{UInt8}(x + 156)
+    f === :chart_group && return Ptr{UInt8}(x + 157)
+    f === :cat_has_num_fmt && return Ptr{UInt8}(x + 158)
+    f === :is_chartsheet && return Ptr{UInt8}(x + 159)
+    f === :has_horiz_cat_axis && return Ptr{UInt8}(x + 160)
+    f === :has_horiz_val_axis && return Ptr{UInt8}(x + 161)
+    f === :style_id && return Ptr{UInt8}(x + 162)
+    f === :rotation && return Ptr{UInt16}(x + 164)
+    f === :hole_size && return Ptr{UInt16}(x + 166)
+    f === :no_title && return Ptr{UInt8}(x + 168)
+    f === :has_overlap && return Ptr{UInt8}(x + 169)
+    f === :overlap_y1 && return Ptr{Int8}(x + 170)
+    f === :overlap_y2 && return Ptr{Int8}(x + 171)
+    f === :gap_y1 && return Ptr{UInt16}(x + 172)
+    f === :gap_y2 && return Ptr{UInt16}(x + 174)
+    f === :grouping && return Ptr{UInt8}(x + 176)
+    f === :default_cross_between && return Ptr{UInt8}(x + 177)
+    f === :legend && return Ptr{lxw_chart_legend}(x + 184)
+    f === :delete_series && return Ptr{Ptr{Int16}}(x + 208)
+    f === :delete_series_count && return Ptr{UInt16}(x + 216)
+    f === :default_marker && return Ptr{Ptr{lxw_chart_marker}}(x + 224)
+    f === :chartarea_line && return Ptr{Ptr{lxw_chart_line}}(x + 232)
+    f === :chartarea_fill && return Ptr{Ptr{lxw_chart_fill}}(x + 240)
+    f === :chartarea_pattern && return Ptr{Ptr{lxw_chart_pattern}}(x + 248)
+    f === :plotarea_line && return Ptr{Ptr{lxw_chart_line}}(x + 256)
+    f === :plotarea_fill && return Ptr{Ptr{lxw_chart_fill}}(x + 264)
+    f === :plotarea_layout && return Ptr{Ptr{lxw_chart_layout}}(x + 272)
+    f === :plotarea_pattern && return Ptr{Ptr{lxw_chart_pattern}}(x + 280)
+    f === :has_drop_lines && return Ptr{UInt8}(x + 288)
+    f === :drop_lines_line && return Ptr{Ptr{lxw_chart_line}}(x + 296)
+    f === :has_high_low_lines && return Ptr{UInt8}(x + 304)
+    f === :high_low_lines_line && return Ptr{Ptr{lxw_chart_line}}(x + 312)
+    f === :series_list && return Ptr{Ptr{lxw_chart_series_list}}(x + 320)
+    f === :has_table && return Ptr{UInt8}(x + 328)
+    f === :has_table_vertical && return Ptr{UInt8}(x + 329)
+    f === :has_table_horizontal && return Ptr{UInt8}(x + 330)
+    f === :has_table_outline && return Ptr{UInt8}(x + 331)
+    f === :has_table_legend_keys && return Ptr{UInt8}(x + 332)
+    f === :table_font && return Ptr{Ptr{lxw_chart_font}}(x + 336)
+    f === :show_blanks_as && return Ptr{UInt8}(x + 344)
+    f === :show_hidden_data && return Ptr{UInt8}(x + 345)
+    f === :has_up_down_bars && return Ptr{UInt8}(x + 346)
+    f === :up_bar_line && return Ptr{Ptr{lxw_chart_line}}(x + 352)
+    f === :down_bar_line && return Ptr{Ptr{lxw_chart_line}}(x + 360)
+    f === :up_bar_fill && return Ptr{Ptr{lxw_chart_fill}}(x + 368)
+    f === :down_bar_fill && return Ptr{Ptr{lxw_chart_fill}}(x + 376)
+    f === :default_label_position && return Ptr{UInt8}(x + 384)
+    f === :is_protected && return Ptr{UInt8}(x + 385)
+    f === :ordered_list_pointers && return Ptr{Cvoid}(x + 392)
+    f === :list_pointers && return Ptr{Cvoid}(x + 400)
     return getfield(x, f)
 end
 
@@ -1947,6 +1914,13 @@ function chart_axis_set_name_range(axis, sheetname, row, col)
     )::Cvoid
 end
 
+function chart_axis_set_name_layout(axis, layout)
+    @ccall libxlsxwriter.chart_axis_set_name_layout(
+        axis::Ptr{lxw_chart_axis},
+        layout::Ptr{lxw_chart_layout},
+    )::Cvoid
+end
+
 function chart_axis_set_name_font(axis, font)
     @ccall libxlsxwriter.chart_axis_set_name_font(
         axis::Ptr{lxw_chart_axis},
@@ -2156,10 +2130,31 @@ function chart_title_off(chart)
     @ccall libxlsxwriter.chart_title_off(chart::Ptr{lxw_chart})::Cvoid
 end
 
+function chart_title_set_layout(chart, layout)
+    @ccall libxlsxwriter.chart_title_set_layout(
+        chart::Ptr{lxw_chart},
+        layout::Ptr{lxw_chart_layout},
+    )::Cvoid
+end
+
+function chart_title_set_overlay(chart, overlay)
+    @ccall libxlsxwriter.chart_title_set_overlay(
+        chart::Ptr{lxw_chart},
+        overlay::UInt8,
+    )::Cvoid
+end
+
 function chart_legend_set_position(chart, position)
     @ccall libxlsxwriter.chart_legend_set_position(
         chart::Ptr{lxw_chart},
         position::UInt8,
+    )::Cvoid
+end
+
+function chart_legend_set_layout(chart, layout)
+    @ccall libxlsxwriter.chart_legend_set_layout(
+        chart::Ptr{lxw_chart},
+        layout::Ptr{lxw_chart_layout},
     )::Cvoid
 end
 
@@ -2216,6 +2211,13 @@ function chart_plotarea_set_pattern(chart, pattern)
     @ccall libxlsxwriter.chart_plotarea_set_pattern(
         chart::Ptr{lxw_chart},
         pattern::Ptr{lxw_chart_pattern},
+    )::Cvoid
+end
+
+function chart_plotarea_set_layout(chart, layout)
+    @ccall libxlsxwriter.chart_plotarea_set_layout(
+        chart::Ptr{lxw_chart},
+        layout::Ptr{lxw_chart_layout},
     )::Cvoid
 end
 
@@ -2315,32 +2317,6 @@ function lxw_chart_add_data_cache(range, data, rows, cols, col)
     )::lxw_error
 end
 
-struct lxw_drawing_objects
-    stqh_first::Ptr{Cvoid} # stqh_first::Ptr{lxw_drawing_object}
-    stqh_last::Ptr{Ptr{Cvoid}} # stqh_last::Ptr{Ptr{lxw_drawing_object}}
-end
-
-function Base.getproperty(x::lxw_drawing_objects, f::Symbol)
-    f === :stqh_first && return Ptr{lxw_drawing_object}(getfield(x, f))
-    f === :stqh_last && return Ptr{Ptr{lxw_drawing_object}}(getfield(x, f))
-    return getfield(x, f)
-end
-
-@cenum lxw_drawing_types::UInt32 begin
-    LXW_DRAWING_NONE = 0
-    LXW_DRAWING_IMAGE = 1
-    LXW_DRAWING_CHART = 2
-    LXW_DRAWING_SHAPE = 3
-end
-
-@cenum image_types::UInt32 begin
-    LXW_IMAGE_UNKNOWN = 0
-    LXW_IMAGE_PNG = 1
-    LXW_IMAGE_JPEG = 2
-    LXW_IMAGE_BMP = 3
-    LXW_IMAGE_GIF = 4
-end
-
 struct lxw_drawing_coords
     col::UInt32
     row::UInt32
@@ -2389,6 +2365,26 @@ end
 
 function Base.setproperty!(x::Ptr{lxw_drawing_object}, f::Symbol, v)
     unsafe_store!(getproperty(x, f), v)
+end
+
+struct lxw_drawing_objects
+    stqh_first::Ptr{lxw_drawing_object}
+    stqh_last::Ptr{Ptr{lxw_drawing_object}}
+end
+
+@cenum lxw_drawing_types::UInt32 begin
+    LXW_DRAWING_NONE = 0
+    LXW_DRAWING_IMAGE = 1
+    LXW_DRAWING_CHART = 2
+    LXW_DRAWING_SHAPE = 3
+end
+
+@cenum image_types::UInt32 begin
+    LXW_IMAGE_UNKNOWN = 0
+    LXW_IMAGE_PNG = 1
+    LXW_IMAGE_JPEG = 2
+    LXW_IMAGE_BMP = 3
+    LXW_IMAGE_GIF = 4
 end
 
 struct lxw_drawing
@@ -2694,17 +2690,6 @@ function lxw_hash_password(password)
     @ccall libxlsxwriter.lxw_hash_password(password::Cstring)::UInt16
 end
 
-struct lxw_rel_tuples
-    stqh_first::Ptr{Cvoid} # stqh_first::Ptr{lxw_rel_tuple}
-    stqh_last::Ptr{Ptr{Cvoid}} # stqh_last::Ptr{Ptr{lxw_rel_tuple}}
-end
-
-function Base.getproperty(x::lxw_rel_tuples, f::Symbol)
-    f === :stqh_first && return Ptr{lxw_rel_tuple}(getfield(x, f))
-    f === :stqh_last && return Ptr{Ptr{lxw_rel_tuple}}(getfield(x, f))
-    return getfield(x, f)
-end
-
 struct __JL_Ctag_42
     stqe_next::Ptr{Cvoid} # stqe_next::Ptr{lxw_rel_tuple}
 end
@@ -2735,6 +2720,11 @@ end
 
 function Base.setproperty!(x::Ptr{lxw_rel_tuple}, f::Symbol, v)
     unsafe_store!(getproperty(x, f), v)
+end
+
+struct lxw_rel_tuples
+    stqh_first::Ptr{lxw_rel_tuple}
+    stqh_last::Ptr{Ptr{lxw_rel_tuple}}
 end
 
 struct lxw_relationships
@@ -3056,207 +3046,6 @@ end
     FOOTER_RIGHT = 5
 end
 
-struct lxw_table_cells
-    rbh_root::Ptr{Cvoid} # rbh_root::Ptr{lxw_cell}
-end
-
-function Base.getproperty(x::lxw_table_cells, f::Symbol)
-    f === :rbh_root && return Ptr{lxw_cell}(getfield(x, f))
-    return getfield(x, f)
-end
-
-struct lxw_drawing_rel_ids
-    rbh_root::Ptr{Cvoid} # rbh_root::Ptr{lxw_drawing_rel_id}
-end
-
-function Base.getproperty(x::lxw_drawing_rel_ids, f::Symbol)
-    f === :rbh_root && return Ptr{lxw_drawing_rel_id}(getfield(x, f))
-    return getfield(x, f)
-end
-
-struct __JL_Ctag_8
-    rbe_left::Ptr{Cvoid} # rbe_left::Ptr{lxw_drawing_rel_id}
-    rbe_right::Ptr{Cvoid} # rbe_right::Ptr{lxw_drawing_rel_id}
-    rbe_parent::Ptr{Cvoid} # rbe_parent::Ptr{lxw_drawing_rel_id}
-    rbe_color::Cint
-end
-
-function Base.getproperty(x::__JL_Ctag_8, f::Symbol)
-    f === :rbe_left && return Ptr{lxw_drawing_rel_id}(getfield(x, f))
-    f === :rbe_right && return Ptr{lxw_drawing_rel_id}(getfield(x, f))
-    f === :rbe_parent && return Ptr{lxw_drawing_rel_id}(getfield(x, f))
-    return getfield(x, f)
-end
-
-struct lxw_drawing_rel_id
-    data::NTuple{48,UInt8}
-end
-
-function Base.getproperty(x::Ptr{lxw_drawing_rel_id}, f::Symbol)
-    f === :id && return Ptr{UInt32}(x + 0)
-    f === :target && return Ptr{Cstring}(x + 8)
-    f === :tree_pointers && return Ptr{Cvoid}(x + 16)
-    return getfield(x, f)
-end
-
-function Base.getproperty(x::lxw_drawing_rel_id, f::Symbol)
-    r = Ref{lxw_drawing_rel_id}(x)
-    ptr = Base.unsafe_convert(Ptr{lxw_drawing_rel_id}, r)
-    fptr = getproperty(ptr, f)
-    GC.@preserve r unsafe_load(fptr)
-end
-
-function Base.setproperty!(x::Ptr{lxw_drawing_rel_id}, f::Symbol, v)
-    unsafe_store!(getproperty(x, f), v)
-end
-
-struct lxw_vml_drawing_rel_ids
-    rbh_root::Ptr{lxw_drawing_rel_id}
-end
-
-struct lxw_cond_format_hash
-    rbh_root::Ptr{Cvoid} # rbh_root::Ptr{lxw_cond_format_hash_element}
-end
-
-function Base.getproperty(x::lxw_cond_format_hash, f::Symbol)
-    f === :rbh_root && return Ptr{lxw_cond_format_hash_element}(getfield(x, f))
-    return getfield(x, f)
-end
-
-struct lxw_table_rows
-    rbh_root::Ptr{Cvoid} # rbh_root::Ptr{lxw_row}
-    cached_row::Ptr{Cvoid} # cached_row::Ptr{lxw_row}
-    cached_row_num::lxw_row_t
-end
-
-function Base.getproperty(x::lxw_table_rows, f::Symbol)
-    f === :rbh_root && return Ptr{lxw_row}(getfield(x, f))
-    f === :cached_row && return Ptr{lxw_row}(getfield(x, f))
-    return getfield(x, f)
-end
-
-struct lxw_merged_ranges
-    stqh_first::Ptr{Cvoid} # stqh_first::Ptr{lxw_merged_range}
-    stqh_last::Ptr{Ptr{Cvoid}} # stqh_last::Ptr{Ptr{lxw_merged_range}}
-end
-
-function Base.getproperty(x::lxw_merged_ranges, f::Symbol)
-    f === :stqh_first && return Ptr{lxw_merged_range}(getfield(x, f))
-    f === :stqh_last && return Ptr{Ptr{lxw_merged_range}}(getfield(x, f))
-    return getfield(x, f)
-end
-
-struct lxw_selections
-    stqh_first::Ptr{Cvoid} # stqh_first::Ptr{lxw_selection}
-    stqh_last::Ptr{Ptr{Cvoid}} # stqh_last::Ptr{Ptr{lxw_selection}}
-end
-
-function Base.getproperty(x::lxw_selections, f::Symbol)
-    f === :stqh_first && return Ptr{lxw_selection}(getfield(x, f))
-    f === :stqh_last && return Ptr{Ptr{lxw_selection}}(getfield(x, f))
-    return getfield(x, f)
-end
-
-struct lxw_data_validations
-    stqh_first::Ptr{Cvoid} # stqh_first::Ptr{lxw_data_val_obj}
-    stqh_last::Ptr{Ptr{Cvoid}} # stqh_last::Ptr{Ptr{lxw_data_val_obj}}
-end
-
-function Base.getproperty(x::lxw_data_validations, f::Symbol)
-    f === :stqh_first && return Ptr{lxw_data_val_obj}(getfield(x, f))
-    f === :stqh_last && return Ptr{Ptr{lxw_data_val_obj}}(getfield(x, f))
-    return getfield(x, f)
-end
-
-struct lxw_cond_format_list
-    stqh_first::Ptr{Cvoid} # stqh_first::Ptr{lxw_cond_format_obj}
-    stqh_last::Ptr{Ptr{Cvoid}} # stqh_last::Ptr{Ptr{lxw_cond_format_obj}}
-end
-
-function Base.getproperty(x::lxw_cond_format_list, f::Symbol)
-    f === :stqh_first && return Ptr{lxw_cond_format_obj}(getfield(x, f))
-    f === :stqh_last && return Ptr{Ptr{lxw_cond_format_obj}}(getfield(x, f))
-    return getfield(x, f)
-end
-
-struct lxw_image_props
-    stqh_first::Ptr{Cvoid} # stqh_first::Ptr{lxw_object_properties}
-    stqh_last::Ptr{Ptr{Cvoid}} # stqh_last::Ptr{Ptr{lxw_object_properties}}
-end
-
-function Base.getproperty(x::lxw_image_props, f::Symbol)
-    f === :stqh_first && return Ptr{lxw_object_properties}(getfield(x, f))
-    f === :stqh_last && return Ptr{Ptr{lxw_object_properties}}(getfield(x, f))
-    return getfield(x, f)
-end
-
-struct __JL_Ctag_10
-    stqe_next::Ptr{Cvoid} # stqe_next::Ptr{lxw_object_properties}
-end
-
-function Base.getproperty(x::__JL_Ctag_10, f::Symbol)
-    f === :stqe_next && return Ptr{lxw_object_properties}(getfield(x, f))
-    return getfield(x, f)
-end
-
-struct lxw_object_properties
-    data::NTuple{200,UInt8}
-end
-
-function Base.getproperty(x::Ptr{lxw_object_properties}, f::Symbol)
-    f === :x_offset && return Ptr{Int32}(x + 0)
-    f === :y_offset && return Ptr{Int32}(x + 4)
-    f === :x_scale && return Ptr{Cdouble}(x + 8)
-    f === :y_scale && return Ptr{Cdouble}(x + 16)
-    f === :row && return Ptr{lxw_row_t}(x + 24)
-    f === :col && return Ptr{lxw_col_t}(x + 28)
-    f === :filename && return Ptr{Cstring}(x + 32)
-    f === :description && return Ptr{Cstring}(x + 40)
-    f === :url && return Ptr{Cstring}(x + 48)
-    f === :tip && return Ptr{Cstring}(x + 56)
-    f === :object_position && return Ptr{UInt8}(x + 64)
-    f === :stream && return Ptr{Ptr{Libc.FILE}}(x + 72)
-    f === :image_type && return Ptr{UInt8}(x + 80)
-    f === :is_image_buffer && return Ptr{UInt8}(x + 81)
-    f === :image_buffer && return Ptr{Cstring}(x + 88)
-    f === :image_buffer_size && return Ptr{Csize_t}(x + 96)
-    f === :width && return Ptr{Cdouble}(x + 104)
-    f === :height && return Ptr{Cdouble}(x + 112)
-    f === :extension && return Ptr{Cstring}(x + 120)
-    f === :x_dpi && return Ptr{Cdouble}(x + 128)
-    f === :y_dpi && return Ptr{Cdouble}(x + 136)
-    f === :chart && return Ptr{Ptr{lxw_chart}}(x + 144)
-    f === :is_duplicate && return Ptr{UInt8}(x + 152)
-    f === :is_background && return Ptr{UInt8}(x + 153)
-    f === :md5 && return Ptr{Cstring}(x + 160)
-    f === :image_position && return Ptr{Cstring}(x + 168)
-    f === :decorative && return Ptr{UInt8}(x + 176)
-    f === :format && return Ptr{Ptr{lxw_format}}(x + 184)
-    f === :list_pointers && return Ptr{Cvoid}(x + 192)
-    return getfield(x, f)
-end
-
-function Base.getproperty(x::lxw_object_properties, f::Symbol)
-    r = Ref{lxw_object_properties}(x)
-    ptr = Base.unsafe_convert(Ptr{lxw_object_properties}, r)
-    fptr = getproperty(ptr, f)
-    GC.@preserve r unsafe_load(fptr)
-end
-
-function Base.setproperty!(x::Ptr{lxw_object_properties}, f::Symbol, v)
-    unsafe_store!(getproperty(x, f), v)
-end
-
-struct lxw_embedded_image_props
-    stqh_first::Ptr{lxw_object_properties}
-    stqh_last::Ptr{Ptr{lxw_object_properties}}
-end
-
-struct lxw_chart_props
-    stqh_first::Ptr{lxw_object_properties}
-    stqh_last::Ptr{Ptr{lxw_object_properties}}
-end
-
 struct __JL_Ctag_16
     stqe_next::Ptr{Cvoid} # stqe_next::Ptr{lxw_vml_obj}
 end
@@ -3312,252 +3101,118 @@ function Base.setproperty!(x::Ptr{lxw_vml_obj}, f::Symbol, v)
     unsafe_store!(getproperty(x, f), v)
 end
 
-struct lxw_comment_objs
-    stqh_first::Ptr{lxw_vml_obj}
-    stqh_last::Ptr{Ptr{lxw_vml_obj}}
+struct __JL_Ctag_20
+    data::NTuple{8,UInt8}
 end
 
-struct lxw_table_objs
-    stqh_first::Ptr{Cvoid} # stqh_first::Ptr{lxw_table_obj}
-    stqh_last::Ptr{Ptr{Cvoid}} # stqh_last::Ptr{Ptr{lxw_table_obj}}
-end
-
-function Base.getproperty(x::lxw_table_objs, f::Symbol)
-    f === :stqh_first && return Ptr{lxw_table_obj}(getfield(x, f))
-    f === :stqh_last && return Ptr{Ptr{lxw_table_obj}}(getfield(x, f))
+function Base.getproperty(x::Ptr{__JL_Ctag_20}, f::Symbol)
+    f === :number && return Ptr{Cdouble}(x + 0)
+    f === :string_id && return Ptr{Int32}(x + 0)
+    f === :string && return Ptr{Cstring}(x + 0)
     return getfield(x, f)
 end
 
-struct lxw_row_col_options
-    hidden::UInt8
-    level::UInt8
-    collapsed::UInt8
-end
-
-struct lxw_col_options
-    firstcol::lxw_col_t
-    lastcol::lxw_col_t
-    width::Cdouble
-    format::Ptr{lxw_format}
-    hidden::UInt8
-    level::UInt8
-    collapsed::UInt8
-end
-
-struct __JL_Ctag_29
-    stqe_next::Ptr{Cvoid} # stqe_next::Ptr{lxw_merged_range}
-end
-
-function Base.getproperty(x::__JL_Ctag_29, f::Symbol)
-    f === :stqe_next && return Ptr{lxw_merged_range}(getfield(x, f))
-    return getfield(x, f)
-end
-
-struct lxw_merged_range
-    data::NTuple{24,UInt8}
-end
-
-function Base.getproperty(x::Ptr{lxw_merged_range}, f::Symbol)
-    f === :first_row && return Ptr{lxw_row_t}(x + 0)
-    f === :last_row && return Ptr{lxw_row_t}(x + 4)
-    f === :first_col && return Ptr{lxw_col_t}(x + 8)
-    f === :last_col && return Ptr{lxw_col_t}(x + 10)
-    f === :list_pointers && return Ptr{Cvoid}(x + 16)
-    return getfield(x, f)
-end
-
-function Base.getproperty(x::lxw_merged_range, f::Symbol)
-    r = Ref{lxw_merged_range}(x)
-    ptr = Base.unsafe_convert(Ptr{lxw_merged_range}, r)
+function Base.getproperty(x::__JL_Ctag_20, f::Symbol)
+    r = Ref{__JL_Ctag_20}(x)
+    ptr = Base.unsafe_convert(Ptr{__JL_Ctag_20}, r)
     fptr = getproperty(ptr, f)
     GC.@preserve r unsafe_load(fptr)
 end
 
-function Base.setproperty!(x::Ptr{lxw_merged_range}, f::Symbol, v)
+function Base.setproperty!(x::Ptr{__JL_Ctag_20}, f::Symbol, v)
     unsafe_store!(getproperty(x, f), v)
 end
 
-struct lxw_repeat_rows
-    in_use::UInt8
-    first_row::lxw_row_t
-    last_row::lxw_row_t
+struct __JL_Ctag_21
+    rbe_left::Ptr{Cvoid} # rbe_left::Ptr{lxw_cell}
+    rbe_right::Ptr{Cvoid} # rbe_right::Ptr{lxw_cell}
+    rbe_parent::Ptr{Cvoid} # rbe_parent::Ptr{lxw_cell}
+    rbe_color::Cint
 end
 
-struct lxw_repeat_cols
-    in_use::UInt8
-    first_col::lxw_col_t
-    last_col::lxw_col_t
-end
-
-struct lxw_print_area
-    in_use::UInt8
-    first_row::lxw_row_t
-    last_row::lxw_row_t
-    first_col::lxw_col_t
-    last_col::lxw_col_t
-end
-
-struct lxw_autofilter
-    in_use::UInt8
-    has_rules::UInt8
-    first_row::lxw_row_t
-    last_row::lxw_row_t
-    first_col::lxw_col_t
-    last_col::lxw_col_t
-end
-
-struct lxw_panes
-    type::UInt8
-    first_row::lxw_row_t
-    first_col::lxw_col_t
-    top_row::lxw_row_t
-    left_col::lxw_col_t
-    x_split::Cdouble
-    y_split::Cdouble
-end
-
-struct __JL_Ctag_27
-    stqe_next::Ptr{Cvoid} # stqe_next::Ptr{lxw_selection}
-end
-
-function Base.getproperty(x::__JL_Ctag_27, f::Symbol)
-    f === :stqe_next && return Ptr{lxw_selection}(getfield(x, f))
+function Base.getproperty(x::__JL_Ctag_21, f::Symbol)
+    f === :rbe_left && return Ptr{lxw_cell}(getfield(x, f))
+    f === :rbe_right && return Ptr{lxw_cell}(getfield(x, f))
+    f === :rbe_parent && return Ptr{lxw_cell}(getfield(x, f))
     return getfield(x, f)
 end
 
-struct lxw_selection
-    data::NTuple{80,UInt8}
+struct lxw_cell
+    data::NTuple{104,UInt8}
 end
 
-function Base.getproperty(x::Ptr{lxw_selection}, f::Symbol)
-    f === :pane && return Ptr{NTuple{12,Cchar}}(x + 0)
-    f === :active_cell && return Ptr{NTuple{28,Cchar}}(x + 12)
-    f === :sqref && return Ptr{NTuple{28,Cchar}}(x + 40)
-    f === :list_pointers && return Ptr{Cvoid}(x + 72)
+function Base.getproperty(x::Ptr{lxw_cell}, f::Symbol)
+    f === :row_num && return Ptr{lxw_row_t}(x + 0)
+    f === :col_num && return Ptr{lxw_col_t}(x + 4)
+    f === :type && return Ptr{cell_types}(x + 8)
+    f === :format && return Ptr{Ptr{lxw_format}}(x + 16)
+    f === :comment && return Ptr{Ptr{lxw_vml_obj}}(x + 24)
+    f === :u && return Ptr{__JL_Ctag_20}(x + 32)
+    f === :formula_result && return Ptr{Cdouble}(x + 40)
+    f === :user_data1 && return Ptr{Cstring}(x + 48)
+    f === :user_data2 && return Ptr{Cstring}(x + 56)
+    f === :sst_string && return Ptr{Cstring}(x + 64)
+    f === :tree_pointers && return Ptr{Cvoid}(x + 72)
     return getfield(x, f)
 end
 
-function Base.getproperty(x::lxw_selection, f::Symbol)
-    r = Ref{lxw_selection}(x)
-    ptr = Base.unsafe_convert(Ptr{lxw_selection}, r)
+function Base.getproperty(x::lxw_cell, f::Symbol)
+    r = Ref{lxw_cell}(x)
+    ptr = Base.unsafe_convert(Ptr{lxw_cell}, r)
     fptr = getproperty(ptr, f)
     GC.@preserve r unsafe_load(fptr)
 end
 
-function Base.setproperty!(x::Ptr{lxw_selection}, f::Symbol, v)
+function Base.setproperty!(x::Ptr{lxw_cell}, f::Symbol, v)
     unsafe_store!(getproperty(x, f), v)
 end
 
-mutable struct lxw_data_validation
-    validate::UInt8
-    criteria::UInt8
-    ignore_blank::UInt8
-    show_input::UInt8
-    show_error::UInt8
-    error_type::UInt8
-    dropdown::UInt8
-    value_number::Cdouble
-    value_formula::Cstring
-    value_list::Ptr{Cstring}
-    value_datetime::lxw_datetime
-    minimum_number::Cdouble
-    minimum_formula::Cstring
-    minimum_datetime::lxw_datetime
-    maximum_number::Cdouble
-    maximum_formula::Cstring
-    maximum_datetime::lxw_datetime
-    input_title::Cstring
-    input_message::Cstring
-    error_title::Cstring
-    error_message::Cstring
+struct lxw_table_cells
+    rbh_root::Ptr{lxw_cell}
 end
 
-struct __JL_Ctag_9
-    stqe_next::Ptr{Cvoid} # stqe_next::Ptr{lxw_data_val_obj}
+struct __JL_Ctag_8
+    rbe_left::Ptr{Cvoid} # rbe_left::Ptr{lxw_drawing_rel_id}
+    rbe_right::Ptr{Cvoid} # rbe_right::Ptr{lxw_drawing_rel_id}
+    rbe_parent::Ptr{Cvoid} # rbe_parent::Ptr{lxw_drawing_rel_id}
+    rbe_color::Cint
 end
 
-function Base.getproperty(x::__JL_Ctag_9, f::Symbol)
-    f === :stqe_next && return Ptr{lxw_data_val_obj}(getfield(x, f))
+function Base.getproperty(x::__JL_Ctag_8, f::Symbol)
+    f === :rbe_left && return Ptr{lxw_drawing_rel_id}(getfield(x, f))
+    f === :rbe_right && return Ptr{lxw_drawing_rel_id}(getfield(x, f))
+    f === :rbe_parent && return Ptr{lxw_drawing_rel_id}(getfield(x, f))
     return getfield(x, f)
 end
 
-struct lxw_data_val_obj
-    data::NTuple{200,UInt8}
+struct lxw_drawing_rel_id
+    data::NTuple{48,UInt8}
 end
 
-function Base.getproperty(x::Ptr{lxw_data_val_obj}, f::Symbol)
-    f === :validate && return Ptr{UInt8}(x + 0)
-    f === :criteria && return Ptr{UInt8}(x + 1)
-    f === :ignore_blank && return Ptr{UInt8}(x + 2)
-    f === :show_input && return Ptr{UInt8}(x + 3)
-    f === :show_error && return Ptr{UInt8}(x + 4)
-    f === :error_type && return Ptr{UInt8}(x + 5)
-    f === :dropdown && return Ptr{UInt8}(x + 6)
-    f === :value_number && return Ptr{Cdouble}(x + 8)
-    f === :value_formula && return Ptr{Cstring}(x + 16)
-    f === :value_list && return Ptr{Ptr{Cstring}}(x + 24)
-    f === :minimum_number && return Ptr{Cdouble}(x + 32)
-    f === :minimum_formula && return Ptr{Cstring}(x + 40)
-    f === :minimum_datetime && return Ptr{lxw_datetime}(x + 48)
-    f === :maximum_number && return Ptr{Cdouble}(x + 80)
-    f === :maximum_formula && return Ptr{Cstring}(x + 88)
-    f === :maximum_datetime && return Ptr{lxw_datetime}(x + 96)
-    f === :input_title && return Ptr{Cstring}(x + 128)
-    f === :input_message && return Ptr{Cstring}(x + 136)
-    f === :error_title && return Ptr{Cstring}(x + 144)
-    f === :error_message && return Ptr{Cstring}(x + 152)
-    f === :sqref && return Ptr{NTuple{28,Cchar}}(x + 160)
-    f === :list_pointers && return Ptr{Cvoid}(x + 192)
+function Base.getproperty(x::Ptr{lxw_drawing_rel_id}, f::Symbol)
+    f === :id && return Ptr{UInt32}(x + 0)
+    f === :target && return Ptr{Cstring}(x + 8)
+    f === :tree_pointers && return Ptr{Cvoid}(x + 16)
     return getfield(x, f)
 end
 
-function Base.getproperty(x::lxw_data_val_obj, f::Symbol)
-    r = Ref{lxw_data_val_obj}(x)
-    ptr = Base.unsafe_convert(Ptr{lxw_data_val_obj}, r)
+function Base.getproperty(x::lxw_drawing_rel_id, f::Symbol)
+    r = Ref{lxw_drawing_rel_id}(x)
+    ptr = Base.unsafe_convert(Ptr{lxw_drawing_rel_id}, r)
     fptr = getproperty(ptr, f)
     GC.@preserve r unsafe_load(fptr)
 end
 
-function Base.setproperty!(x::Ptr{lxw_data_val_obj}, f::Symbol, v)
+function Base.setproperty!(x::Ptr{lxw_drawing_rel_id}, f::Symbol, v)
     unsafe_store!(getproperty(x, f), v)
 end
 
-mutable struct lxw_conditional_format
-    type::UInt8
-    criteria::UInt8
-    value::Cdouble
-    value_string::Cstring
-    format::Ptr{lxw_format}
-    min_value::Cdouble
-    min_value_string::Cstring
-    min_rule_type::UInt8
-    min_color::lxw_color_t
-    mid_value::Cdouble
-    mid_value_string::Cstring
-    mid_rule_type::UInt8
-    mid_color::lxw_color_t
-    max_value::Cdouble
-    max_value_string::Cstring
-    max_rule_type::UInt8
-    max_color::lxw_color_t
-    bar_color::lxw_color_t
-    bar_only::UInt8
-    data_bar_2010::UInt8
-    bar_solid::UInt8
-    bar_negative_color::lxw_color_t
-    bar_border_color::lxw_color_t
-    bar_negative_border_color::lxw_color_t
-    bar_negative_color_same::UInt8
-    bar_negative_border_color_same::UInt8
-    bar_no_border::UInt8
-    bar_direction::UInt8
-    bar_axis_position::UInt8
-    bar_axis_color::lxw_color_t
-    icon_style::UInt8
-    reverse_icons::UInt8
-    icons_only::UInt8
-    multi_range::Cstring
-    stop_if_true::UInt8
+struct lxw_drawing_rel_ids
+    rbh_root::Ptr{lxw_drawing_rel_id}
+end
+
+struct lxw_vml_drawing_rel_ids
+    rbh_root::Ptr{lxw_drawing_rel_id}
 end
 
 struct __JL_Ctag_41
@@ -3631,6 +3286,11 @@ function Base.setproperty!(x::Ptr{lxw_cond_format_obj}, f::Symbol, v)
     unsafe_store!(getproperty(x, f), v)
 end
 
+struct lxw_cond_format_list
+    stqh_first::Ptr{lxw_cond_format_obj}
+    stqh_last::Ptr{Ptr{lxw_cond_format_obj}}
+end
+
 struct __JL_Ctag_40
     rbe_left::Ptr{Cvoid} # rbe_left::Ptr{lxw_cond_format_hash_element}
     rbe_right::Ptr{Cvoid} # rbe_right::Ptr{lxw_cond_format_hash_element}
@@ -3667,6 +3327,267 @@ function Base.setproperty!(x::Ptr{lxw_cond_format_hash_element}, f::Symbol, v)
     unsafe_store!(getproperty(x, f), v)
 end
 
+struct lxw_cond_format_hash
+    rbh_root::Ptr{lxw_cond_format_hash_element}
+end
+
+struct __JL_Ctag_38
+    rbe_left::Ptr{Cvoid} # rbe_left::Ptr{lxw_row}
+    rbe_right::Ptr{Cvoid} # rbe_right::Ptr{lxw_row}
+    rbe_parent::Ptr{Cvoid} # rbe_parent::Ptr{lxw_row}
+    rbe_color::Cint
+end
+
+function Base.getproperty(x::__JL_Ctag_38, f::Symbol)
+    f === :rbe_left && return Ptr{lxw_row}(getfield(x, f))
+    f === :rbe_right && return Ptr{lxw_row}(getfield(x, f))
+    f === :rbe_parent && return Ptr{lxw_row}(getfield(x, f))
+    return getfield(x, f)
+end
+
+struct lxw_row
+    data::NTuple{72,UInt8}
+end
+
+function Base.getproperty(x::Ptr{lxw_row}, f::Symbol)
+    f === :row_num && return Ptr{lxw_row_t}(x + 0)
+    f === :height && return Ptr{Cdouble}(x + 8)
+    f === :format && return Ptr{Ptr{lxw_format}}(x + 16)
+    f === :hidden && return Ptr{UInt8}(x + 24)
+    f === :level && return Ptr{UInt8}(x + 25)
+    f === :collapsed && return Ptr{UInt8}(x + 26)
+    f === :row_changed && return Ptr{UInt8}(x + 27)
+    f === :data_changed && return Ptr{UInt8}(x + 28)
+    f === :height_changed && return Ptr{UInt8}(x + 29)
+    f === :cells && return Ptr{Ptr{lxw_table_cells}}(x + 32)
+    f === :tree_pointers && return Ptr{Cvoid}(x + 40)
+    return getfield(x, f)
+end
+
+function Base.getproperty(x::lxw_row, f::Symbol)
+    r = Ref{lxw_row}(x)
+    ptr = Base.unsafe_convert(Ptr{lxw_row}, r)
+    fptr = getproperty(ptr, f)
+    GC.@preserve r unsafe_load(fptr)
+end
+
+function Base.setproperty!(x::Ptr{lxw_row}, f::Symbol, v)
+    unsafe_store!(getproperty(x, f), v)
+end
+
+struct lxw_table_rows
+    rbh_root::Ptr{lxw_row}
+    cached_row::Ptr{lxw_row}
+    cached_row_num::lxw_row_t
+end
+
+struct __JL_Ctag_29
+    stqe_next::Ptr{Cvoid} # stqe_next::Ptr{lxw_merged_range}
+end
+
+function Base.getproperty(x::__JL_Ctag_29, f::Symbol)
+    f === :stqe_next && return Ptr{lxw_merged_range}(getfield(x, f))
+    return getfield(x, f)
+end
+
+struct lxw_merged_range
+    data::NTuple{24,UInt8}
+end
+
+function Base.getproperty(x::Ptr{lxw_merged_range}, f::Symbol)
+    f === :first_row && return Ptr{lxw_row_t}(x + 0)
+    f === :last_row && return Ptr{lxw_row_t}(x + 4)
+    f === :first_col && return Ptr{lxw_col_t}(x + 8)
+    f === :last_col && return Ptr{lxw_col_t}(x + 10)
+    f === :list_pointers && return Ptr{Cvoid}(x + 16)
+    return getfield(x, f)
+end
+
+function Base.getproperty(x::lxw_merged_range, f::Symbol)
+    r = Ref{lxw_merged_range}(x)
+    ptr = Base.unsafe_convert(Ptr{lxw_merged_range}, r)
+    fptr = getproperty(ptr, f)
+    GC.@preserve r unsafe_load(fptr)
+end
+
+function Base.setproperty!(x::Ptr{lxw_merged_range}, f::Symbol, v)
+    unsafe_store!(getproperty(x, f), v)
+end
+
+struct lxw_merged_ranges
+    stqh_first::Ptr{lxw_merged_range}
+    stqh_last::Ptr{Ptr{lxw_merged_range}}
+end
+
+struct __JL_Ctag_27
+    stqe_next::Ptr{Cvoid} # stqe_next::Ptr{lxw_selection}
+end
+
+function Base.getproperty(x::__JL_Ctag_27, f::Symbol)
+    f === :stqe_next && return Ptr{lxw_selection}(getfield(x, f))
+    return getfield(x, f)
+end
+
+struct lxw_selection
+    data::NTuple{80,UInt8}
+end
+
+function Base.getproperty(x::Ptr{lxw_selection}, f::Symbol)
+    f === :pane && return Ptr{NTuple{12,Cchar}}(x + 0)
+    f === :active_cell && return Ptr{NTuple{28,Cchar}}(x + 12)
+    f === :sqref && return Ptr{NTuple{28,Cchar}}(x + 40)
+    f === :list_pointers && return Ptr{Cvoid}(x + 72)
+    return getfield(x, f)
+end
+
+function Base.getproperty(x::lxw_selection, f::Symbol)
+    r = Ref{lxw_selection}(x)
+    ptr = Base.unsafe_convert(Ptr{lxw_selection}, r)
+    fptr = getproperty(ptr, f)
+    GC.@preserve r unsafe_load(fptr)
+end
+
+function Base.setproperty!(x::Ptr{lxw_selection}, f::Symbol, v)
+    unsafe_store!(getproperty(x, f), v)
+end
+
+struct lxw_selections
+    stqh_first::Ptr{lxw_selection}
+    stqh_last::Ptr{Ptr{lxw_selection}}
+end
+
+struct __JL_Ctag_9
+    stqe_next::Ptr{Cvoid} # stqe_next::Ptr{lxw_data_val_obj}
+end
+
+function Base.getproperty(x::__JL_Ctag_9, f::Symbol)
+    f === :stqe_next && return Ptr{lxw_data_val_obj}(getfield(x, f))
+    return getfield(x, f)
+end
+
+struct lxw_data_val_obj
+    data::NTuple{200,UInt8}
+end
+
+function Base.getproperty(x::Ptr{lxw_data_val_obj}, f::Symbol)
+    f === :validate && return Ptr{UInt8}(x + 0)
+    f === :criteria && return Ptr{UInt8}(x + 1)
+    f === :ignore_blank && return Ptr{UInt8}(x + 2)
+    f === :show_input && return Ptr{UInt8}(x + 3)
+    f === :show_error && return Ptr{UInt8}(x + 4)
+    f === :error_type && return Ptr{UInt8}(x + 5)
+    f === :dropdown && return Ptr{UInt8}(x + 6)
+    f === :value_number && return Ptr{Cdouble}(x + 8)
+    f === :value_formula && return Ptr{Cstring}(x + 16)
+    f === :value_list && return Ptr{Ptr{Cstring}}(x + 24)
+    f === :minimum_number && return Ptr{Cdouble}(x + 32)
+    f === :minimum_formula && return Ptr{Cstring}(x + 40)
+    f === :minimum_datetime && return Ptr{lxw_datetime}(x + 48)
+    f === :maximum_number && return Ptr{Cdouble}(x + 80)
+    f === :maximum_formula && return Ptr{Cstring}(x + 88)
+    f === :maximum_datetime && return Ptr{lxw_datetime}(x + 96)
+    f === :input_title && return Ptr{Cstring}(x + 128)
+    f === :input_message && return Ptr{Cstring}(x + 136)
+    f === :error_title && return Ptr{Cstring}(x + 144)
+    f === :error_message && return Ptr{Cstring}(x + 152)
+    f === :sqref && return Ptr{NTuple{28,Cchar}}(x + 160)
+    f === :list_pointers && return Ptr{Cvoid}(x + 192)
+    return getfield(x, f)
+end
+
+function Base.getproperty(x::lxw_data_val_obj, f::Symbol)
+    r = Ref{lxw_data_val_obj}(x)
+    ptr = Base.unsafe_convert(Ptr{lxw_data_val_obj}, r)
+    fptr = getproperty(ptr, f)
+    GC.@preserve r unsafe_load(fptr)
+end
+
+function Base.setproperty!(x::Ptr{lxw_data_val_obj}, f::Symbol, v)
+    unsafe_store!(getproperty(x, f), v)
+end
+
+struct lxw_data_validations
+    stqh_first::Ptr{lxw_data_val_obj}
+    stqh_last::Ptr{Ptr{lxw_data_val_obj}}
+end
+
+struct __JL_Ctag_10
+    stqe_next::Ptr{Cvoid} # stqe_next::Ptr{lxw_object_properties}
+end
+
+function Base.getproperty(x::__JL_Ctag_10, f::Symbol)
+    f === :stqe_next && return Ptr{lxw_object_properties}(getfield(x, f))
+    return getfield(x, f)
+end
+
+struct lxw_object_properties
+    data::NTuple{200,UInt8}
+end
+
+function Base.getproperty(x::Ptr{lxw_object_properties}, f::Symbol)
+    f === :x_offset && return Ptr{Int32}(x + 0)
+    f === :y_offset && return Ptr{Int32}(x + 4)
+    f === :x_scale && return Ptr{Cdouble}(x + 8)
+    f === :y_scale && return Ptr{Cdouble}(x + 16)
+    f === :row && return Ptr{lxw_row_t}(x + 24)
+    f === :col && return Ptr{lxw_col_t}(x + 28)
+    f === :filename && return Ptr{Cstring}(x + 32)
+    f === :description && return Ptr{Cstring}(x + 40)
+    f === :url && return Ptr{Cstring}(x + 48)
+    f === :tip && return Ptr{Cstring}(x + 56)
+    f === :object_position && return Ptr{UInt8}(x + 64)
+    f === :stream && return Ptr{Ptr{Libc.FILE}}(x + 72)
+    f === :image_type && return Ptr{UInt8}(x + 80)
+    f === :is_image_buffer && return Ptr{UInt8}(x + 81)
+    f === :image_buffer && return Ptr{Cstring}(x + 88)
+    f === :image_buffer_size && return Ptr{Csize_t}(x + 96)
+    f === :width && return Ptr{Cdouble}(x + 104)
+    f === :height && return Ptr{Cdouble}(x + 112)
+    f === :extension && return Ptr{Cstring}(x + 120)
+    f === :x_dpi && return Ptr{Cdouble}(x + 128)
+    f === :y_dpi && return Ptr{Cdouble}(x + 136)
+    f === :chart && return Ptr{Ptr{lxw_chart}}(x + 144)
+    f === :is_duplicate && return Ptr{UInt8}(x + 152)
+    f === :is_background && return Ptr{UInt8}(x + 153)
+    f === :md5 && return Ptr{Cstring}(x + 160)
+    f === :image_position && return Ptr{Cstring}(x + 168)
+    f === :decorative && return Ptr{UInt8}(x + 176)
+    f === :format && return Ptr{Ptr{lxw_format}}(x + 184)
+    f === :list_pointers && return Ptr{Cvoid}(x + 192)
+    return getfield(x, f)
+end
+
+function Base.getproperty(x::lxw_object_properties, f::Symbol)
+    r = Ref{lxw_object_properties}(x)
+    ptr = Base.unsafe_convert(Ptr{lxw_object_properties}, r)
+    fptr = getproperty(ptr, f)
+    GC.@preserve r unsafe_load(fptr)
+end
+
+function Base.setproperty!(x::Ptr{lxw_object_properties}, f::Symbol, v)
+    unsafe_store!(getproperty(x, f), v)
+end
+
+struct lxw_image_props
+    stqh_first::Ptr{lxw_object_properties}
+    stqh_last::Ptr{Ptr{lxw_object_properties}}
+end
+
+struct lxw_embedded_image_props
+    stqh_first::Ptr{lxw_object_properties}
+    stqh_last::Ptr{Ptr{lxw_object_properties}}
+end
+
+struct lxw_chart_props
+    stqh_first::Ptr{lxw_object_properties}
+    stqh_last::Ptr{Ptr{lxw_object_properties}}
+end
+
+struct lxw_comment_objs
+    stqh_first::Ptr{lxw_vml_obj}
+    stqh_last::Ptr{Ptr{lxw_vml_obj}}
+end
+
 struct lxw_table_column
     header::Cstring
     formula::Cstring
@@ -3675,20 +3596,6 @@ struct lxw_table_column
     header_format::Ptr{lxw_format}
     format::Ptr{lxw_format}
     total_value::Cdouble
-end
-
-struct lxw_table_options
-    name::Cstring
-    no_header_row::UInt8
-    no_autofilter::UInt8
-    no_banded_rows::UInt8
-    banded_columns::UInt8
-    first_column::UInt8
-    last_column::UInt8
-    style_type::UInt8
-    style_type_number::UInt8
-    total_row::UInt8
-    columns::Ptr{Ptr{lxw_table_column}}
 end
 
 struct __JL_Ctag_39
@@ -3738,6 +3645,142 @@ end
 
 function Base.setproperty!(x::Ptr{lxw_table_obj}, f::Symbol, v)
     unsafe_store!(getproperty(x, f), v)
+end
+
+struct lxw_table_objs
+    stqh_first::Ptr{lxw_table_obj}
+    stqh_last::Ptr{Ptr{lxw_table_obj}}
+end
+
+struct lxw_row_col_options
+    hidden::UInt8
+    level::UInt8
+    collapsed::UInt8
+end
+
+struct lxw_col_options
+    firstcol::lxw_col_t
+    lastcol::lxw_col_t
+    width::Cdouble
+    format::Ptr{lxw_format}
+    hidden::UInt8
+    level::UInt8
+    collapsed::UInt8
+end
+
+struct lxw_repeat_rows
+    in_use::UInt8
+    first_row::lxw_row_t
+    last_row::lxw_row_t
+end
+
+struct lxw_repeat_cols
+    in_use::UInt8
+    first_col::lxw_col_t
+    last_col::lxw_col_t
+end
+
+struct lxw_print_area
+    in_use::UInt8
+    first_row::lxw_row_t
+    last_row::lxw_row_t
+    first_col::lxw_col_t
+    last_col::lxw_col_t
+end
+
+struct lxw_autofilter
+    in_use::UInt8
+    has_rules::UInt8
+    first_row::lxw_row_t
+    last_row::lxw_row_t
+    first_col::lxw_col_t
+    last_col::lxw_col_t
+end
+
+struct lxw_panes
+    type::UInt8
+    first_row::lxw_row_t
+    first_col::lxw_col_t
+    top_row::lxw_row_t
+    left_col::lxw_col_t
+    x_split::Cdouble
+    y_split::Cdouble
+end
+
+mutable struct lxw_data_validation
+    validate::UInt8
+    criteria::UInt8
+    ignore_blank::UInt8
+    show_input::UInt8
+    show_error::UInt8
+    error_type::UInt8
+    dropdown::UInt8
+    value_number::Cdouble
+    value_formula::Cstring
+    value_list::Ptr{Cstring}
+    value_datetime::lxw_datetime
+    minimum_number::Cdouble
+    minimum_formula::Cstring
+    minimum_datetime::lxw_datetime
+    maximum_number::Cdouble
+    maximum_formula::Cstring
+    maximum_datetime::lxw_datetime
+    input_title::Cstring
+    input_message::Cstring
+    error_title::Cstring
+    error_message::Cstring
+end
+
+mutable struct lxw_conditional_format
+    type::UInt8
+    criteria::UInt8
+    value::Cdouble
+    value_string::Cstring
+    format::Ptr{lxw_format}
+    min_value::Cdouble
+    min_value_string::Cstring
+    min_rule_type::UInt8
+    min_color::lxw_color_t
+    mid_value::Cdouble
+    mid_value_string::Cstring
+    mid_rule_type::UInt8
+    mid_color::lxw_color_t
+    max_value::Cdouble
+    max_value_string::Cstring
+    max_rule_type::UInt8
+    max_color::lxw_color_t
+    bar_color::lxw_color_t
+    bar_only::UInt8
+    data_bar_2010::UInt8
+    bar_solid::UInt8
+    bar_negative_color::lxw_color_t
+    bar_border_color::lxw_color_t
+    bar_negative_border_color::lxw_color_t
+    bar_negative_color_same::UInt8
+    bar_negative_border_color_same::UInt8
+    bar_no_border::UInt8
+    bar_direction::UInt8
+    bar_axis_position::UInt8
+    bar_axis_color::lxw_color_t
+    icon_style::UInt8
+    reverse_icons::UInt8
+    icons_only::UInt8
+    multi_range::Cstring
+    stop_if_true::UInt8
+end
+
+struct lxw_table_options
+    name::Cstring
+    no_header_row::UInt8
+    no_autofilter::UInt8
+    no_banded_rows::UInt8
+    banded_columns::UInt8
+    first_column::UInt8
+    last_column::UInt8
+    style_type::UInt8
+    style_type_number::UInt8
+    total_row::UInt8
+    columns::Ptr{Ptr{lxw_table_column}}
 end
 
 struct lxw_filter_rule
@@ -3866,50 +3909,6 @@ end
 struct lxw_rich_string_tuple
     format::Ptr{lxw_format}
     string::Cstring
-end
-
-struct __JL_Ctag_38
-    rbe_left::Ptr{Cvoid} # rbe_left::Ptr{lxw_row}
-    rbe_right::Ptr{Cvoid} # rbe_right::Ptr{lxw_row}
-    rbe_parent::Ptr{Cvoid} # rbe_parent::Ptr{lxw_row}
-    rbe_color::Cint
-end
-
-function Base.getproperty(x::__JL_Ctag_38, f::Symbol)
-    f === :rbe_left && return Ptr{lxw_row}(getfield(x, f))
-    f === :rbe_right && return Ptr{lxw_row}(getfield(x, f))
-    f === :rbe_parent && return Ptr{lxw_row}(getfield(x, f))
-    return getfield(x, f)
-end
-
-struct lxw_row
-    data::NTuple{72,UInt8}
-end
-
-function Base.getproperty(x::Ptr{lxw_row}, f::Symbol)
-    f === :row_num && return Ptr{lxw_row_t}(x + 0)
-    f === :height && return Ptr{Cdouble}(x + 8)
-    f === :format && return Ptr{Ptr{lxw_format}}(x + 16)
-    f === :hidden && return Ptr{UInt8}(x + 24)
-    f === :level && return Ptr{UInt8}(x + 25)
-    f === :collapsed && return Ptr{UInt8}(x + 26)
-    f === :row_changed && return Ptr{UInt8}(x + 27)
-    f === :data_changed && return Ptr{UInt8}(x + 28)
-    f === :height_changed && return Ptr{UInt8}(x + 29)
-    f === :cells && return Ptr{Ptr{lxw_table_cells}}(x + 32)
-    f === :tree_pointers && return Ptr{Cvoid}(x + 40)
-    return getfield(x, f)
-end
-
-function Base.getproperty(x::lxw_row, f::Symbol)
-    r = Ref{lxw_row}(x)
-    ptr = Base.unsafe_convert(Ptr{lxw_row}, r)
-    fptr = getproperty(ptr, f)
-    GC.@preserve r unsafe_load(fptr)
-end
-
-function Base.setproperty!(x::Ptr{lxw_row}, f::Symbol, v)
-    unsafe_store!(getproperty(x, f), v)
 end
 
 struct __JL_Ctag_24
@@ -4114,72 +4113,6 @@ struct lxw_worksheet_init_data
     tmpdir::Cstring
     default_url_format::Ptr{lxw_format}
     max_url_length::UInt16
-end
-
-struct __JL_Ctag_20
-    data::NTuple{8,UInt8}
-end
-
-function Base.getproperty(x::Ptr{__JL_Ctag_20}, f::Symbol)
-    f === :number && return Ptr{Cdouble}(x + 0)
-    f === :string_id && return Ptr{Int32}(x + 0)
-    f === :string && return Ptr{Cstring}(x + 0)
-    return getfield(x, f)
-end
-
-function Base.getproperty(x::__JL_Ctag_20, f::Symbol)
-    r = Ref{__JL_Ctag_20}(x)
-    ptr = Base.unsafe_convert(Ptr{__JL_Ctag_20}, r)
-    fptr = getproperty(ptr, f)
-    GC.@preserve r unsafe_load(fptr)
-end
-
-function Base.setproperty!(x::Ptr{__JL_Ctag_20}, f::Symbol, v)
-    unsafe_store!(getproperty(x, f), v)
-end
-
-struct __JL_Ctag_21
-    rbe_left::Ptr{Cvoid} # rbe_left::Ptr{lxw_cell}
-    rbe_right::Ptr{Cvoid} # rbe_right::Ptr{lxw_cell}
-    rbe_parent::Ptr{Cvoid} # rbe_parent::Ptr{lxw_cell}
-    rbe_color::Cint
-end
-
-function Base.getproperty(x::__JL_Ctag_21, f::Symbol)
-    f === :rbe_left && return Ptr{lxw_cell}(getfield(x, f))
-    f === :rbe_right && return Ptr{lxw_cell}(getfield(x, f))
-    f === :rbe_parent && return Ptr{lxw_cell}(getfield(x, f))
-    return getfield(x, f)
-end
-
-struct lxw_cell
-    data::NTuple{104,UInt8}
-end
-
-function Base.getproperty(x::Ptr{lxw_cell}, f::Symbol)
-    f === :row_num && return Ptr{lxw_row_t}(x + 0)
-    f === :col_num && return Ptr{lxw_col_t}(x + 4)
-    f === :type && return Ptr{cell_types}(x + 8)
-    f === :format && return Ptr{Ptr{lxw_format}}(x + 16)
-    f === :comment && return Ptr{Ptr{lxw_vml_obj}}(x + 24)
-    f === :u && return Ptr{__JL_Ctag_20}(x + 32)
-    f === :formula_result && return Ptr{Cdouble}(x + 40)
-    f === :user_data1 && return Ptr{Cstring}(x + 48)
-    f === :user_data2 && return Ptr{Cstring}(x + 56)
-    f === :sst_string && return Ptr{Cstring}(x + 64)
-    f === :tree_pointers && return Ptr{Cvoid}(x + 72)
-    return getfield(x, f)
-end
-
-function Base.getproperty(x::lxw_cell, f::Symbol)
-    r = Ref{lxw_cell}(x)
-    ptr = Base.unsafe_convert(Ptr{lxw_cell}, r)
-    fptr = getproperty(ptr, f)
-    GC.@preserve r unsafe_load(fptr)
-end
-
-function Base.setproperty!(x::Ptr{lxw_cell}, f::Symbol, v)
-    unsafe_store!(getproperty(x, f), v)
 end
 
 function worksheet_write_number(worksheet, row, col, number, format)
@@ -5407,68 +5340,124 @@ function lxw_chartsheet_assemble_xml_file(chartsheet)
     )::Cvoid
 end
 
-struct lxw_worksheet_names
-    rbh_root::Ptr{Cvoid} # rbh_root::Ptr{lxw_worksheet_name}
+struct __JL_Ctag_32
+    rbe_left::Ptr{Cvoid} # rbe_left::Ptr{lxw_worksheet_name}
+    rbe_right::Ptr{Cvoid} # rbe_right::Ptr{lxw_worksheet_name}
+    rbe_parent::Ptr{Cvoid} # rbe_parent::Ptr{lxw_worksheet_name}
+    rbe_color::Cint
 end
 
-function Base.getproperty(x::lxw_worksheet_names, f::Symbol)
-    f === :rbh_root && return Ptr{lxw_worksheet_name}(getfield(x, f))
+function Base.getproperty(x::__JL_Ctag_32, f::Symbol)
+    f === :rbe_left && return Ptr{lxw_worksheet_name}(getfield(x, f))
+    f === :rbe_right && return Ptr{lxw_worksheet_name}(getfield(x, f))
+    f === :rbe_parent && return Ptr{lxw_worksheet_name}(getfield(x, f))
     return getfield(x, f)
+end
+
+struct lxw_worksheet_name
+    data::NTuple{48,UInt8}
+end
+
+function Base.getproperty(x::Ptr{lxw_worksheet_name}, f::Symbol)
+    f === :name && return Ptr{Cstring}(x + 0)
+    f === :worksheet && return Ptr{Ptr{lxw_worksheet}}(x + 8)
+    f === :tree_pointers && return Ptr{Cvoid}(x + 16)
+    return getfield(x, f)
+end
+
+function Base.getproperty(x::lxw_worksheet_name, f::Symbol)
+    r = Ref{lxw_worksheet_name}(x)
+    ptr = Base.unsafe_convert(Ptr{lxw_worksheet_name}, r)
+    fptr = getproperty(ptr, f)
+    GC.@preserve r unsafe_load(fptr)
+end
+
+function Base.setproperty!(x::Ptr{lxw_worksheet_name}, f::Symbol, v)
+    unsafe_store!(getproperty(x, f), v)
+end
+
+struct lxw_worksheet_names
+    rbh_root::Ptr{lxw_worksheet_name}
+end
+
+struct __JL_Ctag_15
+    rbe_left::Ptr{Cvoid} # rbe_left::Ptr{lxw_chartsheet_name}
+    rbe_right::Ptr{Cvoid} # rbe_right::Ptr{lxw_chartsheet_name}
+    rbe_parent::Ptr{Cvoid} # rbe_parent::Ptr{lxw_chartsheet_name}
+    rbe_color::Cint
+end
+
+function Base.getproperty(x::__JL_Ctag_15, f::Symbol)
+    f === :rbe_left && return Ptr{lxw_chartsheet_name}(getfield(x, f))
+    f === :rbe_right && return Ptr{lxw_chartsheet_name}(getfield(x, f))
+    f === :rbe_parent && return Ptr{lxw_chartsheet_name}(getfield(x, f))
+    return getfield(x, f)
+end
+
+struct lxw_chartsheet_name
+    data::NTuple{48,UInt8}
+end
+
+function Base.getproperty(x::Ptr{lxw_chartsheet_name}, f::Symbol)
+    f === :name && return Ptr{Cstring}(x + 0)
+    f === :chartsheet && return Ptr{Ptr{lxw_chartsheet}}(x + 8)
+    f === :tree_pointers && return Ptr{Cvoid}(x + 16)
+    return getfield(x, f)
+end
+
+function Base.getproperty(x::lxw_chartsheet_name, f::Symbol)
+    r = Ref{lxw_chartsheet_name}(x)
+    ptr = Base.unsafe_convert(Ptr{lxw_chartsheet_name}, r)
+    fptr = getproperty(ptr, f)
+    GC.@preserve r unsafe_load(fptr)
+end
+
+function Base.setproperty!(x::Ptr{lxw_chartsheet_name}, f::Symbol, v)
+    unsafe_store!(getproperty(x, f), v)
 end
 
 struct lxw_chartsheet_names
-    rbh_root::Ptr{Cvoid} # rbh_root::Ptr{lxw_chartsheet_name}
+    rbh_root::Ptr{lxw_chartsheet_name}
 end
 
-function Base.getproperty(x::lxw_chartsheet_names, f::Symbol)
-    f === :rbh_root && return Ptr{lxw_chartsheet_name}(getfield(x, f))
+struct __JL_Ctag_36
+    rbe_left::Ptr{Cvoid} # rbe_left::Ptr{lxw_image_md5}
+    rbe_right::Ptr{Cvoid} # rbe_right::Ptr{lxw_image_md5}
+    rbe_parent::Ptr{Cvoid} # rbe_parent::Ptr{lxw_image_md5}
+    rbe_color::Cint
+end
+
+function Base.getproperty(x::__JL_Ctag_36, f::Symbol)
+    f === :rbe_left && return Ptr{lxw_image_md5}(getfield(x, f))
+    f === :rbe_right && return Ptr{lxw_image_md5}(getfield(x, f))
+    f === :rbe_parent && return Ptr{lxw_image_md5}(getfield(x, f))
     return getfield(x, f)
+end
+
+struct lxw_image_md5
+    data::NTuple{48,UInt8}
+end
+
+function Base.getproperty(x::Ptr{lxw_image_md5}, f::Symbol)
+    f === :id && return Ptr{UInt32}(x + 0)
+    f === :md5 && return Ptr{Cstring}(x + 8)
+    f === :tree_pointers && return Ptr{Cvoid}(x + 16)
+    return getfield(x, f)
+end
+
+function Base.getproperty(x::lxw_image_md5, f::Symbol)
+    r = Ref{lxw_image_md5}(x)
+    ptr = Base.unsafe_convert(Ptr{lxw_image_md5}, r)
+    fptr = getproperty(ptr, f)
+    GC.@preserve r unsafe_load(fptr)
+end
+
+function Base.setproperty!(x::Ptr{lxw_image_md5}, f::Symbol, v)
+    unsafe_store!(getproperty(x, f), v)
 end
 
 struct lxw_image_md5s
-    rbh_root::Ptr{Cvoid} # rbh_root::Ptr{lxw_image_md5}
-end
-
-function Base.getproperty(x::lxw_image_md5s, f::Symbol)
-    f === :rbh_root && return Ptr{lxw_image_md5}(getfield(x, f))
-    return getfield(x, f)
-end
-
-struct lxw_sheets
-    stqh_first::Ptr{Cvoid} # stqh_first::Ptr{lxw_sheet}
-    stqh_last::Ptr{Ptr{Cvoid}} # stqh_last::Ptr{Ptr{lxw_sheet}}
-end
-
-function Base.getproperty(x::lxw_sheets, f::Symbol)
-    f === :stqh_first && return Ptr{lxw_sheet}(getfield(x, f))
-    f === :stqh_last && return Ptr{Ptr{lxw_sheet}}(getfield(x, f))
-    return getfield(x, f)
-end
-
-struct lxw_worksheets
-    stqh_first::Ptr{lxw_worksheet}
-    stqh_last::Ptr{Ptr{lxw_worksheet}}
-end
-
-struct lxw_chartsheets
-    stqh_first::Ptr{lxw_chartsheet}
-    stqh_last::Ptr{Ptr{lxw_chartsheet}}
-end
-
-struct lxw_charts
-    stqh_first::Ptr{lxw_chart}
-    stqh_last::Ptr{Ptr{lxw_chart}}
-end
-
-struct lxw_defined_names
-    tqh_first::Ptr{Cvoid} # tqh_first::Ptr{lxw_defined_name}
-    tqh_last::Ptr{Ptr{Cvoid}} # tqh_last::Ptr{Ptr{lxw_defined_name}}
-end
-
-function Base.getproperty(x::lxw_defined_names, f::Symbol)
-    f === :tqh_first && return Ptr{lxw_defined_name}(getfield(x, f))
-    f === :tqh_last && return Ptr{Ptr{lxw_defined_name}}(getfield(x, f))
-    return getfield(x, f)
+    rbh_root::Ptr{lxw_image_md5}
 end
 
 struct __JL_Ctag_34
@@ -5523,112 +5512,24 @@ function Base.setproperty!(x::Ptr{lxw_sheet}, f::Symbol, v)
     unsafe_store!(getproperty(x, f), v)
 end
 
-struct __JL_Ctag_32
-    rbe_left::Ptr{Cvoid} # rbe_left::Ptr{lxw_worksheet_name}
-    rbe_right::Ptr{Cvoid} # rbe_right::Ptr{lxw_worksheet_name}
-    rbe_parent::Ptr{Cvoid} # rbe_parent::Ptr{lxw_worksheet_name}
-    rbe_color::Cint
+struct lxw_sheets
+    stqh_first::Ptr{lxw_sheet}
+    stqh_last::Ptr{Ptr{lxw_sheet}}
 end
 
-function Base.getproperty(x::__JL_Ctag_32, f::Symbol)
-    f === :rbe_left && return Ptr{lxw_worksheet_name}(getfield(x, f))
-    f === :rbe_right && return Ptr{lxw_worksheet_name}(getfield(x, f))
-    f === :rbe_parent && return Ptr{lxw_worksheet_name}(getfield(x, f))
-    return getfield(x, f)
+struct lxw_worksheets
+    stqh_first::Ptr{lxw_worksheet}
+    stqh_last::Ptr{Ptr{lxw_worksheet}}
 end
 
-struct lxw_worksheet_name
-    data::NTuple{48,UInt8}
+struct lxw_chartsheets
+    stqh_first::Ptr{lxw_chartsheet}
+    stqh_last::Ptr{Ptr{lxw_chartsheet}}
 end
 
-function Base.getproperty(x::Ptr{lxw_worksheet_name}, f::Symbol)
-    f === :name && return Ptr{Cstring}(x + 0)
-    f === :worksheet && return Ptr{Ptr{lxw_worksheet}}(x + 8)
-    f === :tree_pointers && return Ptr{Cvoid}(x + 16)
-    return getfield(x, f)
-end
-
-function Base.getproperty(x::lxw_worksheet_name, f::Symbol)
-    r = Ref{lxw_worksheet_name}(x)
-    ptr = Base.unsafe_convert(Ptr{lxw_worksheet_name}, r)
-    fptr = getproperty(ptr, f)
-    GC.@preserve r unsafe_load(fptr)
-end
-
-function Base.setproperty!(x::Ptr{lxw_worksheet_name}, f::Symbol, v)
-    unsafe_store!(getproperty(x, f), v)
-end
-
-struct __JL_Ctag_15
-    rbe_left::Ptr{Cvoid} # rbe_left::Ptr{lxw_chartsheet_name}
-    rbe_right::Ptr{Cvoid} # rbe_right::Ptr{lxw_chartsheet_name}
-    rbe_parent::Ptr{Cvoid} # rbe_parent::Ptr{lxw_chartsheet_name}
-    rbe_color::Cint
-end
-
-function Base.getproperty(x::__JL_Ctag_15, f::Symbol)
-    f === :rbe_left && return Ptr{lxw_chartsheet_name}(getfield(x, f))
-    f === :rbe_right && return Ptr{lxw_chartsheet_name}(getfield(x, f))
-    f === :rbe_parent && return Ptr{lxw_chartsheet_name}(getfield(x, f))
-    return getfield(x, f)
-end
-
-struct lxw_chartsheet_name
-    data::NTuple{48,UInt8}
-end
-
-function Base.getproperty(x::Ptr{lxw_chartsheet_name}, f::Symbol)
-    f === :name && return Ptr{Cstring}(x + 0)
-    f === :chartsheet && return Ptr{Ptr{lxw_chartsheet}}(x + 8)
-    f === :tree_pointers && return Ptr{Cvoid}(x + 16)
-    return getfield(x, f)
-end
-
-function Base.getproperty(x::lxw_chartsheet_name, f::Symbol)
-    r = Ref{lxw_chartsheet_name}(x)
-    ptr = Base.unsafe_convert(Ptr{lxw_chartsheet_name}, r)
-    fptr = getproperty(ptr, f)
-    GC.@preserve r unsafe_load(fptr)
-end
-
-function Base.setproperty!(x::Ptr{lxw_chartsheet_name}, f::Symbol, v)
-    unsafe_store!(getproperty(x, f), v)
-end
-
-struct __JL_Ctag_36
-    rbe_left::Ptr{Cvoid} # rbe_left::Ptr{lxw_image_md5}
-    rbe_right::Ptr{Cvoid} # rbe_right::Ptr{lxw_image_md5}
-    rbe_parent::Ptr{Cvoid} # rbe_parent::Ptr{lxw_image_md5}
-    rbe_color::Cint
-end
-
-function Base.getproperty(x::__JL_Ctag_36, f::Symbol)
-    f === :rbe_left && return Ptr{lxw_image_md5}(getfield(x, f))
-    f === :rbe_right && return Ptr{lxw_image_md5}(getfield(x, f))
-    f === :rbe_parent && return Ptr{lxw_image_md5}(getfield(x, f))
-    return getfield(x, f)
-end
-
-struct lxw_image_md5
-    data::NTuple{48,UInt8}
-end
-
-function Base.getproperty(x::Ptr{lxw_image_md5}, f::Symbol)
-    f === :id && return Ptr{UInt32}(x + 0)
-    f === :md5 && return Ptr{Cstring}(x + 8)
-    f === :tree_pointers && return Ptr{Cvoid}(x + 16)
-    return getfield(x, f)
-end
-
-function Base.getproperty(x::lxw_image_md5, f::Symbol)
-    r = Ref{lxw_image_md5}(x)
-    ptr = Base.unsafe_convert(Ptr{lxw_image_md5}, r)
-    fptr = getproperty(ptr, f)
-    GC.@preserve r unsafe_load(fptr)
-end
-
-function Base.setproperty!(x::Ptr{lxw_image_md5}, f::Symbol, v)
-    unsafe_store!(getproperty(x, f), v)
+struct lxw_charts
+    stqh_first::Ptr{lxw_chart}
+    stqh_last::Ptr{Ptr{lxw_chart}}
 end
 
 struct __JL_Ctag_28
@@ -5667,6 +5568,11 @@ end
 
 function Base.setproperty!(x::Ptr{lxw_defined_name}, f::Symbol, v)
     unsafe_store!(getproperty(x, f), v)
+end
+
+struct lxw_defined_names
+    tqh_first::Ptr{lxw_defined_name}
+    tqh_last::Ptr{Ptr{lxw_defined_name}}
 end
 
 struct lxw_doc_properties
@@ -5722,6 +5628,8 @@ struct lxw_workbook
     drawing_count::UInt16
     comment_count::UInt16
     num_embedded_images::UInt32
+    window_width::UInt16
+    window_height::UInt16
     font_count::UInt16
     border_count::UInt16
     fill_count::UInt16
@@ -5894,6 +5802,14 @@ function workbook_read_only_recommended(workbook)
     @ccall libxlsxwriter.workbook_read_only_recommended(workbook::Ptr{lxw_workbook})::Cvoid
 end
 
+function workbook_set_size(workbook, width, height)
+    @ccall libxlsxwriter.workbook_set_size(
+        workbook::Ptr{lxw_workbook},
+        width::UInt16,
+        height::UInt16,
+    )::Cvoid
+end
+
 function lxw_workbook_free(workbook)
     @ccall libxlsxwriter.lxw_workbook_free(workbook::Ptr{lxw_workbook})::Cvoid
 end
@@ -6051,8 +5967,8 @@ const LXW_DEF_ROW_HEIGHT_PIXELS = 20
 
 const LXW_DEFINED_NAME_LENGTH = 128
 
-const LXW_VERSION = "1.1.9"
+const LXW_VERSION = "1.2.2"
 
-const LXW_VERSION_ID = 119
+const LXW_VERSION_ID = 122
 
-const LXW_SOVERSION = "7"
+const LXW_SOVERSION = "9"

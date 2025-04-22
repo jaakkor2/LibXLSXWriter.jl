@@ -10,7 +10,42 @@ https://github.com/jmcnamara/libxlsxwriter/blob/main/examples/chart_data_tools.c
  */
 =#
 
-using LibXLSXWriter: lxw_worksheet, lxw_format, worksheet_write_string, CELL, worksheet_write_number, workbook_new, workbook_add_worksheet, workbook_add_format, format_set_bold, workbook_add_chart, LXW_CHART_LINE, chart_title_set_name, chart_add_series, chart_set_high_low_lines, worksheet_insert_chart, chart_set_drop_lines, chart_set_up_down_bars, lxw_chart_line, lxw_chart_fill, LXW_COLOR_BLACK, LXW_COLOR_RED, chart_set_up_down_bars_format, chart_series_set_marker_type, LXW_CHART_MARKER_CIRCLE, chart_series_set_labels, chart_series_set_error_bars, chart_series_get_error_bars, LXW_CHART_ERROR_BAR_AXIS_Y, LXW_CHART_ERROR_BAR_TYPE_STD_ERROR, LXW_COLOR_GRAY, LXW_CHART_LINE_DASH_LONG_DASH, chart_series_set_trendline, LXW_CHART_TRENDLINE_TYPE_POLY, chart_series_set_trendline_line, workbook_close
+using LibXLSXWriter:
+    lxw_worksheet,
+    lxw_format,
+    worksheet_write_string,
+    CELL,
+    worksheet_write_number,
+    workbook_new,
+    workbook_add_worksheet,
+    workbook_add_format,
+    format_set_bold,
+    workbook_add_chart,
+    LXW_CHART_LINE,
+    chart_title_set_name,
+    chart_add_series,
+    chart_set_high_low_lines,
+    worksheet_insert_chart,
+    chart_set_drop_lines,
+    chart_set_up_down_bars,
+    lxw_chart_line,
+    lxw_chart_fill,
+    LXW_COLOR_BLACK,
+    LXW_COLOR_RED,
+    chart_set_up_down_bars_format,
+    chart_series_set_marker_type,
+    LXW_CHART_MARKER_CIRCLE,
+    chart_series_set_labels,
+    chart_series_set_error_bars,
+    chart_series_get_error_bars,
+    LXW_CHART_ERROR_BAR_AXIS_Y,
+    LXW_CHART_ERROR_BAR_TYPE_STD_ERROR,
+    LXW_COLOR_GRAY,
+    LXW_CHART_LINE_DASH_LONG_DASH,
+    chart_series_set_trendline,
+    LXW_CHART_TRENDLINE_TYPE_POLY,
+    chart_series_set_trendline_line,
+    workbook_close
 
 # Write some data to the worksheet.
 function write_worksheet_data(worksheet, bold)
@@ -22,15 +57,15 @@ function write_worksheet_data(worksheet, bold)
         [4, 50, 70],
         [5, 20, 50],
         [6, 10, 40],
-        [7, 50, 30]
+        [7, 50, 30],
     ]
 
-    worksheet_write_string(worksheet, CELL("A1"), "Number",  bold)
+    worksheet_write_string(worksheet, CELL("A1"), "Number", bold)
     worksheet_write_string(worksheet, CELL("B1"), "Batch 1", bold)
     worksheet_write_string(worksheet, CELL("C1"), "Batch 2", bold)
 
     for row = 1:6, col = 1:3
-        worksheet_write_number(worksheet, row, col - 1, data[row][col] , C_NULL)
+        worksheet_write_number(worksheet, row, col - 1, data[row][col], C_NULL)
     end
 end
 
@@ -132,7 +167,7 @@ chart_title_set_name(chart, "Chart with Data Labels and Markers")
 
 # Add the first series to the chart.
 series = chart_add_series(chart, raw"=Sheet1!$A$2:$A$7", raw"=Sheet1!$B$2:$B$7")
-chart_add_series(         chart, raw"=Sheet1!$A$2:$A$7", raw"=Sheet1!$C$2:$C$7")
+chart_add_series(chart, raw"=Sheet1!$A$2:$A$7", raw"=Sheet1!$C$2:$C$7")
 
 # Add series markers.
 chart_series_set_marker_type(series, LXW_CHART_MARKER_CIRCLE)
@@ -153,11 +188,15 @@ chart_title_set_name(chart, "Chart with Error Bars")
 
 # Add the first series to the chart.
 series = chart_add_series(chart, raw"=Sheet1!$A$2:$A$7", raw"=Sheet1!$B$2:$B$7")
-chart_add_series(         chart, raw"=Sheet1!$A$2:$A$7", raw"=Sheet1!$C$2:$C$7")
+chart_add_series(chart, raw"=Sheet1!$A$2:$A$7", raw"=Sheet1!$C$2:$C$7")
 
 # Add error bars to show Standard Error.
-chart_series_set_error_bars(chart_series_get_error_bars(series, LXW_CHART_ERROR_BAR_AXIS_Y), LXW_CHART_ERROR_BAR_TYPE_STD_ERROR, 0)
-                            
+chart_series_set_error_bars(
+    chart_series_get_error_bars(series, LXW_CHART_ERROR_BAR_AXIS_Y),
+    LXW_CHART_ERROR_BAR_TYPE_STD_ERROR,
+    0,
+)
+
 
 # Add series data labels.
 chart_series_set_labels(series)
@@ -175,10 +214,11 @@ chart_title_set_name(chart, "Chart with a Trendline")
 
 # Add the first series to the chart.
 series = chart_add_series(chart, raw"=Sheet1!$A$2:$A$7", raw"=Sheet1!$B$2:$B$7")
-chart_add_series(         chart, raw"=Sheet1!$A$2:$A$7", raw"=Sheet1!$C$2:$C$7")
+chart_add_series(chart, raw"=Sheet1!$A$2:$A$7", raw"=Sheet1!$C$2:$C$7")
 
 # Add a polynomial trendline.
-poly_line = lxw_chart_line(color = LXW_COLOR_GRAY, dash_type = LXW_CHART_LINE_DASH_LONG_DASH)
+poly_line =
+    lxw_chart_line(color = LXW_COLOR_GRAY, dash_type = LXW_CHART_LINE_DASH_LONG_DASH)
 
 chart_series_set_trendline(series, LXW_CHART_TRENDLINE_TYPE_POLY, 3)
 chart_series_set_trendline_line(series, poly_line)

@@ -1,6 +1,34 @@
 # https://github.com/jmcnamara/libxlsxwriter/blob/main/examples/chart_scatter.c
 
-using LibXLSXWriter: worksheet_write_string, CELL, worksheet_write_number, workbook_new, workbook_add_worksheet, workbook_add_format, format_set_bold, workbook_add_chart, LXW_CHART_SCATTER, chart_add_series, chart_series_set_name, chart_series_set_categories, chart_series_set_values, chart_series_set_name_range, chart_title_set_name, chart_axis_set_name, chart_set_style, worksheet_insert_chart, lxw_worksheet, lxw_format, chart_axis_get, LXW_CHART_AXIS_TYPE_X, LXW_CHART_AXIS_TYPE_Y, LXW_CHART_SCATTER_STRAIGHT_WITH_MARKERS, LXW_CHART_SCATTER_STRAIGHT, LXW_CHART_SCATTER_SMOOTH_WITH_MARKERS, LXW_CHART_SCATTER_SMOOTH, workbook_close
+using LibXLSXWriter:
+    worksheet_write_string,
+    CELL,
+    worksheet_write_number,
+    workbook_new,
+    workbook_add_worksheet,
+    workbook_add_format,
+    format_set_bold,
+    workbook_add_chart,
+    LXW_CHART_SCATTER,
+    chart_add_series,
+    chart_series_set_name,
+    chart_series_set_categories,
+    chart_series_set_values,
+    chart_series_set_name_range,
+    chart_title_set_name,
+    chart_axis_set_name,
+    chart_set_style,
+    worksheet_insert_chart,
+    lxw_worksheet,
+    lxw_format,
+    chart_axis_get,
+    LXW_CHART_AXIS_TYPE_X,
+    LXW_CHART_AXIS_TYPE_Y,
+    LXW_CHART_SCATTER_STRAIGHT_WITH_MARKERS,
+    LXW_CHART_SCATTER_STRAIGHT,
+    LXW_CHART_SCATTER_SMOOTH_WITH_MARKERS,
+    LXW_CHART_SCATTER_SMOOTH,
+    workbook_close
 
 # Write some data to the worksheet.
 function write_worksheet_data(worksheet, bold)
@@ -13,12 +41,12 @@ function write_worksheet_data(worksheet, bold)
         7 50 30
     ]
 
-    worksheet_write_string(worksheet, CELL("A1"), "Number",  bold)
+    worksheet_write_string(worksheet, CELL("A1"), "Number", bold)
     worksheet_write_string(worksheet, CELL("B1"), "Batch 1", bold)
     worksheet_write_string(worksheet, CELL("C1"), "Batch 2", bold)
 
-    for row in 0:5, col in 0:2
-        worksheet_write_number(worksheet, row + 1, col, data[row+1,col+1] , C_NULL)
+    for row = 0:5, col = 0:2
+        worksheet_write_number(worksheet, row + 1, col, data[row+1, col+1], C_NULL)
     end
 end
 
@@ -48,11 +76,11 @@ series = chart_add_series(chart, C_NULL, C_NULL)
 
 # Configure the series using a syntax that is easier to define programmatically.
 chart_series_set_categories(series, "Sheet1", 1, 0, 6, 0) # "=Sheet1!$A$2:$A$7"
-chart_series_set_values(series,     "Sheet1", 1, 2, 6, 2) # "=Sheet1!$C$2:$C$7"
+chart_series_set_values(series, "Sheet1", 1, 2, 6, 2) # "=Sheet1!$C$2:$C$7"
 chart_series_set_name_range(series, "Sheet1", 0, 2)       # "=Sheet1!$C$1"     
 
 # Add a chart title and some axis labels.
-chart_title_set_name(chart,        "Results of sample analysis")
+chart_title_set_name(chart, "Results of sample analysis")
 chart_axis_set_name(chart_axis_get(chart, LXW_CHART_AXIS_TYPE_X), "Test number")
 chart_axis_set_name(chart_axis_get(chart, LXW_CHART_AXIS_TYPE_Y), "Sample length (mm)")
 
@@ -80,7 +108,7 @@ series = chart_add_series(chart, raw"=Sheet1!$A$2:$A$7", raw"=Sheet1!$C$2:$C$7")
 chart_series_set_name(series, raw"=Sheet1!$C$1")
 
 # Add a chart title and some axis labels.
-chart_title_set_name(chart,        "Results of sample analysis")
+chart_title_set_name(chart, "Results of sample analysis")
 chart_axis_set_name(chart_axis_get(chart, LXW_CHART_AXIS_TYPE_X), "Test number")
 chart_axis_set_name(chart_axis_get(chart, LXW_CHART_AXIS_TYPE_Y), "Sample length (mm)")
 
@@ -108,7 +136,7 @@ series = chart_add_series(chart, raw"=Sheet1!$A$2:$A$7", raw"=Sheet1!$C$2:$C$7")
 chart_series_set_name(series, raw"=Sheet1!$C$1")
 
 # Add a chart title and some axis labels.
-chart_title_set_name(chart,        "Results of sample analysis")
+chart_title_set_name(chart, "Results of sample analysis")
 chart_axis_set_name(chart_axis_get(chart, LXW_CHART_AXIS_TYPE_X), "Test number")
 chart_axis_set_name(chart_axis_get(chart, LXW_CHART_AXIS_TYPE_Y), "Sample length (mm)")
 
@@ -136,7 +164,7 @@ series = chart_add_series(chart, raw"=Sheet1!$A$2:$A$7", raw"=Sheet1!$C$2:$C$7")
 chart_series_set_name(series, raw"=Sheet1!$C$1")
 
 # Add a chart title and some axis labels.
-chart_title_set_name(chart,        "Results of sample analysis")
+chart_title_set_name(chart, "Results of sample analysis")
 chart_axis_set_name(chart_axis_get(chart, LXW_CHART_AXIS_TYPE_X), "Test number")
 chart_axis_set_name(chart_axis_get(chart, LXW_CHART_AXIS_TYPE_Y), "Sample length (mm)")
 
@@ -164,7 +192,7 @@ series = chart_add_series(chart, raw"=Sheet1!$A$2:$A$7", raw"=Sheet1!$C$2:$C$7")
 chart_series_set_name(series, raw"=Sheet1!$C$1")
 
 # Add a chart title and some axis labels.
-chart_title_set_name(chart,        "Results of sample analysis")
+chart_title_set_name(chart, "Results of sample analysis")
 chart_axis_set_name(chart_axis_get(chart, LXW_CHART_AXIS_TYPE_X), "Test number")
 chart_axis_set_name(chart_axis_get(chart, LXW_CHART_AXIS_TYPE_Y), "Sample length (mm)")
 

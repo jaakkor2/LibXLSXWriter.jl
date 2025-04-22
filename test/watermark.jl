@@ -11,9 +11,14 @@ https://github.com/jmcnamara/libxlsxwriter/blob/main/examples/watermark.c
  */
 =#
 
-using LibXLSXWriter: workbook_new, workbook_add_worksheet, lxw_header_footer_options, worksheet_set_header_opt, workbook_close
+using LibXLSXWriter:
+    workbook_new,
+    workbook_add_worksheet,
+    lxw_header_footer_options,
+    worksheet_set_header_opt,
+    workbook_close
 
-workbook  = workbook_new("watermark.xlsx")
+workbook = workbook_new("watermark.xlsx")
 worksheet = workbook_add_worksheet(workbook, C_NULL)
 
 # Set a worksheet header with the watermark image.
