@@ -8,7 +8,7 @@ https://github.com/jmcnamara/libxlsxwriter/blob/main/examples/autofilter.c
  */
 =#
 
-using LibXLSXWriter: lxw_worksheet, lxw_format, worksheet_set_column, worksheet_set_row, worksheet_write_string, workbook_new, workbook_add_worksheet, lxw_row_col_options, LXW_TRUE, workbook_add_format, format_set_bold, worksheet_write_number, worksheet_autofilter, worksheet_set_row_opt, LXW_DEF_ROW_HEIGHT, lxw_filter_rule, worksheet_filter_column, worksheet_filter_column2, worksheet_filter_list, workbook_close
+using LibXLSXWriter: lxw_worksheet, lxw_format, worksheet_set_column, worksheet_set_row, worksheet_write_string, workbook_new, workbook_add_worksheet, lxw_row_col_options, workbook_add_format, format_set_bold, worksheet_write_number, worksheet_autofilter, worksheet_set_row_opt, LXW_DEF_ROW_HEIGHT, lxw_filter_rule, worksheet_filter_column, worksheet_filter_column2, worksheet_filter_list, workbook_close
 using LibXLSXWriter: LXW_FILTER_CRITERIA_EQUAL_TO, LXW_FILTER_CRITERIA_GREATER_THAN, LXW_FILTER_CRITERIA_LESS_THAN, LXW_FILTER_AND, LXW_FILTER_OR, LXW_FILTER_CRITERIA_BLANKS, LXW_FILTER_CRITERIA_NON_BLANKS
 
 function write_worksheet_header(worksheet, header)
@@ -97,7 +97,7 @@ data = [
 
 data = [row(x...) for x in data]
 
-hidden = lxw_row_col_options(hidden = LXW_TRUE)
+hidden = lxw_row_col_options(hidden = true)
 
 header = workbook_add_format(workbook)
 format_set_bold(header)

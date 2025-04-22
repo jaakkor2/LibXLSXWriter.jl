@@ -9,7 +9,7 @@ https://github.com/jmcnamara/libxlsxwriter/blob/main/examples/chart_data_labels.
  */
 =#
 
-using LibXLSXWriter: workbook_new, workbook_add_worksheet, workbook_add_format, format_set_bold, lxw_chart_options, worksheet_write_string, worksheet_write_number, workbook_add_chart, LXW_CHART_COLUMN, chart_title_set_name, chart_add_series, chart_series_set_labels, chart_legend_set_position, LXW_CHART_LEGEND_NONE, worksheet_insert_chart_opt, CELL, chart_series_set_labels_options, LXW_FALSE, LXW_TRUE, lxw_chart_font, LXW_COLOR_RED, chart_series_set_labels_font, LXW_COLOR_YELLOW, lxw_chart_line, lxw_chart_fill, chart_series_set_labels_line, chart_series_set_labels_fill, lxw_chart_data_label, chart_series_set_labels_custom, LXW_COLOR_BLUE, LXW_COLOR_GREEN, workbook_close
+using LibXLSXWriter: workbook_new, workbook_add_worksheet, workbook_add_format, format_set_bold, lxw_chart_options, worksheet_write_string, worksheet_write_number, workbook_add_chart, LXW_CHART_COLUMN, chart_title_set_name, chart_add_series, chart_series_set_labels, chart_legend_set_position, LXW_CHART_LEGEND_NONE, worksheet_insert_chart_opt, CELL, chart_series_set_labels_options, lxw_chart_font, LXW_COLOR_RED, chart_series_set_labels_font, LXW_COLOR_YELLOW, lxw_chart_line, lxw_chart_fill, chart_series_set_labels_line, chart_series_set_labels_fill, lxw_chart_data_label, chart_series_set_labels_custom, LXW_COLOR_BLUE, LXW_COLOR_GREEN, workbook_close
 
 ## Create a worksheet with examples charts.
 
@@ -82,7 +82,7 @@ series = chart_add_series(chart, raw"=Sheet1!$A$2:$A$7", raw"=Sheet1!$B$2:$B$7")
 chart_series_set_labels(series)
 
 # Turn on Value and Category labels.
-chart_series_set_labels_options(series, LXW_FALSE, LXW_TRUE, LXW_TRUE)
+chart_series_set_labels_options(series, false, true, true)
 
 # Turn off the legend.
 chart_legend_set_position(chart, LXW_CHART_LEGEND_NONE)
@@ -103,7 +103,7 @@ series = chart_add_series(chart, raw"=Sheet1!$A$2:$A$7", raw"=Sheet1!$B$2:$B$7")
 # Add the series data labels.
 chart_series_set_labels(series)
 
-font1 = lxw_chart_font(bold = LXW_TRUE, color = LXW_COLOR_RED, rotation = -30)
+font1 = lxw_chart_font(bold = true, color = LXW_COLOR_RED, rotation = -30)
 chart_series_set_labels_font(series, font1)
 
 # Turn off the legend.
@@ -276,8 +276,8 @@ series = chart_add_series(chart, raw"=Sheet1!$A$2:$A$7", raw"=Sheet1!$B$2:$B$7")
 chart_series_set_labels(series)
 
 # Create some custom labels.
-hide = lxw_chart_data_label(hide = LXW_TRUE)
-keep = lxw_chart_data_label(hide = LXW_FALSE)
+hide = lxw_chart_data_label(hide = true)
+keep = lxw_chart_data_label(hide = false)
 
 # An initialized struct like this would also work:
 # lxw_chart_data_label keep = {0}
