@@ -3522,7 +3522,7 @@ function Base.setproperty!(x::Ptr{lxw_data_val_obj}, f::Symbol, v)
     unsafe_store!(getproperty(x, f), v)
 end
 
-struct lxw_conditional_format
+mutable struct lxw_conditional_format
     type::UInt8
     criteria::UInt8
     value::Cdouble

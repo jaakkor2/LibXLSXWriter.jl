@@ -37,6 +37,9 @@ end
 @testset "comments2" begin
     include("comments1.jl")
 end
+@testset "conditional_format1" begin
+    include("conditional_format1.jl")
+end
 @testset "constant_memory" begin
     include("constant_memory.jl")
 end
@@ -57,6 +60,9 @@ end
 end
 @testset "macro" begin
     include("macro.jl")
+end
+@testset "merge_range" begin
+    include("merge_range.jl")
 end
 @testset "output_buffer" begin
     include("output_buffer.jl")
