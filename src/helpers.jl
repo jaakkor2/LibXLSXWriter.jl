@@ -1,5 +1,5 @@
 # helpers to create Cstring from String
-Cs(mystring) = isempty(mystring) ? C_NULL : Base.unsafe_convert(Cstring, mystring)
+Cs(mystring) = (isempty(mystring) || mystring == C_NULL) ? C_NULL : Base.unsafe_convert(Cstring, mystring)
 Cs_(mystring) = Base.unsafe_convert(Cstring, mystring)
 macro Cs_str(str); Base.unsafe_convert(Cstring, str); end
 function Cs(list::Vector{String})
@@ -33,6 +33,7 @@ worksheet_write_string(worksheet, cell::Tuple{UInt32, UInt16}, string, format) =
 worksheet_write_url(worksheet, cell::Tuple{UInt32, UInt16}, url, format) = worksheet_write_url(worksheet, cell..., url, format)
 
 # helper for RANGE
+worksheet_add_table(worksheet, range::Tuple{UInt32, UInt16, UInt32, UInt16}, options) = worksheet_add_table(worksheet, range..., options)
 worksheet_write_array_formula(worksheet, range::Tuple{UInt32, UInt16, UInt32, UInt16}, formula, format) = worksheet_write_array_formula(worksheet, range..., formula, format)
 
 # helper for COLS

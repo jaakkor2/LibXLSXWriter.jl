@@ -28,11 +28,17 @@ end
 @testset "chart_scatter" begin
         include("chart_scatter.jl")
 end
+@testset "chartsheet" begin
+    include("chartsheet.jl")
+end
 @testset "comments1" begin
     include("comments1.jl")
 end
 @testset "comments2" begin
     include("comments1.jl")
+end
+@testset "constant_memory" begin
+    include("constant_memory.jl")
 end
 @testset "data_validate" begin
     include("data_validate.jl")
@@ -52,11 +58,17 @@ end
 @testset "macro" begin
     include("macro.jl")
 end
+@testset "output_buffer" begin
+    include("output_buffer.jl")
+end
 @testset "panes" begin
     include("panes.jl")
 end
 @testset "rich_strings" begin
     include("rich_strings.jl")
+end
+@testset "tables" begin
+    include("tables.jl")
 end
 @testset "watermark" begin
     include("watermark.jl")
