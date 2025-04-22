@@ -1,6 +1,5 @@
 # helpers to create Cstring from String
-Cs(mystring) = (isempty(mystring) || mystring == C_NULL) ? C_NULL : Base.unsafe_convert(Cstring, mystring)
-Cs_(mystring) = Base.unsafe_convert(Cstring, mystring)
+Cs(str) = str == C_NULL ? C_NULL : Base.unsafe_convert(Cstring, str)
 macro Cs_str(str); Base.unsafe_convert(Cstring, str); end
 function Cs(list::Vector{String})
    ptrs = Base.unsafe_convert.(Cstring, list)
