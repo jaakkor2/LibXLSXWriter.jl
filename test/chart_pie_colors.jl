@@ -1,4 +1,18 @@
-# https://github.com/jmcnamara/libxlsxwriter/blob/main/examples/chart_pie_colors.c
+#=
+https://github.com/jmcnamara/libxlsxwriter/blob/main/examples/chart_pie_colors.c
+/*
+ * An example of creating an Excel pie chart with user defined colors using
+ * the libxlsxwriter library.
+ *
+ * In general formatting is applied to an entire series in a chart. However,
+ * it is occasionally required to format individual points in a series. In
+ * particular this is required for Pie/Doughnut charts where each segment is
+ * represented by a point.
+
+ * Copyright 2014-2025, John McNamara, jmcnamara@cpan.org
+ *
+ */
+=#
 
 using LibXLSXWriter:
     workbook_new,

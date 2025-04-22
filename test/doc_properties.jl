@@ -1,4 +1,13 @@
-# https://github.com/jmcnamara/libxlsxwriter/blob/main/examples/doc_properties.c
+#=
+https://github.com/jmcnamara/libxlsxwriter/blob/main/examples/doc_properties.c
+/*
+ * Example of setting document properties such as Author, Title, etc., for an
+ * Excel spreadsheet using libxlsxwriter.
+ *
+ * Copyright 2014-2025, John McNamara, jmcnamara@cpan.org
+ *
+ */
+=#
 
 using LibXLSXWriter:
     workbook_new,

@@ -1,4 +1,12 @@
-# https://github.com/jmcnamara/libxlsxwriter/blob/main/examples/chart_scatter.c
+#=
+https://github.com/jmcnamara/libxlsxwriter/blob/main/examples/chart_scatter.c
+/*
+ * An example of creating Excel scatter charts using the libxlsxwriter library.
+ *
+ * Copyright 2014-2025, John McNamara, jmcnamara@cpan.org
+ *
+ */
+=#
 
 using LibXLSXWriter:
     worksheet_write_string,

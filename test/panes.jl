@@ -1,4 +1,13 @@
-# https://github.com/jmcnamara/libxlsxwriter/blob/main/examples/panes.c
+#=
+https://github.com/jmcnamara/libxlsxwriter/blob/main/examples/panes.c
+/*
+ * A simple example using the libxlsxwriter library to create worksheets with
+ * panes.
+ *
+ * Copyright 2014-2025, John McNamara, jmcnamara@cpan.org
+ *
+ */
+=#
 
 using LibXLSXWriter:
     workbook_new,
