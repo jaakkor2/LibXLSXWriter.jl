@@ -52,15 +52,15 @@ function write_worksheet_data(worksheet, bold)
     worksheet_write_string(worksheet, CELL("C1"), "Batch 2", bold)
 
     for row = 1:6, col = 1:3
-        worksheet_write_number(worksheet, row, col - 1, data[row][col], C_NULL)
+        worksheet_write_number(worksheet, row, col - 1, data[row][col])
     end
 end
 
 ## Create a worksheet with examples charts.
 
 workbook = workbook_new("chartsheet.xlsx")
-worksheet = workbook_add_worksheet(workbook, C_NULL)
-chartsheet = workbook_add_chartsheet(workbook, C_NULL)
+worksheet = workbook_add_worksheet(workbook)
+chartsheet = workbook_add_chartsheet(workbook)
 
 
 # Add a bold format to use to highlight the header cells.

@@ -30,11 +30,11 @@ using LibXLSXWriter:
     workbook_close
 
 # Write some data to the worksheet.
-function write_worksheet_data(worksheet, format)
-    worksheet_write_string(worksheet, CELL("B4"), "Apples", C_NULL)
-    worksheet_write_string(worksheet, CELL("B5"), "Pears", C_NULL)
-    worksheet_write_string(worksheet, CELL("B6"), "Bananas", C_NULL)
-    worksheet_write_string(worksheet, CELL("B7"), "Oranges", C_NULL)
+function write_worksheet_data(worksheet, format = C_NULL)
+    worksheet_write_string(worksheet, CELL("B4"), "Apples")
+    worksheet_write_string(worksheet, CELL("B5"), "Pears")
+    worksheet_write_string(worksheet, CELL("B6"), "Bananas")
+    worksheet_write_string(worksheet, CELL("B7"), "Oranges")
 
     worksheet_write_number(worksheet, CELL("C4"), 10000, format)
     worksheet_write_number(worksheet, CELL("C5"), 2000, format)
@@ -59,19 +59,19 @@ end
 
 
 workbook = workbook_new("tables.xlsx")
-worksheet1 = workbook_add_worksheet(workbook, C_NULL)
-worksheet2 = workbook_add_worksheet(workbook, C_NULL)
-worksheet3 = workbook_add_worksheet(workbook, C_NULL)
-worksheet4 = workbook_add_worksheet(workbook, C_NULL)
-worksheet5 = workbook_add_worksheet(workbook, C_NULL)
-worksheet6 = workbook_add_worksheet(workbook, C_NULL)
-worksheet7 = workbook_add_worksheet(workbook, C_NULL)
-worksheet8 = workbook_add_worksheet(workbook, C_NULL)
-worksheet9 = workbook_add_worksheet(workbook, C_NULL)
-worksheet10 = workbook_add_worksheet(workbook, C_NULL)
-worksheet11 = workbook_add_worksheet(workbook, C_NULL)
-worksheet12 = workbook_add_worksheet(workbook, C_NULL)
-worksheet13 = workbook_add_worksheet(workbook, C_NULL)
+worksheet1 = workbook_add_worksheet(workbook)
+worksheet2 = workbook_add_worksheet(workbook)
+worksheet3 = workbook_add_worksheet(workbook)
+worksheet4 = workbook_add_worksheet(workbook)
+worksheet5 = workbook_add_worksheet(workbook)
+worksheet6 = workbook_add_worksheet(workbook)
+worksheet7 = workbook_add_worksheet(workbook)
+worksheet8 = workbook_add_worksheet(workbook)
+worksheet9 = workbook_add_worksheet(workbook)
+worksheet10 = workbook_add_worksheet(workbook)
+worksheet11 = workbook_add_worksheet(workbook)
+worksheet12 = workbook_add_worksheet(workbook)
+worksheet13 = workbook_add_worksheet(workbook)
 
 currency_format = workbook_add_format(workbook)
 format_set_num_format(currency_format, raw"$#,##0")
@@ -80,37 +80,37 @@ format_set_num_format(currency_format, raw"$#,##0")
 ## Example 1. Default table with no data
 
 # Set the columns widths for clarity.
-worksheet_set_column(worksheet1, COLS("B:G"), 12, C_NULL)
+worksheet_set_column(worksheet1, COLS("B:G"), 12)
 
 # Write the worksheet caption to explain the example.
-worksheet_write_string(worksheet1, CELL("B1"), "Default table with no data.", C_NULL)
+worksheet_write_string(worksheet1, CELL("B1"), "Default table with no data.")
 
 # Add a table to the worksheet.
-worksheet_add_table(worksheet1, RANGE("B3:F7"), C_NULL)
+worksheet_add_table(worksheet1, RANGE("B3:F7"))
 
 
 ## Example 2. Default table with data
 
 # Set the columns widths for clarity.
-worksheet_set_column(worksheet2, COLS("B:G"), 12, C_NULL)
+worksheet_set_column(worksheet2, COLS("B:G"), 12)
 
 # Write the worksheet caption to explain the example.
-worksheet_write_string(worksheet2, CELL("B1"), "Default table with data.", C_NULL)
+worksheet_write_string(worksheet2, CELL("B1"), "Default table with data.")
 
 # Add a table to the worksheet.
-worksheet_add_table(worksheet2, RANGE("B3:F7"), C_NULL)
+worksheet_add_table(worksheet2, RANGE("B3:F7"))
 
 # Write the data into the worksheet cells.
-write_worksheet_data(worksheet2, C_NULL)
+write_worksheet_data(worksheet2)
 
 
 ## Example 3. Table without default autofilter
 
 # Set the columns widths for clarity.
-worksheet_set_column(worksheet3, COLS("B:G"), 12, C_NULL)
+worksheet_set_column(worksheet3, COLS("B:G"), 12)
 
 # Write the worksheet caption to explain the example.
-worksheet_write_string(worksheet3, CELL("B1"), "Table without default autofilter.", C_NULL)
+worksheet_write_string(worksheet3, CELL("B1"), "Table without default autofilter.")
 
 # Set the table options.
 options3 = lxw_table_options(no_autofilter = true)
@@ -119,16 +119,16 @@ options3 = lxw_table_options(no_autofilter = true)
 worksheet_add_table(worksheet3, RANGE("B3:F7"), options3)
 
 # Write the data into the worksheet cells.
-write_worksheet_data(worksheet3, C_NULL)
+write_worksheet_data(worksheet3)
 
 
 ## Example 4. Table without default header row
 
 # Set the columns widths for clarity.
-worksheet_set_column(worksheet4, COLS("B:G"), 12, C_NULL)
+worksheet_set_column(worksheet4, COLS("B:G"), 12)
 
 # Write the worksheet caption to explain the example.
-worksheet_write_string(worksheet4, CELL("B1"), "Table without default header row.", C_NULL)
+worksheet_write_string(worksheet4, CELL("B1"), "Table without default header row.")
 
 # Set the table options.
 options4 = lxw_table_options(no_header_row = true)
@@ -137,20 +137,19 @@ options4 = lxw_table_options(no_header_row = true)
 worksheet_add_table(worksheet4, RANGE("B4:F7"), options4)
 
 # Write the data into the worksheet cells.
-write_worksheet_data(worksheet4, C_NULL)
+write_worksheet_data(worksheet4)
 
 
 ## Example 5. Default table with "First Column" and "Last Column" options
 
 # Set the columns widths for clarity.
-worksheet_set_column(worksheet5, COLS("B:G"), 12, C_NULL)
+worksheet_set_column(worksheet5, COLS("B:G"), 12)
 
 # Write the worksheet caption to explain the example.
 worksheet_write_string(
     worksheet5,
     CELL("B1"),
     "Default table with \"First Column\" and \"Last Column\" options.",
-    C_NULL,
 )
 
 # Set the table options.
@@ -160,20 +159,19 @@ options5 = lxw_table_options(first_column = true, last_column = true)
 worksheet_add_table(worksheet5, RANGE("B3:F7"), options5)
 
 # Write the data into the worksheet cells.
-write_worksheet_data(worksheet5, C_NULL)
+write_worksheet_data(worksheet5)
 
 
 ## Example 6. Table with banded columns but without default banded rows
 
 # Set the columns widths for clarity.
-worksheet_set_column(worksheet6, COLS("B:G"), 12, C_NULL)
+worksheet_set_column(worksheet6, COLS("B:G"), 12)
 
 # Write the worksheet caption to explain the example.
 worksheet_write_string(
     worksheet6,
     CELL("B1"),
     "Table with banded columns but without default banded rows.",
-    C_NULL,
 )
 
 # Set the table options.
@@ -183,20 +181,19 @@ options6 = lxw_table_options(no_banded_rows = true, banded_columns = true)
 worksheet_add_table(worksheet6, RANGE("B3:F7"), options6)
 
 # Write the data into the worksheet cells.
-write_worksheet_data(worksheet6, C_NULL)
+write_worksheet_data(worksheet6)
 
 
 ## Example 7. Table with user defined column headers
 
 # Set the columns widths for clarity.
-worksheet_set_column(worksheet7, COLS("B:G"), 12, C_NULL)
+worksheet_set_column(worksheet7, COLS("B:G"), 12)
 
 # Write the worksheet caption to explain the example.
 worksheet_write_string(
     worksheet7,
     CELL("B1"),
     "Table with user defined column headers.",
-    C_NULL,
 )
 
 
@@ -215,20 +212,19 @@ options7 = lxw_table_options(columns = columns7)
 worksheet_add_table(worksheet7, RANGE("B3:F7"), options7)
 
 # Write the data into the worksheet cells.
-write_worksheet_data(worksheet7, C_NULL)
+write_worksheet_data(worksheet7)
 
 
 ## Example 8. Table with user defined column headers
 
 # Set the columns widths for clarity.
-worksheet_set_column(worksheet8, COLS("B:G"), 12, C_NULL)
+worksheet_set_column(worksheet8, COLS("B:G"), 12)
 
 # Write the worksheet caption to explain the example.
 worksheet_write_string(
     worksheet8,
     CELL("B1"),
     "Table with user defined column headers.",
-    C_NULL,
 )
 
 # Set the table options.
@@ -248,20 +244,19 @@ options8 = lxw_table_options(columns = columns8)
 worksheet_add_table(worksheet8, RANGE("B3:G7"), options8)
 
 # Write the data into the worksheet cells.
-write_worksheet_data(worksheet8, C_NULL)
+write_worksheet_data(worksheet8)
 
 
 ## Example 9. Table with totals row (but no caption or totals)
 
 # Set the columns widths for clarity.
-worksheet_set_column(worksheet9, COLS("B:G"), 12, C_NULL)
+worksheet_set_column(worksheet9, COLS("B:G"), 12)
 
 # Write the worksheet caption to explain the example.
 worksheet_write_string(
     worksheet9,
     CELL("B1"),
     "Table with totals row (but no caption or totals).",
-    C_NULL,
 )
 
 
@@ -282,20 +277,19 @@ options9 = lxw_table_options(total_row = true, columns = columns9)
 worksheet_add_table(worksheet9, RANGE("B3:G8"), options9)
 
 # Write the data into the worksheet cells.
-write_worksheet_data(worksheet9, C_NULL)
+write_worksheet_data(worksheet9)
 
 
 ## Example 10. Table with totals row with user captions and functions
 
 # Set the columns widths for clarity.
-worksheet_set_column(worksheet10, COLS("B:G"), 12, C_NULL)
+worksheet_set_column(worksheet10, COLS("B:G"), 12)
 
 # Write the worksheet caption to explain the example.
 worksheet_write_string(
     worksheet10,
     CELL("B1"),
     "Table with totals row with user captions and functions.",
-    C_NULL,
 )
 
 # Set the table options.
@@ -323,20 +317,19 @@ options10 = lxw_table_options(total_row = true, columns = columns10)
 worksheet_add_table(worksheet10, RANGE("B3:G8"), options10)
 
 # Write the data into the worksheet cells.
-write_worksheet_data(worksheet10, C_NULL)
+write_worksheet_data(worksheet10)
 
 
 ## Example 11. Table with alternative Excel style
 
 # Set the columns widths for clarity.
-worksheet_set_column(worksheet11, COLS("B:G"), 12, C_NULL)
+worksheet_set_column(worksheet11, COLS("B:G"), 12)
 
 # Write the worksheet caption to explain the example.
 worksheet_write_string(
     worksheet11,
     CELL("B1"),
     "Table with alternative Excel style.",
-    C_NULL,
 )
 
 # Set the table options.
@@ -369,16 +362,16 @@ options11 = lxw_table_options(
 worksheet_add_table(worksheet11, RANGE("B3:G8"), options11)
 
 # Write the data into the worksheet cells.
-write_worksheet_data(worksheet11, C_NULL)
+write_worksheet_data(worksheet11)
 
 
 ## Example 12. Table with Excel style removed
 
 # Set the columns widths for clarity.
-worksheet_set_column(worksheet12, COLS("B:G"), 12, C_NULL)
+worksheet_set_column(worksheet12, COLS("B:G"), 12)
 
 # Write the worksheet caption to explain the example.
-worksheet_write_string(worksheet12, CELL("B1"), "Table with Excel style removed.", C_NULL)
+worksheet_write_string(worksheet12, CELL("B1"), "Table with Excel style removed.")
 
 # Set the table options.
 col12_1 = lxw_table_column(header = "Product", total_string = "Totals")
@@ -410,16 +403,16 @@ options12 = lxw_table_options(
 worksheet_add_table(worksheet12, RANGE("B3:G8"), options12)
 
 # Write the data into the worksheet cells.
-write_worksheet_data(worksheet12, C_NULL)
+write_worksheet_data(worksheet12)
 
 
 ## Example 13. Table with column formats
 
 # Set the columns widths for clarity.
-worksheet_set_column(worksheet13, COLS("B:G"), 12, C_NULL)
+worksheet_set_column(worksheet13, COLS("B:G"), 12)
 
 # Write the worksheet caption to explain the example.
-worksheet_write_string(worksheet13, CELL("B1"), "Table with column formats.", C_NULL)
+worksheet_write_string(worksheet13, CELL("B1"), "Table with column formats.")
 
 # Set the table options.
 col13_1 = lxw_table_column(header = "Product", total_string = "Totals")

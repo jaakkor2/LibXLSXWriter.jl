@@ -226,7 +226,7 @@ image_size = 200
 
 # Create a new workbook and add a worksheet.
 workbook = workbook_new("image_buffer.xlsx")
-worksheet = workbook_add_worksheet(workbook, C_NULL)
+worksheet = workbook_add_worksheet(workbook)
 
 options = lxw_image_options(x_offset = 34, y_offset = 4, x_scale = 2, y_scale = 1)
 

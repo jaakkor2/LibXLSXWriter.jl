@@ -19,7 +19,7 @@ using LibXLSXWriter:
     workbook_close
 
 workbook = workbook_new("watermark.xlsx")
-worksheet = workbook_add_worksheet(workbook, C_NULL)
+worksheet = workbook_add_worksheet(workbook)
 
 # Set a worksheet header with the watermark image.
 header_options = lxw_header_footer_options(image_center = "watermark.png")

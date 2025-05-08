@@ -63,26 +63,26 @@ function write_worksheet_data(worksheet, format)
     worksheet_write_string(worksheet, CELL("B1"), "Enter values in this column", format)
     worksheet_write_string(worksheet, CELL("D1"), "Sample Data", format)
 
-    worksheet_write_string(worksheet, CELL("D3"), "Integers", C_NULL)
-    worksheet_write_number(worksheet, CELL("E3"), 1, C_NULL)
-    worksheet_write_number(worksheet, CELL("F3"), 10, C_NULL)
+    worksheet_write_string(worksheet, CELL("D3"), "Integers")
+    worksheet_write_number(worksheet, CELL("E3"), 1)
+    worksheet_write_number(worksheet, CELL("F3"), 10)
 
-    worksheet_write_string(worksheet, CELL("D4"), "List data", C_NULL)
-    worksheet_write_string(worksheet, CELL("E4"), "open", C_NULL)
-    worksheet_write_string(worksheet, CELL("F4"), "high", C_NULL)
-    worksheet_write_string(worksheet, CELL("G4"), "close", C_NULL)
+    worksheet_write_string(worksheet, CELL("D4"), "List data")
+    worksheet_write_string(worksheet, CELL("E4"), "open")
+    worksheet_write_string(worksheet, CELL("F4"), "high")
+    worksheet_write_string(worksheet, CELL("G4"), "close")
 
-    worksheet_write_string(worksheet, CELL("D5"), "Formula", C_NULL)
-    worksheet_write_formula(worksheet, CELL("E5"), "=AND(F5=50,G5=60)", C_NULL)
-    worksheet_write_number(worksheet, CELL("F5"), 50, C_NULL)
-    worksheet_write_number(worksheet, CELL("G5"), 60, C_NULL)
+    worksheet_write_string(worksheet, CELL("D5"), "Formula")
+    worksheet_write_formula(worksheet, CELL("E5"), "=AND(F5=50,G5=60)")
+    worksheet_write_number(worksheet, CELL("F5"), 50)
+    worksheet_write_number(worksheet, CELL("G5"), 60)
 end
 
 
 ## Create a worksheet with data validations.
 
 workbook = workbook_new("data_validate.xlsx")
-worksheet = workbook_add_worksheet(workbook, C_NULL)
+worksheet = workbook_add_worksheet(workbook)
 data_validation = lxw_data_validation()
 
 # Add a format to use to highlight the header cells.
@@ -98,14 +98,14 @@ format_set_indent(format, 1)
 write_worksheet_data(worksheet, format)
 
 # Set up layout of the worksheet.
-worksheet_set_column(worksheet, 0, 0, 55, C_NULL)
-worksheet_set_column(worksheet, 1, 1, 15, C_NULL)
-worksheet_set_column(worksheet, 3, 3, 15, C_NULL)
-worksheet_set_row(worksheet, 0, 36, C_NULL)
+worksheet_set_column(worksheet, 0, 0, 55)
+worksheet_set_column(worksheet, 1, 1, 15)
+worksheet_set_column(worksheet, 3, 3, 15)
+worksheet_set_row(worksheet, 0, 36)
 
 
 ## Example 1. Limiting input to an integer in a fixed range.
-worksheet_write_string(worksheet, CELL("A3"), "Enter an integer between 1 and 10", C_NULL)
+worksheet_write_string(worksheet, CELL("A3"), "Enter an integer between 1 and 10")
 
 data_validation[].validate = LXW_VALIDATION_TYPE_INTEGER
 data_validation[].criteria = LXW_VALIDATION_CRITERIA_BETWEEN
@@ -120,7 +120,6 @@ worksheet_write_string(
     worksheet,
     CELL("A5"),
     "Enter an integer that is not between 1 and 10 (using cell references)",
-    C_NULL,
 )
 
 data_validation[].validate = LXW_VALIDATION_TYPE_INTEGER_FORMULA
@@ -132,7 +131,7 @@ worksheet_data_validation_cell(worksheet, CELL("B5"), data_validation)
 
 
 ## Example 3. Limiting input to an integer greater than a fixed value.
-worksheet_write_string(worksheet, CELL("A7"), "Enter an integer greater than 0", C_NULL)
+worksheet_write_string(worksheet, CELL("A7"), "Enter an integer greater than 0")
 
 data_validation[].validate = LXW_VALIDATION_TYPE_INTEGER
 data_validation[].criteria = LXW_VALIDATION_CRITERIA_GREATER_THAN
@@ -142,7 +141,7 @@ worksheet_data_validation_cell(worksheet, CELL("B7"), data_validation)
 
 
 ## Example 4. Limiting input to an integer less than a fixed value.
-worksheet_write_string(worksheet, CELL("A9"), "Enter an integer less than 10", C_NULL)
+worksheet_write_string(worksheet, CELL("A9"), "Enter an integer less than 10")
 
 data_validation[].validate = LXW_VALIDATION_TYPE_INTEGER
 data_validation[].criteria = LXW_VALIDATION_CRITERIA_LESS_THAN
@@ -156,7 +155,6 @@ worksheet_write_string(
     worksheet,
     CELL("A11"),
     "Enter a decimal between 0.1 and 0.5",
-    C_NULL,
 )
 
 data_validation[].validate = LXW_VALIDATION_TYPE_DECIMAL
@@ -172,7 +170,6 @@ worksheet_write_string(
     worksheet,
     CELL("A13"),
     "Select a value from a dropdown list",
-    C_NULL,
 )
 
 list = ["open", "high", "close"]
@@ -188,7 +185,6 @@ worksheet_write_string(
     worksheet,
     CELL("A15"),
     "Select a value from a dropdown list (using a cell range)",
-    C_NULL,
 )
 
 data_validation[].validate = LXW_VALIDATION_TYPE_LIST_FORMULA
@@ -202,7 +198,6 @@ worksheet_write_string(
     worksheet,
     CELL("A17"),
     "Enter a date between 1/1/2024 and 12/12/2024",
-    C_NULL,
 )
 
 datetime1 = lxw_datetime(2024, 1, 1, 0, 0, 0)
@@ -221,7 +216,6 @@ worksheet_write_string(
     worksheet,
     CELL("A19"),
     "Enter a time between 6:00 and 12:00",
-    C_NULL,
 )
 
 datetime3 = lxw_datetime(0, 0, 0, 6, 0, 0)
@@ -240,7 +234,6 @@ worksheet_write_string(
     worksheet,
     CELL("A21"),
     "Enter a string longer than 3 characters",
-    C_NULL,
 )
 
 data_validation[].validate = LXW_VALIDATION_TYPE_LENGTH
@@ -255,7 +248,6 @@ worksheet_write_string(
     worksheet,
     CELL("A23"),
     "Enter a value if the following is true \"=AND(F5=50,G5=60)\"",
-    C_NULL,
 )
 
 data_validation[].validate = LXW_VALIDATION_TYPE_CUSTOM_FORMULA
@@ -269,7 +261,6 @@ worksheet_write_string(
     worksheet,
     CELL("A25"),
     "Displays a message when you select the cell",
-    C_NULL,
 )
 
 data_validation[].validate = LXW_VALIDATION_TYPE_INTEGER
@@ -287,7 +278,6 @@ worksheet_write_string(
     worksheet,
     CELL("A27"),
     "Display a custom error message when integer isn't between 1 and 100",
-    C_NULL,
 )
 
 data_validation[].validate = LXW_VALIDATION_TYPE_INTEGER
@@ -307,7 +297,6 @@ worksheet_write_string(
     worksheet,
     CELL("A29"),
     "Display a custom info message when integer isn't between 1 and 100",
-    C_NULL,
 )
 
 data_validation[].validate = LXW_VALIDATION_TYPE_INTEGER

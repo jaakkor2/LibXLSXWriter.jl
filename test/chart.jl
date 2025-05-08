@@ -38,13 +38,13 @@ function write_worksheet_data(worksheet)
     ]
 
     for row = 1:5, col = 1:3
-        worksheet_write_number(worksheet, row - 1, col - 1, data[row][col], C_NULL)
+        worksheet_write_number(worksheet, row - 1, col - 1, data[row][col])
     end
 end
 
 # Create a worksheet with a chart.
 workbook = workbook_new("chart.xlsx")
-worksheet = workbook_add_worksheet(workbook, C_NULL)
+worksheet = workbook_add_worksheet(workbook)
 
 # Write some data for the chart.
 write_worksheet_data(worksheet)

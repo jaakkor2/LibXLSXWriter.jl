@@ -4115,7 +4115,7 @@ struct lxw_worksheet_init_data
     max_url_length::UInt16
 end
 
-function worksheet_write_number(worksheet, row, col, number, format)
+function worksheet_write_number(worksheet, row, col, number, format = C_NULL)
     @ccall libxlsxwriter.worksheet_write_number(
         worksheet::Ptr{lxw_worksheet},
         row::lxw_row_t,
@@ -4125,7 +4125,7 @@ function worksheet_write_number(worksheet, row, col, number, format)
     )::lxw_error
 end
 
-function worksheet_write_string(worksheet, row, col, string, format)
+function worksheet_write_string(worksheet, row, col, string, format = C_NULL)
     @ccall libxlsxwriter.worksheet_write_string(
         worksheet::Ptr{lxw_worksheet},
         row::lxw_row_t,
@@ -4135,7 +4135,7 @@ function worksheet_write_string(worksheet, row, col, string, format)
     )::lxw_error
 end
 
-function worksheet_write_formula(worksheet, row, col, formula, format)
+function worksheet_write_formula(worksheet, row, col, formula, format = C_NULL)
     @ccall libxlsxwriter.worksheet_write_formula(
         worksheet::Ptr{lxw_worksheet},
         row::lxw_row_t,
@@ -4152,7 +4152,7 @@ function worksheet_write_array_formula(
     last_row,
     last_col,
     formula,
-    format,
+    format = C_NULL,
 )
     @ccall libxlsxwriter.worksheet_write_array_formula(
         worksheet::Ptr{lxw_worksheet},
@@ -4172,7 +4172,7 @@ function worksheet_write_dynamic_array_formula(
     last_row,
     last_col,
     formula,
-    format,
+    format = C_NULL,
 )
     @ccall libxlsxwriter.worksheet_write_dynamic_array_formula(
         worksheet::Ptr{lxw_worksheet},
@@ -4185,7 +4185,7 @@ function worksheet_write_dynamic_array_formula(
     )::lxw_error
 end
 
-function worksheet_write_dynamic_formula(worksheet, row, col, formula, format)
+function worksheet_write_dynamic_formula(worksheet, row, col, formula, format = C_NULL)
     @ccall libxlsxwriter.worksheet_write_dynamic_formula(
         worksheet::Ptr{lxw_worksheet},
         row::lxw_row_t,
@@ -4250,7 +4250,7 @@ function worksheet_write_dynamic_formula_num(worksheet, row, col, formula, forma
     )::lxw_error
 end
 
-function worksheet_write_datetime(worksheet, row, col, datetime, format)
+function worksheet_write_datetime(worksheet, row, col, datetime, format = C_NULL)
     @ccall libxlsxwriter.worksheet_write_datetime(
         worksheet::Ptr{lxw_worksheet},
         row::lxw_row_t,
@@ -4260,7 +4260,7 @@ function worksheet_write_datetime(worksheet, row, col, datetime, format)
     )::lxw_error
 end
 
-function worksheet_write_unixtime(worksheet, row, col, unixtime, format)
+function worksheet_write_unixtime(worksheet, row, col, unixtime, format = C_NULL)
     @ccall libxlsxwriter.worksheet_write_unixtime(
         worksheet::Ptr{lxw_worksheet},
         row::lxw_row_t,
@@ -4270,7 +4270,7 @@ function worksheet_write_unixtime(worksheet, row, col, unixtime, format)
     )::lxw_error
 end
 
-function worksheet_write_url(worksheet, row, col, url, format)
+function worksheet_write_url(worksheet, row, col, url, format = C_NULL)
     @ccall libxlsxwriter.worksheet_write_url(
         worksheet::Ptr{lxw_worksheet},
         row::lxw_row_t,
@@ -4292,7 +4292,7 @@ function worksheet_write_url_opt(worksheet, row_num, col_num, url, format, strin
     )::lxw_error
 end
 
-function worksheet_write_boolean(worksheet, row, col, value, format)
+function worksheet_write_boolean(worksheet, row, col, value, format = C_NULL)
     @ccall libxlsxwriter.worksheet_write_boolean(
         worksheet::Ptr{lxw_worksheet},
         row::lxw_row_t,
@@ -4302,7 +4302,7 @@ function worksheet_write_boolean(worksheet, row, col, value, format)
     )::lxw_error
 end
 
-function worksheet_write_blank(worksheet, row, col, format)
+function worksheet_write_blank(worksheet, row, col, format = C_NULL)
     @ccall libxlsxwriter.worksheet_write_blank(
         worksheet::Ptr{lxw_worksheet},
         row::lxw_row_t,
@@ -4333,7 +4333,7 @@ function worksheet_write_formula_str(worksheet, row, col, formula, format, resul
     )::lxw_error
 end
 
-function worksheet_write_rich_string(worksheet, row, col, rich_string, format)
+function worksheet_write_rich_string(worksheet, row, col, rich_string, format = C_NULL)
     @ccall libxlsxwriter.worksheet_write_rich_string(
         worksheet::Ptr{lxw_worksheet},
         row::lxw_row_t,
@@ -4362,7 +4362,7 @@ function worksheet_write_comment_opt(worksheet, row, col, string, options)
     )::lxw_error
 end
 
-function worksheet_set_row(worksheet, row, height, format)
+function worksheet_set_row(worksheet, row, height, format = C_NULL)
     @ccall libxlsxwriter.worksheet_set_row(
         worksheet::Ptr{lxw_worksheet},
         row::lxw_row_t,
@@ -4381,7 +4381,7 @@ function worksheet_set_row_opt(worksheet, row, height, format, options)
     )::lxw_error
 end
 
-function worksheet_set_row_pixels(worksheet, row, pixels, format)
+function worksheet_set_row_pixels(worksheet, row, pixels, format = C_NULL)
     @ccall libxlsxwriter.worksheet_set_row_pixels(
         worksheet::Ptr{lxw_worksheet},
         row::lxw_row_t,
@@ -4400,7 +4400,7 @@ function worksheet_set_row_pixels_opt(worksheet, row, pixels, format, options)
     )::lxw_error
 end
 
-function worksheet_set_column(worksheet, first_col, last_col, width, format)
+function worksheet_set_column(worksheet, first_col, last_col, width, format = C_NULL)
     @ccall libxlsxwriter.worksheet_set_column(
         worksheet::Ptr{lxw_worksheet},
         first_col::lxw_col_t,
@@ -4421,7 +4421,7 @@ function worksheet_set_column_opt(worksheet, first_col, last_col, width, format,
     )::lxw_error
 end
 
-function worksheet_set_column_pixels(worksheet, first_col, last_col, pixels, format)
+function worksheet_set_column_pixels(worksheet, first_col, last_col, pixels, format = C_NULL)
     @ccall libxlsxwriter.worksheet_set_column_pixels(
         worksheet::Ptr{lxw_worksheet},
         first_col::lxw_col_t,
@@ -4584,7 +4584,7 @@ function worksheet_merge_range(
     last_row,
     last_col,
     string,
-    format,
+    format = C_NULL,
 )
     @ccall libxlsxwriter.worksheet_merge_range(
         worksheet::Ptr{lxw_worksheet},
@@ -4696,7 +4696,7 @@ function worksheet_insert_button(worksheet, row, col, options)
     )::lxw_error
 end
 
-function worksheet_add_table(worksheet, first_row, first_col, last_row, last_col, options)
+function worksheet_add_table(worksheet, first_row, first_col, last_row, last_col, options = C_NULL)
     @ccall libxlsxwriter.worksheet_add_table(
         worksheet::Ptr{lxw_worksheet},
         first_row::lxw_row_t,
@@ -5665,14 +5665,14 @@ function workbook_new_opt(filename, options)
     )::Ptr{lxw_workbook}
 end
 
-function workbook_add_worksheet(workbook, sheetname)
+function workbook_add_worksheet(workbook, sheetname = C_NULL)
     @ccall libxlsxwriter.workbook_add_worksheet(
         workbook::Ptr{lxw_workbook},
         sheetname::Cstring,
     )::Ptr{lxw_worksheet}
 end
 
-function workbook_add_chartsheet(workbook, sheetname)
+function workbook_add_chartsheet(workbook, sheetname = C_NULL)
     @ccall libxlsxwriter.workbook_add_chartsheet(
         workbook::Ptr{lxw_workbook},
         sheetname::Cstring,

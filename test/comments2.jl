@@ -31,14 +31,14 @@ using LibXLSXWriter:
     workbook_close
 
 workbook = workbook_new("comments2.xlsx")
-worksheet1 = workbook_add_worksheet(workbook, C_NULL)
-worksheet2 = workbook_add_worksheet(workbook, C_NULL)
-worksheet3 = workbook_add_worksheet(workbook, C_NULL)
-worksheet4 = workbook_add_worksheet(workbook, C_NULL)
-worksheet5 = workbook_add_worksheet(workbook, C_NULL)
-worksheet6 = workbook_add_worksheet(workbook, C_NULL)
-worksheet7 = workbook_add_worksheet(workbook, C_NULL)
-worksheet8 = workbook_add_worksheet(workbook, C_NULL)
+worksheet1 = workbook_add_worksheet(workbook)
+worksheet2 = workbook_add_worksheet(workbook)
+worksheet3 = workbook_add_worksheet(workbook)
+worksheet4 = workbook_add_worksheet(workbook)
+worksheet5 = workbook_add_worksheet(workbook)
+worksheet6 = workbook_add_worksheet(workbook)
+worksheet7 = workbook_add_worksheet(workbook)
+worksheet8 = workbook_add_worksheet(workbook)
 
 text_wrap = workbook_add_format(workbook)
 format_set_text_wrap(text_wrap)
@@ -48,8 +48,8 @@ format_set_align(text_wrap, LXW_ALIGN_VERTICAL_TOP)
 ## Example 1. Demonstrates a simple cell comments without formatting.
 
 # Set up some worksheet formatting.
-worksheet_set_column(worksheet1, 2, 2, 25, C_NULL)
-worksheet_set_row(worksheet1, 2, 50, C_NULL)
+worksheet_set_column(worksheet1, 2, 2, 25)
+worksheet_set_row(worksheet1, 2, 50)
 
 
 worksheet_write_string(
@@ -65,9 +65,9 @@ worksheet_write_comment(worksheet1, CELL("C3"), "This is a comment.")
 ## Example 2. Demonstrates visible and hidden comments.
 
 # Set up some worksheet formatting.
-worksheet_set_column(worksheet2, 2, 2, 25, C_NULL)
-worksheet_set_row(worksheet2, 2, 50, C_NULL)
-worksheet_set_row(worksheet2, 2, 50, C_NULL)
+worksheet_set_column(worksheet2, 2, 2, 25)
+worksheet_set_row(worksheet2, 2, 50)
+worksheet_set_row(worksheet2, 2, 50)
 
 
 worksheet_write_string(worksheet2, CELL("C3"), "This cell comment is visible.", text_wrap)
@@ -88,10 +88,10 @@ worksheet_write_comment(worksheet2, CELL("C6"), "Hello.")
 
 
 ## Example 3. Demonstrates visible and hidden comments, set at the
-worksheet_set_column(worksheet3, 2, 2, 25, C_NULL)
-worksheet_set_row(worksheet3, 2, 50, C_NULL)
-worksheet_set_row(worksheet3, 5, 50, C_NULL)
-worksheet_set_row(worksheet3, 8, 50, C_NULL)
+worksheet_set_column(worksheet3, 2, 2, 25)
+worksheet_set_row(worksheet3, 2, 50)
+worksheet_set_row(worksheet3, 5, 50)
+worksheet_set_row(worksheet3, 8, 50)
 
 # Make all comments on the worksheet visible.
 worksheet_show_comments(worksheet3)
@@ -130,12 +130,12 @@ worksheet_write_comment_opt(worksheet3, CELL("C9"), "Hello", options3b)
 
 
 ## Example 4. Demonstrates changes to the comment box dimensions.
-worksheet_set_column(worksheet4, 2, 2, 25, C_NULL)
-worksheet_set_row(worksheet4, 2, 50, C_NULL)
-worksheet_set_row(worksheet4, 5, 50, C_NULL)
-worksheet_set_row(worksheet4, 8, 50, C_NULL)
-worksheet_set_row(worksheet4, 15, 50, C_NULL)
-worksheet_set_row(worksheet4, 18, 50, C_NULL)
+worksheet_set_column(worksheet4, 2, 2, 25)
+worksheet_set_row(worksheet4, 2, 50)
+worksheet_set_row(worksheet4, 5, 50)
+worksheet_set_row(worksheet4, 8, 50)
+worksheet_set_row(worksheet4, 15, 50)
+worksheet_set_row(worksheet4, 18, 50)
 
 worksheet_show_comments(worksheet4)
 
@@ -195,10 +195,10 @@ worksheet_write_comment_opt(worksheet4, CELL("C19"), "Hello", options4d)
 
 
 ##  Example 5. Demonstrates changes to the cell comment position.
-worksheet_set_column(worksheet5, 2, 2, 25, C_NULL)
-worksheet_set_row(worksheet5, 2, 50, C_NULL)
-worksheet_set_row(worksheet5, 5, 50, C_NULL)
-worksheet_set_row(worksheet5, 8, 50, C_NULL)
+worksheet_set_column(worksheet5, 2, 2, 25)
+worksheet_set_row(worksheet5, 2, 50)
+worksheet_set_row(worksheet5, 5, 50)
+worksheet_set_row(worksheet5, 8, 50)
 
 worksheet_show_comments(worksheet5)
 
@@ -235,10 +235,10 @@ worksheet_write_comment_opt(worksheet5, CELL("C9"), "Hello", options5b)
 
 
 ## Example 6. Demonstrates changes to the comment background color.
-worksheet_set_column(worksheet6, 2, 2, 25, C_NULL)
-worksheet_set_row(worksheet6, 2, 50, C_NULL)
-worksheet_set_row(worksheet6, 5, 50, C_NULL)
-worksheet_set_row(worksheet6, 8, 50, C_NULL)
+worksheet_set_column(worksheet6, 2, 2, 25)
+worksheet_set_row(worksheet6, 2, 50)
+worksheet_set_row(worksheet6, 5, 50)
+worksheet_set_row(worksheet6, 8, 50)
 
 worksheet_show_comments(worksheet6)
 
@@ -275,9 +275,9 @@ worksheet_write_comment_opt(worksheet6, CELL("C9"), "Hello", options6b)
 
 
 ## Example 7. Demonstrates how to set the cell comment author.
-worksheet_set_column(worksheet7, 2, 2, 30, C_NULL)
-worksheet_set_row(worksheet7, 2, 50, C_NULL)
-worksheet_set_row(worksheet7, 5, 60, C_NULL)
+worksheet_set_column(worksheet7, 2, 2, 30)
+worksheet_set_row(worksheet7, 2, 50)
+worksheet_set_row(worksheet7, 5, 60)
 
 worksheet_write_string(
     worksheet7,
@@ -303,8 +303,8 @@ worksheet_write_comment_opt(worksheet7, CELL("C6"), "Hello", options7a)
 
 
 ## Example 8. Demonstrates the need to explicitly set the row height.
-worksheet_set_column(worksheet8, 2, 2, 25, C_NULL)
-worksheet_set_row(worksheet8, 2, 80, C_NULL)
+worksheet_set_column(worksheet8, 2, 2, 25)
+worksheet_set_row(worksheet8, 2, 80)
 
 worksheet_show_comments(worksheet8)
 

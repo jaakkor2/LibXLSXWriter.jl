@@ -33,10 +33,10 @@ function main()
 
     # Create a new workbook with options.
     workbook = workbook_new_opt(C_NULL, options)
-    worksheet = workbook_add_worksheet(workbook, C_NULL)
+    worksheet = workbook_add_worksheet(workbook)
 
-    worksheet_write_string(worksheet, 0, 0, "Hello", C_NULL)
-    worksheet_write_number(worksheet, 1, 0, 123, C_NULL)
+    worksheet_write_string(worksheet, 0, 0, "Hello")
+    worksheet_write_number(worksheet, 1, 0, 123)
 
     err = workbook_close(workbook)
 

@@ -27,18 +27,18 @@ using LibXLSXWriter:
     workbook_close
 
 workbook = workbook_new("conditional_format_simple.xlsx")
-worksheet = workbook_add_worksheet(workbook, C_NULL)
+worksheet = workbook_add_worksheet(workbook)
 
 # Write some sample data.
-worksheet_write_number(worksheet, CELL("B1"), 34, C_NULL)
-worksheet_write_number(worksheet, CELL("B2"), 32, C_NULL)
-worksheet_write_number(worksheet, CELL("B3"), 31, C_NULL)
-worksheet_write_number(worksheet, CELL("B4"), 35, C_NULL)
-worksheet_write_number(worksheet, CELL("B5"), 36, C_NULL)
-worksheet_write_number(worksheet, CELL("B6"), 30, C_NULL)
-worksheet_write_number(worksheet, CELL("B7"), 38, C_NULL)
-worksheet_write_number(worksheet, CELL("B8"), 38, C_NULL)
-worksheet_write_number(worksheet, CELL("B9"), 32, C_NULL)
+worksheet_write_number(worksheet, CELL("B1"), 34)
+worksheet_write_number(worksheet, CELL("B2"), 32)
+worksheet_write_number(worksheet, CELL("B3"), 31)
+worksheet_write_number(worksheet, CELL("B4"), 35)
+worksheet_write_number(worksheet, CELL("B5"), 36)
+worksheet_write_number(worksheet, CELL("B6"), 30)
+worksheet_write_number(worksheet, CELL("B7"), 38)
+worksheet_write_number(worksheet, CELL("B8"), 38)
+worksheet_write_number(worksheet, CELL("B9"), 32)
 
 # Add a format with red text.
 custom_format = workbook_add_format(workbook)
