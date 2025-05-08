@@ -30,10 +30,10 @@ options = lxw_workbook_options(
 
 # Create a new workbook with options
 workbook = workbook_new_opt("constant_memory.xlsx", options)
-worksheet = workbook_add_worksheet(workbook, C_NULL)
+worksheet = workbook_add_worksheet(workbook)
 
 for row = 1:max_row, col = 1:max_col
-    worksheet_write_number(worksheet, row - 1, col - 1, 123.45, C_NULL)
+    worksheet_write_number(worksheet, row - 1, col - 1, 123.45)
 end
 
 workbook_close(workbook)

@@ -21,10 +21,10 @@ using LibXLSXWriter:
 
 # Create a new workbook and add a worksheet.
 workbook = workbook_new("format_num_format.xlsx")
-worksheet = workbook_add_worksheet(workbook, C_NULL)
+worksheet = workbook_add_worksheet(workbook)
 
 # Widen the first column to make the text clearer.
-worksheet_set_column(worksheet, 0, 0, 30, C_NULL)
+worksheet_set_column(worksheet, 0, 0, 30)
 
 # Add some formats.
 format01 = workbook_add_format(workbook)
@@ -51,7 +51,7 @@ format_set_num_format(format08, "dd/mm/yyyy hh:mm AM/PM")
 format_set_num_format(format09, "0 \"dollar and\" .00 \"cents\"")
 
 # Write data using the formats.
-worksheet_write_number(worksheet, 0, 0, 3.1415926, C_NULL)    # 3.1415926
+worksheet_write_number(worksheet, 0, 0, 3.1415926)    # 3.1415926
 worksheet_write_number(worksheet, 1, 0, 3.1415926, format01)  # 3.142
 worksheet_write_number(worksheet, 2, 0, 1234.56, format02)  # 1,235
 worksheet_write_number(worksheet, 3, 0, 1234.56, format03)  # 1,234.56

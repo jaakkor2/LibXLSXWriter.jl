@@ -46,6 +46,9 @@ end
 @testset "data_validate" begin
     include("data_validate.jl")
 end
+@testset "dates_and_times02" begin
+    include("dates_and_times02.jl")
+end
 @testset "demo" begin
     include("demo.jl")
 end

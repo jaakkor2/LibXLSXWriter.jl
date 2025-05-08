@@ -32,13 +32,13 @@ using LibXLSXWriter:
     workbook_close
 
 workbook = workbook_new("chart_pie_colors.xlsx")
-worksheet = workbook_add_worksheet(workbook, C_NULL)
+worksheet = workbook_add_worksheet(workbook)
 
 # Write some data for the chart.
-worksheet_write_string(worksheet, CELL("A1"), "Pass", C_NULL)
-worksheet_write_string(worksheet, CELL("A2"), "Fail", C_NULL)
-worksheet_write_number(worksheet, CELL("B1"), 90, C_NULL)
-worksheet_write_number(worksheet, CELL("B2"), 10, C_NULL)
+worksheet_write_string(worksheet, CELL("A1"), "Pass")
+worksheet_write_string(worksheet, CELL("A2"), "Fail")
+worksheet_write_number(worksheet, CELL("B1"), 90)
+worksheet_write_number(worksheet, CELL("B2"), 10)
 
 # Create a pie chart.
 chart = workbook_add_chart(workbook, LXW_CHART_PIE)

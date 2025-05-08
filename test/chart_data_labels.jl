@@ -44,7 +44,7 @@ using LibXLSXWriter:
 ## Create a worksheet with examples charts.
 
 workbook = workbook_new("chart_data_labels.xlsx")
-worksheet = workbook_add_worksheet(workbook, C_NULL)
+worksheet = workbook_add_worksheet(workbook)
 
 # Add a bold format to use to highlight the header cells.
 bold = workbook_add_format(workbook)
@@ -55,28 +55,28 @@ options = lxw_chart_options(x_offset = 25, y_offset = 10)
 
 # Write some data for the chart.
 worksheet_write_string(worksheet, 0, 0, "Number", bold)
-worksheet_write_number(worksheet, 1, 0, 2, C_NULL)
-worksheet_write_number(worksheet, 2, 0, 3, C_NULL)
-worksheet_write_number(worksheet, 3, 0, 4, C_NULL)
-worksheet_write_number(worksheet, 4, 0, 5, C_NULL)
-worksheet_write_number(worksheet, 5, 0, 6, C_NULL)
-worksheet_write_number(worksheet, 6, 0, 7, C_NULL)
+worksheet_write_number(worksheet, 1, 0, 2)
+worksheet_write_number(worksheet, 2, 0, 3)
+worksheet_write_number(worksheet, 3, 0, 4)
+worksheet_write_number(worksheet, 4, 0, 5)
+worksheet_write_number(worksheet, 5, 0, 6)
+worksheet_write_number(worksheet, 6, 0, 7)
 
 worksheet_write_string(worksheet, 0, 1, "Data", bold)
-worksheet_write_number(worksheet, 1, 1, 20, C_NULL)
-worksheet_write_number(worksheet, 2, 1, 10, C_NULL)
-worksheet_write_number(worksheet, 3, 1, 20, C_NULL)
-worksheet_write_number(worksheet, 4, 1, 30, C_NULL)
-worksheet_write_number(worksheet, 5, 1, 40, C_NULL)
-worksheet_write_number(worksheet, 6, 1, 30, C_NULL)
+worksheet_write_number(worksheet, 1, 1, 20)
+worksheet_write_number(worksheet, 2, 1, 10)
+worksheet_write_number(worksheet, 3, 1, 20)
+worksheet_write_number(worksheet, 4, 1, 30)
+worksheet_write_number(worksheet, 5, 1, 40)
+worksheet_write_number(worksheet, 6, 1, 30)
 
 worksheet_write_string(worksheet, 0, 2, "Text", bold)
-worksheet_write_string(worksheet, 1, 2, "Jan", C_NULL)
-worksheet_write_string(worksheet, 2, 2, "Feb", C_NULL)
-worksheet_write_string(worksheet, 3, 2, "Mar", C_NULL)
-worksheet_write_string(worksheet, 4, 2, "Apr", C_NULL)
-worksheet_write_string(worksheet, 5, 2, "May", C_NULL)
-worksheet_write_string(worksheet, 6, 2, "Jun", C_NULL)
+worksheet_write_string(worksheet, 1, 2, "Jan")
+worksheet_write_string(worksheet, 2, 2, "Feb")
+worksheet_write_string(worksheet, 3, 2, "Mar")
+worksheet_write_string(worksheet, 4, 2, "Apr")
+worksheet_write_string(worksheet, 5, 2, "May")
+worksheet_write_string(worksheet, 6, 2, "Jun")
 
 
 ## Chart 1. Example with standard data labels.

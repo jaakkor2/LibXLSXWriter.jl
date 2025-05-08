@@ -29,14 +29,14 @@ using LibXLSXWriter:
 
 # Note the xlsm extension of the filename
 workbook = workbook_new("macro.xlsm")
-worksheet = workbook_add_worksheet(workbook, C_NULL)
+worksheet = workbook_add_worksheet(workbook)
 
-worksheet_set_column(worksheet, COLS("A:A"), 30, C_NULL)
+worksheet_set_column(worksheet, COLS("A:A"), 30)
 
 # Add a macro file extracted from an Excel workbook.
 workbook_add_vba_project(workbook, "vbaProject.bin")
 
-worksheet_write_string(worksheet, 2, 0, "Press the button to say hello.", C_NULL)
+worksheet_write_string(worksheet, 2, 0, "Press the button to say hello.")
 
 options =
     lxw_button_options(caption = "Press Me", _macro = "say_hello", width = 80, height = 30)

@@ -54,13 +54,13 @@ function write_worksheet_data(worksheet, bold)
     worksheet_write_string(worksheet, CELL("C1"), "Batch 2", bold)
 
     for row = 0:5, col = 0:2
-        worksheet_write_number(worksheet, row + 1, col, data[row+1, col+1], C_NULL)
+        worksheet_write_number(worksheet, row + 1, col, data[row+1, col+1])
     end
 end
 
 ### Create a worksheet with examples charts.
 workbook = workbook_new("chart_scatter.xlsx")
-worksheet = workbook_add_worksheet(workbook, C_NULL)
+worksheet = workbook_add_worksheet(workbook)
 # Add a bold format to use to highlight the header cells.
 bold = workbook_add_format(workbook)
 format_set_bold(bold)

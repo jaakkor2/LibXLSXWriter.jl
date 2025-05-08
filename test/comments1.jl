@@ -16,9 +16,9 @@ using LibXLSXWriter:
     workbook_close
 
 workbook = workbook_new("comments1.xlsx")
-worksheet = workbook_add_worksheet(workbook, C_NULL)
+worksheet = workbook_add_worksheet(workbook)
 
-worksheet_write_string(worksheet, 0, 0, "Hello", C_NULL)
+worksheet_write_string(worksheet, 0, 0, "Hello")
 
 worksheet_write_comment(worksheet, 0, 0, "This is a comment")
 

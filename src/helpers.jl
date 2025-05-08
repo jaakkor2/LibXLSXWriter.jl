@@ -51,29 +51,29 @@ worksheet_write_comment(worksheet, cell::Tuple{UInt32,UInt16}, string) =
     worksheet_write_comment(worksheet, cell..., string)
 worksheet_write_comment_opt(worksheet, cell::Tuple{UInt32,UInt16}, string, options) =
     worksheet_write_comment_opt(worksheet, cell..., string, options)
-worksheet_write_datetime(worksheet, cell::Tuple{UInt32,UInt16}, datetime, format) =
+worksheet_write_datetime(worksheet, cell::Tuple{UInt32,UInt16}, datetime, format = C_NULL) =
     worksheet_write_datetime(worksheet, cell..., datetime, format)
-worksheet_write_dynamic_formula(worksheet, cell::Tuple{UInt32,UInt16}, formula, format) =
+worksheet_write_dynamic_formula(worksheet, cell::Tuple{UInt32,UInt16}, formula, format = C_NULL) =
     worksheet_write_dynamic_formula(worksheet, cell..., formula, format)
-worksheet_write_formula(worksheet, cell::Tuple{UInt32,UInt16}, formula, format) =
+worksheet_write_formula(worksheet, cell::Tuple{UInt32,UInt16}, formula, format = C_NULL) =
     worksheet_write_formula(worksheet, cell..., formula, format)
-worksheet_write_number(worksheet, cell::Tuple{UInt32,UInt16}, number, format) =
+worksheet_write_number(worksheet, cell::Tuple{UInt32,UInt16}, number, format = C_NULL) =
     worksheet_write_number(worksheet, cell..., number, format)
-worksheet_write_rich_string(worksheet, cell::Tuple{UInt32,UInt16}, rich_string, format) =
+worksheet_write_rich_string(worksheet, cell::Tuple{UInt32,UInt16}, rich_string, format = C_NULL) =
     worksheet_write_rich_string(worksheet, cell..., rich_string, format)
-worksheet_write_string(worksheet, cell::Tuple{UInt32,UInt16}, string, format) =
+worksheet_write_string(worksheet, cell::Tuple{UInt32,UInt16}, string, format = C_NULL) =
     worksheet_write_string(worksheet, cell..., string, format)
-worksheet_write_url(worksheet, cell::Tuple{UInt32,UInt16}, url, format) =
+worksheet_write_url(worksheet, cell::Tuple{UInt32,UInt16}, url, format = C_NULL) =
     worksheet_write_url(worksheet, cell..., url, format)
 
 # helper for RANGE
-worksheet_add_table(worksheet, range::Tuple{UInt32,UInt16,UInt32,UInt16}, options) =
+worksheet_add_table(worksheet, range::Tuple{UInt32,UInt16,UInt32,UInt16}, options = C_NULL) =
     worksheet_add_table(worksheet, range..., options)
 worksheet_write_array_formula(
     worksheet,
     range::Tuple{UInt32,UInt16,UInt32,UInt16},
     formula,
-    format,
+    format = C_NULL,
 ) = worksheet_write_array_formula(worksheet, range..., formula, format)
 worksheet_conditional_format_range(
     worksheet,
@@ -82,5 +82,5 @@ worksheet_conditional_format_range(
 ) = worksheet_conditional_format_range(worksheet, range..., conditional_format)
 
 # helper for COLS
-worksheet_set_column(worksheet, column::Tuple{UInt16,UInt16}, width, format) =
+worksheet_set_column(worksheet, column::Tuple{UInt16,UInt16}, width, format = C_NULL) =
     worksheet_set_column(worksheet, column..., width, format)

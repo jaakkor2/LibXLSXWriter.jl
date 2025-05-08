@@ -40,26 +40,26 @@ using LibXLSXWriter:
 function write_worksheet_header(worksheet, header)
 
     # Make the columns wider for clarity.
-    worksheet_set_column(worksheet, 0, 3, 12, C_NULL)
+    worksheet_set_column(worksheet, 0, 3, 12)
 
 
     # Write the column headers.
     worksheet_set_row(worksheet, 0, 20, header)
-    worksheet_write_string(worksheet, 0, 0, "Region", C_NULL)
-    worksheet_write_string(worksheet, 0, 1, "Item", C_NULL)
-    worksheet_write_string(worksheet, 0, 2, "Volume", C_NULL)
-    worksheet_write_string(worksheet, 0, 3, "Month", C_NULL)
+    worksheet_write_string(worksheet, 0, 0, "Region")
+    worksheet_write_string(worksheet, 0, 1, "Item")
+    worksheet_write_string(worksheet, 0, 2, "Volume")
+    worksheet_write_string(worksheet, 0, 3, "Month")
     nothing
 end
 
 workbook = workbook_new("autofilter.xlsx")
-worksheet1 = workbook_add_worksheet(workbook, C_NULL)
-worksheet2 = workbook_add_worksheet(workbook, C_NULL)
-worksheet3 = workbook_add_worksheet(workbook, C_NULL)
-worksheet4 = workbook_add_worksheet(workbook, C_NULL)
-worksheet5 = workbook_add_worksheet(workbook, C_NULL)
-worksheet6 = workbook_add_worksheet(workbook, C_NULL)
-worksheet7 = workbook_add_worksheet(workbook, C_NULL)
+worksheet1 = workbook_add_worksheet(workbook)
+worksheet2 = workbook_add_worksheet(workbook)
+worksheet3 = workbook_add_worksheet(workbook)
+worksheet4 = workbook_add_worksheet(workbook)
+worksheet5 = workbook_add_worksheet(workbook)
+worksheet6 = workbook_add_worksheet(workbook)
+worksheet7 = workbook_add_worksheet(workbook)
 
 mutable struct row
     region::String
@@ -135,10 +135,10 @@ write_worksheet_header(worksheet1, header)
 
 # Write the row data.
 for i = 1:length(data)
-    worksheet_write_string(worksheet1, i, 0, data[i].region, C_NULL)
-    worksheet_write_string(worksheet1, i, 1, data[i].item, C_NULL)
-    worksheet_write_number(worksheet1, i, 2, data[i].volume, C_NULL)
-    worksheet_write_string(worksheet1, i, 3, data[i].month, C_NULL)
+    worksheet_write_string(worksheet1, i, 0, data[i].region)
+    worksheet_write_string(worksheet1, i, 1, data[i].item)
+    worksheet_write_number(worksheet1, i, 2, data[i].volume)
+    worksheet_write_string(worksheet1, i, 3, data[i].month)
 end
 
 
@@ -153,10 +153,10 @@ write_worksheet_header(worksheet2, header)
 
 # Write the row data.
 for i = 1:length(data)
-    worksheet_write_string(worksheet2, i, 0, data[i].region, C_NULL)
-    worksheet_write_string(worksheet2, i, 1, data[i].item, C_NULL)
-    worksheet_write_number(worksheet2, i, 2, data[i].volume, C_NULL)
-    worksheet_write_string(worksheet2, i, 3, data[i].month, C_NULL)
+    worksheet_write_string(worksheet2, i, 0, data[i].region)
+    worksheet_write_string(worksheet2, i, 1, data[i].item)
+    worksheet_write_number(worksheet2, i, 2, data[i].volume)
+    worksheet_write_string(worksheet2, i, 3, data[i].month)
 
     # It isn't sufficient to just apply the filter condition below. We
     # must also hide the rows that don't match the criteria since Excel
@@ -200,10 +200,10 @@ write_worksheet_header(worksheet3, header)
 
 # Write the row data.
 for i = 1:length(data)
-    worksheet_write_string(worksheet3, i, 0, data[i].region, C_NULL)
-    worksheet_write_string(worksheet3, i, 1, data[i].item, C_NULL)
-    worksheet_write_number(worksheet3, i, 2, data[i].volume, C_NULL)
-    worksheet_write_string(worksheet3, i, 3, data[i].month, C_NULL)
+    worksheet_write_string(worksheet3, i, 0, data[i].region)
+    worksheet_write_string(worksheet3, i, 1, data[i].item)
+    worksheet_write_number(worksheet3, i, 2, data[i].volume)
+    worksheet_write_string(worksheet3, i, 3, data[i].month)
 
     if data[i].region == "East" || data[i].region == "South"
         # Row matches the filter, no further action required.
@@ -234,10 +234,10 @@ write_worksheet_header(worksheet4, header)
 
 # Write the row data.
 for i = 1:length(data)
-    worksheet_write_string(worksheet4, i, 0, data[i].region, C_NULL)
-    worksheet_write_string(worksheet4, i, 1, data[i].item, C_NULL)
-    worksheet_write_number(worksheet4, i, 2, data[i].volume, C_NULL)
-    worksheet_write_string(worksheet4, i, 3, data[i].month, C_NULL)
+    worksheet_write_string(worksheet4, i, 0, data[i].region)
+    worksheet_write_string(worksheet4, i, 1, data[i].item)
+    worksheet_write_number(worksheet4, i, 2, data[i].volume)
+    worksheet_write_string(worksheet4, i, 3, data[i].month)
 
     if data[i].region == "East" && data[i].volume > 3000 && data[i].volume < 8000
         # Row matches the filter, no further action required.
@@ -269,10 +269,10 @@ write_worksheet_header(worksheet5, header)
 
 # Write the row data.
 for i = 1:length(data)
-    worksheet_write_string(worksheet5, i, 0, data[i].region, C_NULL)
-    worksheet_write_string(worksheet5, i, 1, data[i].item, C_NULL)
-    worksheet_write_number(worksheet5, i, 2, data[i].volume, C_NULL)
-    worksheet_write_string(worksheet5, i, 3, data[i].month, C_NULL)
+    worksheet_write_string(worksheet5, i, 0, data[i].region)
+    worksheet_write_string(worksheet5, i, 1, data[i].item)
+    worksheet_write_number(worksheet5, i, 2, data[i].volume)
+    worksheet_write_string(worksheet5, i, 3, data[i].month)
 
     if data[i].region == "East" || data[i].region == "North" || data[i].region == "South"
         # Row matches the filter, no further action required.
@@ -302,10 +302,10 @@ data[5+1].region = ""
 
 # Write the row data.
 for i = 1:length(data)
-    worksheet_write_string(worksheet6, i, 0, data[i].region, C_NULL)
-    worksheet_write_string(worksheet6, i, 1, data[i].item, C_NULL)
-    worksheet_write_number(worksheet6, i, 2, data[i].volume, C_NULL)
-    worksheet_write_string(worksheet6, i, 3, data[i].month, C_NULL)
+    worksheet_write_string(worksheet6, i, 0, data[i].region)
+    worksheet_write_string(worksheet6, i, 1, data[i].item)
+    worksheet_write_number(worksheet6, i, 2, data[i].volume)
+    worksheet_write_string(worksheet6, i, 3, data[i].month)
 
     if data[i].region == ""
         # Row matches the filter, no further action required.
@@ -331,10 +331,10 @@ write_worksheet_header(worksheet7, header)
 
 # Write the row data.
 for i = 1:length(data)
-    worksheet_write_string(worksheet7, i, 0, data[i].region, C_NULL)
-    worksheet_write_string(worksheet7, i, 1, data[i].item, C_NULL)
-    worksheet_write_number(worksheet7, i, 2, data[i].volume, C_NULL)
-    worksheet_write_string(worksheet7, i, 3, data[i].month, C_NULL)
+    worksheet_write_string(worksheet7, i, 0, data[i].region)
+    worksheet_write_string(worksheet7, i, 1, data[i].item)
+    worksheet_write_number(worksheet7, i, 2, data[i].volume)
+    worksheet_write_string(worksheet7, i, 3, data[i].month)
 
     if data[i].region != ""
         # Row matches the filter, no further action required.

@@ -19,7 +19,7 @@ using LibXLSXWriter:
     workbook_close
 
 workbook = workbook_new("doc_properties.xlsx")
-worksheet = workbook_add_worksheet(workbook, C_NULL)
+worksheet = workbook_add_worksheet(workbook)
 
 # Create a properties structure and set some of the fields.
 properties = lxw_doc_properties(
@@ -38,13 +38,12 @@ properties = lxw_doc_properties(
 workbook_set_properties(workbook, properties)
 
 # Add some text to the file.
-worksheet_set_column(worksheet, 0, 0, 50, C_NULL)
+worksheet_set_column(worksheet, 0, 0, 50)
 worksheet_write_string(
     worksheet,
     0,
     0,
     "Select 'Workbook Properties' to see properties.",
-    C_NULL,
 )
 
 workbook_close(workbook)

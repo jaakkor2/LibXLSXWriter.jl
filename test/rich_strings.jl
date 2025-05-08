@@ -23,11 +23,12 @@ using LibXLSXWriter:
     format_set_font_script,
     LXW_FONT_SUPERSCRIPT,
     lxw_rich_string_tuple,
+    CELL,
     worksheet_write_rich_string,
     workbook_close
 
 workbook = workbook_new("rich_strings.xlsx")
-worksheet = workbook_add_worksheet(workbook, C_NULL)
+worksheet = workbook_add_worksheet(workbook)
 
 # Set up some formats to use.
 bold = workbook_add_format(workbook)
@@ -49,37 +50,37 @@ superscript = workbook_add_format(workbook)
 format_set_font_script(superscript, LXW_FONT_SUPERSCRIPT)
 
 # Make the first column wider for clarity.
-worksheet_set_column(worksheet, 0, 0, 30, C_NULL)
+worksheet_set_column(worksheet, 0, 0, 30)
 
 
 ## Create and write some rich strings with multiple formats.
 
 # Example 1. Some bold and italic in the same string.
-fragment11 = lxw_rich_string_tuple(format = C_NULL, string = "This is ")
+fragment11 = lxw_rich_string_tuple(string = "This is ")
 fragment12 = lxw_rich_string_tuple(format = bold, string = "bold")
-fragment13 = lxw_rich_string_tuple(format = C_NULL, string = " and this is ")
+fragment13 = lxw_rich_string_tuple(string = " and this is ")
 fragment14 = lxw_rich_string_tuple(format = italic, string = "italic")
 
 rich_string1 = [fragment11, fragment12, fragment13, fragment14]
 
-worksheet_write_rich_string(worksheet, CELL("A1"), rich_string1, C_NULL)
+worksheet_write_rich_string(worksheet, CELL("A1"), rich_string1)
 
 
 # Example 2. Some red and blue coloring in the same string.
-fragment21 = lxw_rich_string_tuple(format = C_NULL, string = "This is ")
+fragment21 = lxw_rich_string_tuple(string = "This is ")
 fragment22 = lxw_rich_string_tuple(format = red, string = "red")
-fragment23 = lxw_rich_string_tuple(format = C_NULL, string = " and this is ")
+fragment23 = lxw_rich_string_tuple(string = " and this is ")
 fragment24 = lxw_rich_string_tuple(format = blue, string = "blue")
 
 rich_string2 = [fragment21, fragment22, fragment23, fragment24]
 
-worksheet_write_rich_string(worksheet, CELL("A3"), rich_string2, C_NULL)
+worksheet_write_rich_string(worksheet, CELL("A3"), rich_string2)
 
 
 # Example 3. A rich string plus cell formatting.
-fragment31 = lxw_rich_string_tuple(format = C_NULL, string = "Some ")
+fragment31 = lxw_rich_string_tuple(string = "Some ")
 fragment32 = lxw_rich_string_tuple(format = bold, string = "bold text")
-fragment33 = lxw_rich_string_tuple(format = C_NULL, string = " centered")
+fragment33 = lxw_rich_string_tuple(string = " centered")
 
 rich_string3 = [fragment31, fragment32, fragment33]
 
