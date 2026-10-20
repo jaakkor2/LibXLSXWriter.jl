@@ -190,11 +190,7 @@ write_worksheet_data(worksheet6)
 worksheet_set_column(worksheet7, COLS("B:G"), 12)
 
 # Write the worksheet caption to explain the example.
-worksheet_write_string(
-    worksheet7,
-    CELL("B1"),
-    "Table with user defined column headers.",
-)
+worksheet_write_string(worksheet7, CELL("B1"), "Table with user defined column headers.")
 
 
 # Set the table options.
@@ -221,11 +217,7 @@ write_worksheet_data(worksheet7)
 worksheet_set_column(worksheet8, COLS("B:G"), 12)
 
 # Write the worksheet caption to explain the example.
-worksheet_write_string(
-    worksheet8,
-    CELL("B1"),
-    "Table with user defined column headers.",
-)
+worksheet_write_string(worksheet8, CELL("B1"), "Table with user defined column headers.")
 
 # Set the table options.
 col8_1 = lxw_table_column(header = "Product")
@@ -326,11 +318,7 @@ write_worksheet_data(worksheet10)
 worksheet_set_column(worksheet11, COLS("B:G"), 12)
 
 # Write the worksheet caption to explain the example.
-worksheet_write_string(
-    worksheet11,
-    CELL("B1"),
-    "Table with alternative Excel style.",
-)
+worksheet_write_string(worksheet11, CELL("B1"), "Table with alternative Excel style.")
 
 # Set the table options.
 col11_1 = lxw_table_column(header = "Product", total_string = "Totals")

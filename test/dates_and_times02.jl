@@ -9,17 +9,25 @@ https://github.com/jmcnamara/libxlsxwriter/blob/main/examples/dates_and_times02.
  */
 =#
 
-using LibXLSXWriter: lxw_datetime, workbook_new, workbook_add_worksheet, workbook_add_format, format_set_num_format, worksheet_set_column, worksheet_write_datetime, workbook_close
+using LibXLSXWriter:
+    lxw_datetime,
+    workbook_new,
+    workbook_add_worksheet,
+    workbook_add_format,
+    format_set_num_format,
+    worksheet_set_column,
+    worksheet_write_datetime,
+    workbook_close
 
 # A datetime to display.
 datetime = Ref(lxw_datetime(2013, 2, 28, 12, 0, 0.0))
 
 # Create a new workbook and add a worksheet.
-workbook  = workbook_new("date_and_times02.xlsx")
+workbook = workbook_new("date_and_times02.xlsx")
 worksheet = workbook_add_worksheet(workbook)
 
 # Add a format with date formatting.
-format    = workbook_add_format(workbook)
+format = workbook_add_format(workbook)
 format_set_num_format(format, "mmm d yyyy hh:mm AM/PM")
 
 # Widen the first column to make the text clearer.

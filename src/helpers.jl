@@ -53,22 +53,33 @@ worksheet_write_comment_opt(worksheet, cell::Tuple{UInt32,UInt16}, string, optio
     worksheet_write_comment_opt(worksheet, cell..., string, options)
 worksheet_write_datetime(worksheet, cell::Tuple{UInt32,UInt16}, datetime, format = C_NULL) =
     worksheet_write_datetime(worksheet, cell..., datetime, format)
-worksheet_write_dynamic_formula(worksheet, cell::Tuple{UInt32,UInt16}, formula, format = C_NULL) =
-    worksheet_write_dynamic_formula(worksheet, cell..., formula, format)
+worksheet_write_dynamic_formula(
+    worksheet,
+    cell::Tuple{UInt32,UInt16},
+    formula,
+    format = C_NULL,
+) = worksheet_write_dynamic_formula(worksheet, cell..., formula, format)
 worksheet_write_formula(worksheet, cell::Tuple{UInt32,UInt16}, formula, format = C_NULL) =
     worksheet_write_formula(worksheet, cell..., formula, format)
 worksheet_write_number(worksheet, cell::Tuple{UInt32,UInt16}, number, format = C_NULL) =
     worksheet_write_number(worksheet, cell..., number, format)
-worksheet_write_rich_string(worksheet, cell::Tuple{UInt32,UInt16}, rich_string, format = C_NULL) =
-    worksheet_write_rich_string(worksheet, cell..., rich_string, format)
+worksheet_write_rich_string(
+    worksheet,
+    cell::Tuple{UInt32,UInt16},
+    rich_string,
+    format = C_NULL,
+) = worksheet_write_rich_string(worksheet, cell..., rich_string, format)
 worksheet_write_string(worksheet, cell::Tuple{UInt32,UInt16}, string, format = C_NULL) =
     worksheet_write_string(worksheet, cell..., string, format)
 worksheet_write_url(worksheet, cell::Tuple{UInt32,UInt16}, url, format = C_NULL) =
     worksheet_write_url(worksheet, cell..., url, format)
 
 # helper for RANGE
-worksheet_add_table(worksheet, range::Tuple{UInt32,UInt16,UInt32,UInt16}, options = C_NULL) =
-    worksheet_add_table(worksheet, range..., options)
+worksheet_add_table(
+    worksheet,
+    range::Tuple{UInt32,UInt16,UInt32,UInt16},
+    options = C_NULL,
+) = worksheet_add_table(worksheet, range..., options)
 worksheet_write_array_formula(
     worksheet,
     range::Tuple{UInt32,UInt16,UInt32,UInt16},

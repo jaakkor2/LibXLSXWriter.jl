@@ -151,11 +151,7 @@ worksheet_data_validation_cell(worksheet, CELL("B9"), data_validation)
 
 
 ## Example 5. Limiting input to a decimal in a fixed range.
-worksheet_write_string(
-    worksheet,
-    CELL("A11"),
-    "Enter a decimal between 0.1 and 0.5",
-)
+worksheet_write_string(worksheet, CELL("A11"), "Enter a decimal between 0.1 and 0.5")
 
 data_validation[].validate = LXW_VALIDATION_TYPE_DECIMAL
 data_validation[].criteria = LXW_VALIDATION_CRITERIA_BETWEEN
@@ -166,11 +162,7 @@ worksheet_data_validation_cell(worksheet, CELL("B11"), data_validation)
 
 
 ## Example 6. Limiting input to a value in a dropdown list.
-worksheet_write_string(
-    worksheet,
-    CELL("A13"),
-    "Select a value from a dropdown list",
-)
+worksheet_write_string(worksheet, CELL("A13"), "Select a value from a dropdown list")
 
 list = ["open", "high", "close"]
 
@@ -212,11 +204,7 @@ worksheet_data_validation_cell(worksheet, CELL("B17"), data_validation)
 
 
 ## Example 9. Limiting input to a time in a fixed range.
-worksheet_write_string(
-    worksheet,
-    CELL("A19"),
-    "Enter a time between 6:00 and 12:00",
-)
+worksheet_write_string(worksheet, CELL("A19"), "Enter a time between 6:00 and 12:00")
 
 datetime3 = lxw_datetime(0, 0, 0, 6, 0, 0)
 datetime4 = lxw_datetime(0, 0, 0, 12, 0, 0)
@@ -230,11 +218,7 @@ worksheet_data_validation_cell(worksheet, CELL("B19"), data_validation)
 
 
 ## Example 10. Limiting input to a string greater than a fixed length.
-worksheet_write_string(
-    worksheet,
-    CELL("A21"),
-    "Enter a string longer than 3 characters",
-)
+worksheet_write_string(worksheet, CELL("A21"), "Enter a string longer than 3 characters")
 
 data_validation[].validate = LXW_VALIDATION_TYPE_LENGTH
 data_validation[].criteria = LXW_VALIDATION_CRITERIA_GREATER_THAN
