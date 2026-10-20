@@ -39,11 +39,6 @@ workbook_set_properties(workbook, properties)
 
 # Add some text to the file.
 worksheet_set_column(worksheet, 0, 0, 50)
-worksheet_write_string(
-    worksheet,
-    0,
-    0,
-    "Select 'Workbook Properties' to see properties.",
-)
+worksheet_write_string(worksheet, 0, 0, "Select 'Workbook Properties' to see properties.")
 
 workbook_close(workbook)
