@@ -9,14 +9,7 @@ https://github.com/jmcnamara/libxlsxwriter/blob/main/examples/doc_properties.c
  */
 =#
 
-using LibXLSXWriter:
-    workbook_new,
-    workbook_add_worksheet,
-    lxw_doc_properties,
-    workbook_set_properties,
-    worksheet_set_column,
-    worksheet_write_string,
-    workbook_close
+using LibXLSXWriter
 
 workbook = workbook_new("doc_properties.xlsx")
 worksheet = workbook_add_worksheet(workbook)

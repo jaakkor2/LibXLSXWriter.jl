@@ -9,12 +9,7 @@ https://github.com/jmcnamara/libxlsxwriter/blob/main/examples/constant_memory.c
  */
 =#
 
-using LibXLSXWriter:
-    lxw_workbook_options,
-    workbook_new_opt,
-    workbook_add_worksheet,
-    worksheet_write_number,
-    workbook_close
+using LibXLSXWriter
 
 max_row = 1000
 max_col = 50

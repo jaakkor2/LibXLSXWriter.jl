@@ -11,23 +11,7 @@ https://github.com/jmcnamara/libxlsxwriter/blob/main/examples/tables.c
  */
 =#
 
-using LibXLSXWriter:
-    worksheet_write_number,
-    workbook_new,
-    workbook_add_worksheet,
-    workbook_add_format,
-    format_set_num_format,
-    worksheet_set_column,
-    COLS,
-    worksheet_write_string,
-    CELL,
-    worksheet_add_table,
-    RANGE,
-    lxw_table_options,
-    lxw_table_column,
-    LXW_TABLE_FUNCTION_SUM,
-    LXW_TABLE_STYLE_TYPE_LIGHT,
-    workbook_close
+using LibXLSXWriter
 
 # Write some data to the worksheet.
 function write_worksheet_data(worksheet, format = C_NULL)

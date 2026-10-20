@@ -8,16 +8,7 @@ https://github.com/jmcnamara/libxlsxwriter/blob/main/examples/demo.c
  */
 =#
 
-using LibXLSXWriter:
-    workbook_new,
-    workbook_add_worksheet,
-    workbook_add_format,
-    format_set_bold,
-    worksheet_set_column,
-    worksheet_write_string,
-    worksheet_write_number,
-    worksheet_insert_image,
-    workbook_close
+using LibXLSXWriter
 
 # Create a new workbook and add a worksheet.
 workbook = workbook_new("demo.xlsx")

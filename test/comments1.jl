@@ -8,12 +8,7 @@ https://github.com/jmcnamara/libxlsxwriter/blob/main/examples/comments1.c
  */
  =#
 
-using LibXLSXWriter:
-    workbook_new,
-    workbook_add_worksheet,
-    worksheet_write_string,
-    worksheet_write_comment,
-    workbook_close
+using LibXLSXWriter
 
 workbook = workbook_new("comments1.xlsx")
 worksheet = workbook_add_worksheet(workbook)

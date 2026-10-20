@@ -14,22 +14,7 @@ https://github.com/jmcnamara/libxlsxwriter/blob/main/examples/chart_pie_colors.c
  */
 =#
 
-using LibXLSXWriter:
-    workbook_new,
-    workbook_add_worksheet,
-    worksheet_write_string,
-    CELL,
-    worksheet_write_number,
-    workbook_add_chart,
-    LXW_CHART_PIE,
-    chart_add_series,
-    lxw_chart_fill,
-    LXW_COLOR_RED,
-    LXW_COLOR_GREEN,
-    lxw_chart_point,
-    chart_series_set_points,
-    worksheet_insert_chart,
-    workbook_close
+using LibXLSXWriter
 
 workbook = workbook_new("chart_pie_colors.xlsx")
 worksheet = workbook_add_worksheet(workbook)

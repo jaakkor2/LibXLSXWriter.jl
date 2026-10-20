@@ -11,20 +11,7 @@ https://github.com/jmcnamara/libxlsxwriter/blob/main/examples/conditional_format
  */
 =#
 
-using LibXLSXWriter:
-    workbook_new,
-    workbook_add_worksheet,
-    worksheet_write_number,
-    CELL,
-    workbook_add_format,
-    format_set_font_color,
-    LXW_COLOR_RED,
-    lxw_conditional_format,
-    LXW_CONDITIONAL_TYPE_CELL,
-    LXW_CONDITIONAL_CRITERIA_LESS_THAN,
-    worksheet_conditional_format_range,
-    RANGE,
-    workbook_close
+using LibXLSXWriter
 
 workbook = workbook_new("conditional_format_simple.xlsx")
 worksheet = workbook_add_worksheet(workbook)

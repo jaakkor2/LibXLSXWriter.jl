@@ -9,23 +9,7 @@ https://github.com/jmcnamara/libxlsxwriter/blob/main/examples/rich_strings.c
  */
 =#
 
-using LibXLSXWriter:
-    workbook_new,
-    workbook_add_worksheet,
-    workbook_add_format,
-    format_set_bold,
-    format_set_italic,
-    format_set_font_color,
-    LXW_COLOR_RED,
-    LXW_COLOR_BLUE,
-    format_set_align,
-    LXW_ALIGN_CENTER,
-    format_set_font_script,
-    LXW_FONT_SUPERSCRIPT,
-    lxw_rich_string_tuple,
-    CELL,
-    worksheet_write_rich_string,
-    workbook_close
+using LibXLSXWriter
 
 workbook = workbook_new("rich_strings.xlsx")
 worksheet = workbook_add_worksheet(workbook)

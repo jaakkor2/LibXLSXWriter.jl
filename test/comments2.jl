@@ -10,25 +10,7 @@ https://github.com/jmcnamara/libxlsxwriter/blob/main/examples/comments2.c
  */
 =#
 
-using LibXLSXWriter:
-    workbook_new,
-    workbook_add_worksheet,
-    workbook_add_format,
-    format_set_text_wrap,
-    format_set_align,
-    LXW_ALIGN_VERTICAL_TOP,
-    worksheet_set_column,
-    worksheet_set_row,
-    worksheet_write_string,
-    CELL,
-    worksheet_write_comment,
-    lxw_comment_options,
-    LXW_COMMENT_DISPLAY_VISIBLE,
-    worksheet_write_comment_opt,
-    worksheet_show_comments,
-    LXW_COMMENT_DISPLAY_HIDDEN,
-    LXW_COLOR_GREEN,
-    workbook_close
+using LibXLSXWriter
 
 workbook = workbook_new("comments2.xlsx")
 worksheet1 = workbook_add_worksheet(workbook)

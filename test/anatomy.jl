@@ -8,19 +8,7 @@ https://github.com/jmcnamara/libxlsxwriter/blob/main/examples/anatomy.c
  */
 =#
 
-using LibXLSXWriter:
-    workbook_new,
-    workbook_add_worksheet,
-    workbook_add_format,
-    format_set_bold,
-    format_set_num_format,
-    worksheet_set_column,
-    worksheet_write_string,
-    worksheet_write_number,
-    workbook_close,
-    LXW_NO_ERROR,
-    lxw_strerror,
-    lxw_error
+using LibXLSXWriter
 using Printf
 
 # Create a new workbook.
