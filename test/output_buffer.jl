@@ -8,14 +8,7 @@ https://github.com/jmcnamara/libxlsxwriter/blob/main/examples/output_buffer.c
  */
 =#
 
-using LibXLSXWriter:
-    lxw_workbook_options,
-    workbook_new_opt,
-    workbook_add_worksheet,
-    worksheet_write_string,
-    worksheet_write_number,
-    workbook_close,
-    LXW_NO_ERROR
+using LibXLSXWriter
 
 function main()
 

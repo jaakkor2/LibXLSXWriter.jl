@@ -9,25 +9,7 @@ https://github.com/jmcnamara/libxlsxwriter/blob/main/examples/panes.c
  */
 =#
 
-using LibXLSXWriter:
-    workbook_new,
-    workbook_add_worksheet,
-    workbook_add_format,
-    format_set_align,
-    LXW_ALIGN_CENTER,
-    LXW_ALIGN_VERTICAL_CENTER,
-    format_set_fg_color,
-    format_set_bold,
-    format_set_border,
-    LXW_BORDER_THIN,
-    worksheet_freeze_panes,
-    worksheet_set_column,
-    worksheet_set_row,
-    worksheet_set_selection,
-    worksheet_write_string,
-    worksheet_split_panes,
-    worksheet_write_number,
-    workbook_close
+using LibXLSXWriter
 
 # Create a new workbook and add some worksheets.
 workbook = workbook_new("panes.xlsx")

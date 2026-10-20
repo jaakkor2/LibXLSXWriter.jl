@@ -8,31 +8,7 @@ https://github.com/jmcnamara/libxlsxwriter/blob/main/examples/chartsheet.c
  */
 =#
 
-using LibXLSXWriter:
-    worksheet_write_string,
-    worksheet_write_number,
-    workbook_new,
-    workbook_add_worksheet,
-    workbook_add_chartsheet,
-    workbook_add_format,
-    format_set_bold,
-    workbook_add_chart,
-    LXW_CHART_BAR,
-    chart_add_series,
-    chart_series_set_name,
-    chart_series_set_categories,
-    chart_series_set_values,
-    chart_series_set_name_range,
-    chart_title_set_name,
-    chart_axis_set_name,
-    chart_axis_get,
-    LXW_CHART_AXIS_TYPE_X,
-    LXW_CHART_AXIS_TYPE_Y,
-    chart_set_style,
-    chartsheet_set_chart,
-    chartsheet_activate,
-    chartsheet_activate,
-    workbook_close
+using LibXLSXWriter
 
 ## Write some data to the worksheet.
 function write_worksheet_data(worksheet, bold)

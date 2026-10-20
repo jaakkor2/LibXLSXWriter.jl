@@ -12,42 +12,7 @@ https://github.com/jmcnamara/libxlsxwriter/blob/main/examples/data_validate.c
  */
 =#
 
-using LibXLSXWriter:
-    worksheet_write_string,
-    CELL,
-    worksheet_write_number,
-    worksheet_write_formula,
-    workbook_new,
-    workbook_add_worksheet,
-    workbook_add_format,
-    format_set_border,
-    LXW_BORDER_THIN,
-    format_set_fg_color,
-    format_set_bold,
-    format_set_text_wrap,
-    format_set_align,
-    LXW_ALIGN_VERTICAL_CENTER,
-    format_set_indent,
-    worksheet_set_column,
-    worksheet_set_row,
-    lxw_data_validation,
-    LXW_VALIDATION_TYPE_INTEGER,
-    LXW_VALIDATION_CRITERIA_BETWEEN,
-    worksheet_data_validation_cell,
-    LXW_VALIDATION_TYPE_INTEGER_FORMULA,
-    LXW_VALIDATION_CRITERIA_NOT_BETWEEN,
-    LXW_VALIDATION_CRITERIA_GREATER_THAN,
-    LXW_VALIDATION_CRITERIA_LESS_THAN,
-    LXW_VALIDATION_TYPE_DECIMAL,
-    LXW_VALIDATION_TYPE_LIST,
-    LXW_VALIDATION_TYPE_LIST_FORMULA,
-    lxw_datetime,
-    LXW_VALIDATION_TYPE_DATE,
-    LXW_VALIDATION_TYPE_TIME,
-    LXW_VALIDATION_TYPE_LENGTH,
-    LXW_VALIDATION_TYPE_CUSTOM_FORMULA,
-    LXW_VALIDATION_ERROR_TYPE_INFORMATION,
-    workbook_close
+using LibXLSXWriter
 using LibXLSXWriter: @Cs_str, Cs # convert String to Cstring
 
 ## Write some data to the worksheet.

@@ -9,37 +9,7 @@ https://github.com/jmcnamara/libxlsxwriter/blob/main/examples/chart_data_labels.
  */
 =#
 
-using LibXLSXWriter:
-    workbook_new,
-    workbook_add_worksheet,
-    workbook_add_format,
-    format_set_bold,
-    lxw_chart_options,
-    worksheet_write_string,
-    worksheet_write_number,
-    workbook_add_chart,
-    LXW_CHART_COLUMN,
-    chart_title_set_name,
-    chart_add_series,
-    chart_series_set_labels,
-    chart_legend_set_position,
-    LXW_CHART_LEGEND_NONE,
-    worksheet_insert_chart_opt,
-    CELL,
-    chart_series_set_labels_options,
-    lxw_chart_font,
-    LXW_COLOR_RED,
-    chart_series_set_labels_font,
-    LXW_COLOR_YELLOW,
-    lxw_chart_line,
-    lxw_chart_fill,
-    chart_series_set_labels_line,
-    chart_series_set_labels_fill,
-    lxw_chart_data_label,
-    chart_series_set_labels_custom,
-    LXW_COLOR_BLUE,
-    LXW_COLOR_GREEN,
-    workbook_close
+using LibXLSXWriter
 
 ## Create a worksheet with examples charts.
 

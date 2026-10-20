@@ -9,15 +9,7 @@ https://github.com/jmcnamara/libxlsxwriter/blob/main/examples/dates_and_times02.
  */
 =#
 
-using LibXLSXWriter:
-    lxw_datetime,
-    workbook_new,
-    workbook_add_worksheet,
-    workbook_add_format,
-    format_set_num_format,
-    worksheet_set_column,
-    worksheet_write_datetime,
-    workbook_close
+using LibXLSXWriter
 
 # A datetime to display.
 datetime = Ref(lxw_datetime(2013, 2, 28, 12, 0, 0.0))

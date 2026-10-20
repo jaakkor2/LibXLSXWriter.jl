@@ -10,14 +10,7 @@ https://github.com/jmcnamara/libxlsxwriter/blob/main/examples/format_num_format.
 =#
 
 
-using LibXLSXWriter:
-    workbook_new,
-    workbook_add_worksheet,
-    worksheet_set_column,
-    workbook_add_format,
-    format_set_num_format,
-    worksheet_write_number,
-    workbook_close
+using LibXLSXWriter
 
 # Create a new workbook and add a worksheet.
 workbook = workbook_new("format_num_format.xlsx")

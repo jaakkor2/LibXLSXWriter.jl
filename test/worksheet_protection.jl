@@ -9,17 +9,7 @@ https://github.com/jmcnamara/libxlsxwriter/blob/main/examples/worksheet_protecti
  */
 =#
 
-using LibXLSXWriter:
-    workbook_new,
-    workbook_add_worksheet,
-    workbook_add_format,
-    format_set_unlocked,
-    format_set_hidden,
-    worksheet_set_column,
-    worksheet_protect,
-    worksheet_write_string,
-    worksheet_write_formula,
-    workbook_close
+using LibXLSXWriter
 
 workbook = workbook_new("protection.xlsx")
 worksheet = workbook_add_worksheet(workbook)

@@ -9,13 +9,7 @@ https://github.com/jmcnamara/libxlsxwriter/blob/main/examples/image_buffer.c
  */
 =#
 
-using LibXLSXWriter:
-    workbook_new,
-    workbook_add_worksheet,
-    lxw_image_options,
-    worksheet_insert_image_buffer,
-    worksheet_insert_image_buffer_opt,
-    workbook_close
+using LibXLSXWriter
 
 # Simple array with some PNG data.
 image_buffer = [

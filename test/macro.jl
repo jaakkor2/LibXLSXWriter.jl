@@ -16,16 +16,7 @@ https://github.com/jmcnamara/libxlsxwriter/blob/main/examples/macro.c
  */
 =#
 
-using LibXLSXWriter:
-    workbook_new,
-    workbook_add_worksheet,
-    worksheet_set_column,
-    COLS,
-    workbook_add_vba_project,
-    worksheet_write_string,
-    lxw_button_options,
-    worksheet_insert_button,
-    workbook_close
+using LibXLSXWriter
 
 # Note the xlsm extension of the filename
 workbook = workbook_new("macro.xlsm")

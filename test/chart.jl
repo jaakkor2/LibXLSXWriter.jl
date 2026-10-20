@@ -8,22 +8,7 @@ https://github.com/jmcnamara/libxlsxwriter/blob/main/examples/chart.c
  */
 =#
 
-using LibXLSXWriter:
-    lxw_worksheet,
-    worksheet_write_number,
-    workbook_new,
-    workbook_add_worksheet,
-    workbook_add_chart,
-    LXW_CHART_COLUMN,
-    chart_add_series,
-    lxw_chart_font,
-    LXW_EXPLICIT_FALSE,
-    LXW_COLOR_BLUE,
-    chart_title_set_name,
-    chart_title_set_name_font,
-    worksheet_insert_chart,
-    CELL,
-    workbook_close
+using LibXLSXWriter
 
 # Write some data to the worksheet.
 function write_worksheet_data(worksheet)
